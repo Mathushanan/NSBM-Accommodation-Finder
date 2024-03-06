@@ -14,9 +14,10 @@
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="#">Home</a></li>
-            <li class="link"><a href="#">Login</a></li>
+            <li class="link"><a href="#">Popular</a></li>
             <li class="link"><a href="#">About</a></li>
-            <li class="link"><a href="#">Contact Us</a></li>
+            <li class="link"><a href="#">Contact</a></li>
+            <li class="link"><a href="#">Login</a></li>
         </ul>
     </nav>
     <header class="section__container header__container">
@@ -48,12 +49,78 @@
                         </div>
                         <p>What is your maximum budget?</p>
                     </div>
-                    
+
                 </form>
                 <button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </header>
+
+    <section class="section__container popular__container">
+        <h2 class="section__header">Popular Accommodations</h2>
+        <div class="popular__grid">
+            <div class="popular__card">
+                <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                <div class="popular__content">
+                    <div class="popular__card__header">
+                        <h4>The Plaza Hotel</h4>
+                        <h4>$499</h4>
+                    </div>
+                    <p>New York City, USA</p>
+                </div>
+            </div>
+            <div class="popular__card">
+                <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                <div class="popular__content">
+                    <div class="popular__card__header">
+                        <h4>Ritz Paris</h4>
+                        <h4>$549</h4>
+                    </div>
+                    <p>Paris, France</p>
+                </div>
+            </div>
+            <div class="popular__card">
+                <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                <div class="popular__content">
+                    <div class="popular__card__header">
+                        <h4>The Peninsula</h4>
+                        <h4>$599</h4>
+                    </div>
+                    <p>Hong Kong</p>
+                </div>
+            </div>
+            <div class="popular__card">
+                <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                <div class="popular__content">
+                    <div class="popular__card__header">
+                        <h4>Atlantis The Palm</h4>
+                        <h4>$449</h4>
+                    </div>
+                    <p>Dubai, United Arab Emirates</p>
+                </div>
+            </div>
+            <div class="popular__card">
+                <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                <div class="popular__content">
+                    <div class="popular__card__header">
+                        <h4>The Ritz-Carlton</h4>
+                        <h4>$649</h4>
+                    </div>
+                    <p>Tokyo, Japan</p>
+                </div>
+            </div>
+            <div class="popular__card">
+                <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                <div class="popular__content">
+                    <div class="popular__card__header">
+                        <h4>Marina Bay Sands</h4>
+                        <h4>$549</h4>
+                    </div>
+                    <p>Singapore</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
