@@ -13,13 +13,13 @@
     <nav>
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
-            <li class="link"><a href="#">Home</a></li>
-            <li class="link"><a href="#">Popular</a></li>
-            <li class="link"><a href="#">Contact</a></li>
-            <li class="link"><a href="#">Login</a></li>
+            <li class="link"><a href="#home_section">Home</a></li>
+            <li class="link"><a href="#popular_section">Popular</a></li>
+            <li class="link"><a href="#footer_section">Contact</a></li>
+            <li class="link"><a href="login.php">Login</a></li>
         </ul>
     </nav>
-    <header class="section__container header__container">
+    <header class="section__container header__container" id="home_section">
         <div class="header__image__container">
             <div class="header__content">
                 <h1>Discover Accommodation Options</h1>
@@ -55,7 +55,7 @@
         </div>
     </header>
 
-    <section class="section__container popular__container">
+    <section class="section__container popular__container" id="popular_section">
         <h2 class="section__header">Popular Accommodations</h2>
         <div class="popular__grid">
             <div class="popular__card">
@@ -127,7 +127,7 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="footer_section">
         <div class="section__container footer__container">
             <div class="footer__col">
                 <h3>UniNest NSBM</h3>
@@ -143,7 +143,6 @@
             <div class="footer__col">
                 <h4>Company</h4>
                 <p>About Us</p>
-                <p>Popular</p>
                 <p>Our Team</p>
                 <p>Contact Us</p>
             </div>

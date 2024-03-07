@@ -17,9 +17,14 @@
 }
 
 
-body {
-    font-family: "Poppins", sans-serif;
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
 }
+
 
 /**header section**/
 
@@ -56,6 +61,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .nav__logo {
@@ -237,18 +243,18 @@ nav {
 
 .rent {
     display: inline-block;
-    padding: 5px 10px; /* Adjust padding as needed */
-    background-color: #F5A623; /* Set background color */
-    border: 1px solid #FFD180; /* Set border color */
-    border-radius: 5px; /* Add rounded corners */
-    font-weight: bold; /* Make text bold */
-    color: var(--text-light); /* Set text color */
+    padding: 5px 10px; 
+    background-color: #F5A623; 
+    border: 1px solid #FFD180; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    color: var(--text-light); 
     font-size: 0.6rem;
 }
 
 .rent h4{
     font-size: 0.8rem;
-    color: #FFFFFF; /* Set text color */
+    color: #FFFFFF; 
 }
 
 .popular__content p {
@@ -358,7 +364,6 @@ nav {
 
 .social-icons a:hover {
     background-color: #333;
-
     color: #fff;
 }
 
@@ -368,47 +373,16 @@ nav {
 
 
 
+/***login.php***/
 
 
 
-
-
-
-
-/***index.php,register.php***/
-* {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-
-
-}
-
-body {
-    background-color: #f0f0f0;
-
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 900;
-    color: #f44336;
-}
-
-.right-links a {
-    padding: 0 10px;
-}
-
-.sub-logo {
-    color: #4285f4;
-}
-
-.container {
+.login-container {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 90vh;
+  
 
 }
 
@@ -449,6 +423,37 @@ body {
     flex-direction: column;
 }
 
+/* Style for the select element */
+.field select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    border-radius: 5px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 30px; /* Adjust as needed */
+    width:100%;
+  }
+  /* Style for the options */
+  .field select option {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Style for the select when focused */
+  .field select:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+  }
+  
+
 .form-box form .input input {
     height: 40px;
     width: 100%;
@@ -460,9 +465,9 @@ body {
 
 }
 
-.btn {
-    background-color: #4285f4;
-    height: 35px;
+.login-container .btn {
+    background-color: var(--primary-color);
+    height: 40px;
     border: 0;
     border-radius: 5px;
     color: #fff;
@@ -470,8 +475,8 @@ body {
     cursor: pointer;
     transition: all .3s;
     margin-top: 10px;
-    padding: 0px 10px;
-
+    
+    
 }
 
 .btn:hover {
@@ -493,6 +498,12 @@ body {
 .link {
     margin-bottom: 10px;
     margin-top: 20px;
+}
+
+.login-container .link a{
+    color: #0000EE;
+    text-decoration: underline;
+
 }
 
 .ErrorMessageBox {
