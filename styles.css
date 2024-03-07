@@ -205,15 +205,17 @@ nav {
 .popular__grid {
     margin-top: 4rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
 
 .popular__card {
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: 5px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+    
 }
+
 
 .popular__content {
     padding: 1rem;
@@ -228,15 +230,46 @@ nav {
 }
 
 .popular__card__header h4 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text-dark);
 }
 
-.popular__content p {
-    color: var(--text-light);
+.rent {
+    display: inline-block;
+    padding: 5px 10px; /* Adjust padding as needed */
+    background-color: #F5A623; /* Set background color */
+    border: 1px solid #FFD180; /* Set border color */
+    border-radius: 5px; /* Add rounded corners */
+    font-weight: bold; /* Make text bold */
+    color: var(--text-light); /* Set text color */
+    font-size: 0.6rem;
 }
 
+.rent h4{
+    font-size: 0.8rem;
+    color: #FFFFFF; /* Set text color */
+}
+
+.popular__content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+.location__button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.location__button:hover {
+    background-color: var(--primary-color-dark);
+}
 
 /**footer_section**/
 .footer {
