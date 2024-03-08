@@ -284,6 +284,29 @@ nav {
 
 /**slider**/
 
+.slider {
+    overflow: hidden;
+}
+
+.popular__card {
+    margin-right: 20px; /* Adjust this value to control the spacing */
+}
+
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  
+}
+
+.popular__card {
+    
+    margin-right: 20px; /* Adjust this value to control the spacing */
+}
+
+.popular__card:last-child {
+    margin-right: 0;
+}
 
 
 /**footer_section**/
