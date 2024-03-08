@@ -8,6 +8,7 @@
     --extra-light: #f3f4f6;
     --white: #ffffff;
     --max-width: 1200px;
+    --rent-button-color:#F5A623;
 }
 
 * {
@@ -32,6 +33,7 @@
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
+
 }
 
 .section__header {
@@ -199,6 +201,7 @@ nav {
 
 .btn i {
     font-size: 20px;
+    color: var(--white);
 }
 
 .booking__container .btn:hover {
@@ -219,6 +222,7 @@ nav {
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+   
     
 }
 
@@ -244,8 +248,8 @@ nav {
 .rent {
     display: inline-block;
     padding: 5px 10px; 
-    background-color: #F5A623; 
-    border: 1px solid #FFD180; 
+    background-color:var(--rent-button-color);
+    
     border-radius: 5px; 
     font-weight: bold; 
     color: var(--text-light); 
@@ -276,6 +280,11 @@ nav {
 .location__button:hover {
     background-color: var(--primary-color-dark);
 }
+
+
+/**slider**/
+
+
 
 /**footer_section**/
 .footer {
@@ -383,7 +392,6 @@ nav {
     justify-content: center;
     min-height: 90vh;
   
-
 }
 
 .box {
@@ -423,11 +431,9 @@ nav {
     flex-direction: column;
 }
 
-/* Style for the select element */
+
 .field select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+
     background-color: #f4f4f4;
     border: 1px solid #ccc;
     padding: 10px;
@@ -436,21 +442,20 @@ nav {
     border-radius: 5px;
     background-position: right center;
     background-repeat: no-repeat;
-    padding-right: 30px; /* Adjust as needed */
+    padding-right: 60px; 
     width:100%;
   }
-  /* Style for the options */
+ 
   .field select option {
     background-color: #fff;
     color: #333;
     padding: 20px;
   }
   
-  /* Style for the select when focused */
+
   .field select:focus {
     outline: none;
-    border-color: #66afe9;
-    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+    box-shadow: 0 0 5px rgba(44, 56, 85, 0.6);
   }
   
 

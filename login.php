@@ -16,7 +16,7 @@
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
-            <li class="link"><a href="login.php">Register</a></li>
+            <li class="link"><a href="register.php">Register</a></li>
         </ul>
     </nav>
     <div class="login-container">

@@ -27,8 +27,9 @@
                 <form action="" method="post" id="form">
                     <div class="field input">
                         <select id="type" name="type">
-                            <option value="Parmacy User">Parmacy User</option>
-                            <option value="Normal User">Normal User</option>
+                            <option value="Parmacy User">Landlord</option>
+                            <option value="Normal User">Warden</option>
+                            <option value="Normal User">Student</option>
                         </select>
                     </div>
                     <div class="field input">
@@ -57,14 +58,12 @@
                         <button type="submit" class="btn" name="submit" value="SIGNUP" >SIGNUP</button>
                     </div>
                     <div class="link">
-                        Already have an Account? <a href="index.php">LOGIN</a>
+                        Already have an Account? <a href="login.php">LOGIN</a>
                     </div>
                 </form>
         </div>
     
     </div>
-
-   
 
 
     <footer class="footer" id="footer_section">
