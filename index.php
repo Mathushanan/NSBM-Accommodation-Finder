@@ -69,7 +69,7 @@
 
 
 
-    <section class="section__container new_accommodations__container" id="popular_section">
+    <section class="section__container new_accommodations__container" id="new_accommodations_section">
         <h2 class="section__header">New Accommodations</h2>
         <div class="slider">
             <div class="slides">

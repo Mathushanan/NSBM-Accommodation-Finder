@@ -4,7 +4,7 @@ session_start();
 
 include("config.php");
 
-if(!isset($_SESSION['userEmail'])){
+if (!isset($_SESSION['userEmail']) || $_SESSION['userType']!="Student") {
     header("Location: login.php");
     exit();
 }

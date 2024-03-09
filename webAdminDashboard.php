@@ -4,7 +4,7 @@ session_start();
 
 include("config.php");
 
-if(!isset($_SESSION['userEmail'])){
+if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
     header("Location: login.php");
     exit();
 }
@@ -40,10 +40,107 @@ if(!isset($_SESSION['userEmail'])){
 
 
 
-    <div class="login-container">
-        <p>Webadmin</p>
+    <section class="section__container webadmin_dashboard_section__container" id="popular_section">
+        <div class="webadmin_dashboard_buttons_container">
+            <button class="big-button">Create New Account</button>
+            <button class="big-button">Post New Article</button>
+        </div>
 
-    </div>
+    </section>
+
+
+
+    <section class="section__container webadmin_dashboard_section__container" id="popular_section">
+        <h2 class="section__header">All Accommodations</h2>
+        <div class="webadmin_dashboard_accommodation_container">
+            <div class="card">
+                <div class="card__content">
+                    <h2 class="card__title">Green Hostel</h2>
+                    <p class="card__description">Very clean and neat high quality rooms available near NSBM Green University</p>
+
+                    <div class="card__details">
+                        <p><strong>Mr.Bandara</strong></p>
+                        <p class="address">13th NSBM road, Homagama</p>
+                        <p class="beds"><strong>20</strong> Beds Available</p>
+                    </div>
+
+                    <div class="card_footer">
+                        <span class="available_status">Available</span>
+                        <span class="rent">Rs.18000</span>
+                    </div>
+                </div>
+
+                <div class="card__image">
+                    <img src="assets\header_pic.jpeg" alt="">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__content">
+                    <h2 class="card__title">Green Hostel</h2>
+                    <p class="card__description">Very clean and neat high quality rooms available near NSBM Green University</p>
+
+                    <div class="card__details">
+                        <p><strong>Mr.Bandara</strong></p>
+                        <p class="address">13th NSBM road, Homagama</p>
+                        <p class="beds"><strong>20</strong> Beds Available</p>
+                    </div>
+
+                    <div class="card_footer">
+                        <span class="not_available_status">Not Available</span>
+                        <span class="rent">Rs.18000</span>
+                    </div>
+                </div>
+
+                <div class="card__image">
+                    <img src="assets\header_pic.jpeg" alt="">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__content">
+                    <h2 class="card__title">Green Hostel</h2>
+                    <p class="card__description">Very clean and neat high quality rooms available near NSBM Green University</p>
+
+                    <div class="card__details">
+                        <p><strong>Mr.Bandara</strong></p>
+                        <p class="address">13th NSBM road, Homagama</p>
+                        <p class="beds"><strong>20</strong> Beds Available</p>
+                    </div>
+
+                    <div class="card_footer">
+                        <span class="not_available_status">Not Available</span>
+                        <span class="rent">Rs.18000</span>
+                    </div>
+                </div>
+
+                <div class="card__image">
+                    <img src="assets\header_pic.jpeg" alt="">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__content">
+                    <h2 class="card__title">Green Hostel</h2>
+                    <p class="card__description">Very clean and neat high quality rooms available near NSBM Green University</p>
+
+                    <div class="card__details">
+                        <p><strong>Mr.Bandara</strong></p>
+                        <p class="address">13th NSBM road, Homagama</p>
+                        <p class="beds"><strong>20</strong> Beds Available</p>
+                    </div>
+
+                    <div class="card_footer">
+                        <span class="available_status">Available</span>
+                        <span class="rent">Rs.18000</span>
+                    </div>
+                </div>
+
+                <div class="card__image">
+                    <img src="assets\header_pic.jpeg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 
 

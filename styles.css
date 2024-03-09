@@ -37,6 +37,7 @@
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
+   
 }
 
 .section__header {
@@ -508,6 +509,7 @@ nav {
     align-items: center;
     justify-content: center;
     min-height: 80vh;
+    
 }
 
 .login-container .btn {
@@ -586,6 +588,126 @@ nav {
     border-radius: 5px;
     color: #006400;
 
+}
+
+
+/**webadminDashboard.php**/
+
+.webadmin_dashboard_buttons_container {
+    text-align: center;
+}
+
+.big-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    width: 20rem;
+    transition: background-color 0.3s ease;
+}
+
+.big-button:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.card {
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+    background-color: white;
+    
+}
+
+.webadmin_dashboard_accommodation_container{
+    margin-top: 5rem;
+}
+.webadmin_dashboard_section__container .card__details{
+    margin-bottom: 20px;
+}
+
+.webadmin_dashboard_section__container .card__title{
+    color:var(--primary-color);
+}
+
+.webadmin_dashboard_section__container .card_footer{
+  
+    display: flex;
+    justify-content: space-around;
+}
+
+.webadmin_dashboard_section__container .card_footer .available_status {
+    text-align: center;
+    background-color: #d9f9d9;
+    padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    color: #006400;
+}
+
+.webadmin_dashboard_section__container .card_footer .not_available_status {
+    text-align: center;
+    background-color: #f9eded;
+    padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    color: red;
+}
+
+.webadmin_dashboard_section__container .card_footer .rent {
+
+        padding: 5px 20px;
+        background-color: var(--rent-button-color);
+        border-radius: 5px;
+        font-weight: bold;
+        color: var(--white);
+        font-size: 1rem;
+        text-align: center;   
+}
+
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card__content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.card__image {
+    width: 400px;
+    background-color: #eee;
+    background-size: cover;
+}
+
+.card__title {
+    margin-top: 0;
+    color: #333;
+}
+
+.card__description {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.card__details p {
+    margin: 10px 0;
+    color: #444;
+}
+
+.card__details strong {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #222;
 }
 
 
