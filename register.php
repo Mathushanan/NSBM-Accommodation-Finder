@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,59 +10,93 @@
 </head>
 
 <body>
-<nav>
+    <nav>
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
-            <li class="link"><a href="login.php">Register</a></li>
+            <li class="link"><a href="login.php">Login</a></li>
         </ul>
     </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="login-container">
         <div class="box form-box register-box">
 
-            
-                <header>Register</header>
-                <form action="" method="post" id="form">
-                    <div class="field input">
-                        <select id="type" name="type">
-                            <option value="Parmacy User">Landlord</option>
-                            <option value="Normal User">Warden</option>
-                            <option value="Normal User">Student</option>
-                        </select>
-                    </div>
-                    <div class="field input">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" required>
-                    </div>
-                    <div class="field input">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" required>
-                    </div>
-                    <div class="field input">
-                        <label for="mobile">Mobile</label>
-                        <input type="text" name="mobile" id="mobile" required>
-                    </div>
-                   
-        
-                    <div class="field input">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
-                    </div>
-                    <div class="field input">
-                        <label for="cpassword">Confirm Password</label>
-                        <input type="password" name="cpassword" id="cpassword" required>
-                    </div>
-                    <div class="field">
-                        <button type="submit" class="btn" name="submit" value="SIGNUP" >SIGNUP</button>
-                    </div>
-                    <div class="link">
-                        Already have an Account? <a href="login.php">LOGIN</a>
-                    </div>
-                </form>
+
+            <header>Register</header>
+            <form action="" method="post" id="form">
+                <div class="field input">
+                    <select id="type" name="type">
+                        <option value="Landlord User">Landlord</option>
+                        <option value="Warden User">Warden</option>
+                        <option value="Student User">Student</option>
+                    </select>
+                </div>
+                <div class="field input">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div class="field input">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" required>
+                </div>
+                <div class="field input">
+                    <label for="mobile">Mobile</label>
+                    <input type="text" name="mobile" id="mobile" required>
+                </div>
+
+
+                <div class="field input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <div class="field input">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" name="cpassword" id="cpassword" required>
+                </div>
+                <div class="field input">
+                    <select id="type" name="type">
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <button type="submit" class="btn" name="submit" value="SIGNUP">SIGNUP</button>
+                </div>
+                <div class="link">
+                    Already have an Account? <a href="login.php">LOGIN</a>
+                </div>
+            </form>
         </div>
-    
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <footer class="footer" id="footer_section">
@@ -115,7 +148,7 @@
         };
         var validateForm = () => {
 
-  
+
             let valid = true;
             const nameInput = document.getElementById("name");
             if (nameInput.value.trim() === "") {
