@@ -37,8 +37,8 @@
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
-
 }
+
 .section__header {
     font-size: 2rem;
     font-weight: 600;
@@ -106,11 +106,13 @@ nav {
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 2rem;
+    
 }
 
 .header__content {
     max-width: 600px;
     padding: 5rem 2rem;
+    
 }
 
 .header__content h1 {
@@ -432,14 +434,8 @@ nav {
 
 
 
-/***login.php***/
+/***login.php & register.php***/
 
-.login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 90vh;
-}
 
 .box {
     background-color: #fdfdfd;
@@ -453,12 +449,6 @@ nav {
 .form-box {
     width: 450px;
     margin: 0px 10px;
-}
-
-.register-box {
-    padding: 25px 40px;
-    margin: 30px 0px;
-
 }
 
 .form-box header {
@@ -475,7 +465,6 @@ nav {
     margin-bottom: 10px;
     flex-direction: column;
 }
-
 
 .field select {
 
@@ -514,6 +503,14 @@ nav {
     outline: none;
 }
 
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    border: 1px solid;
+}
+
 .login-container .btn {
     background-color: var(--primary-color);
     height: 40px;
@@ -524,6 +521,10 @@ nav {
     cursor: pointer;
     transition: all .3s;
     margin-top: 10px;
+}
+.register-box {
+    padding: 25px 40px;
+    margin: 30px 0px;
 }
 
 .btn:hover {
@@ -612,7 +613,20 @@ nav {
     }
 }
 
+
+
+
 @media (width < 600px) {
+    .header__content h1 {
+
+        font-size: 3rem;
+        line-height: 4rem;
+        font-weight: 600;
+    }
+    .header__image__container {
+        min-height: 400px;    
+    }
+
     .nav__links {
         display: none;
     }
@@ -641,4 +655,36 @@ nav {
     .footer__container {
         gap: 2rem;
     }
+}
+
+
+@media (width < 500px) {
+    .header__content h1 {
+
+        font-size: 2.5rem;
+        line-height: 4rem;
+        font-weight: 600;
+    }
+
+}
+@media (width < 450px) {
+    .header__content h1 {
+
+        font-size: 2.1rem;
+        line-height: 3rem;
+        font-weight: 600;
+    }
+    .header__image__container {
+        min-height: 300px;    
+    }
+
+}
+@media (width < 400px) {
+    .header__content h1 {
+
+        font-size: 1.6rem;
+        line-height: 3rem;
+        font-weight: 600;
+    }
+
 }

@@ -142,69 +142,56 @@
 
 
 
+
     <section class="section__container card__container swiper" id="blog_section">
         <h2 class="section__header">Explore Our Accommodation Guides</h2>
         <div class="card__content">
             <div class="swiper-wrapper">
                 <article class="card__article swiper-slide">
-
-
                     <div class="card__data">
                         <h3 class="card__name">Kell Dawx</h3>
                         <p class="card__description">
                             Passionate about development and design,
                             I carry out projects at the request of users.
                         </p>
-
                         <a href="#" class="card__button">View More</a>
                     </div>
                 </article>
 
                 <article class="card__article swiper-slide">
-
-
                     <div class="card__data">
                         <h3 class="card__name">Lotw Fox</h3>
                         <p class="card__description">
                             Passionate about development and design,
                             I carry out projects at the request of users.
                         </p>
-
                         <a href="#" class="card__button">View More</a>
                     </div>
                 </article>
 
                 <article class="card__article swiper-slide">
-
-
                     <div class="card__data">
                         <h3 class="card__name">Sara Mit</h3>
                         <p class="card__description">
                             Passionate about development and design,
                             I carry out projects at the request of users.
                         </p>
-
                         <a href="#" class="card__button">View More</a>
                     </div>
                 </article>
 
                 <article class="card__article swiper-slide">
-
-
                     <div class="card__data">
                         <h3 class="card__name">Jenny Wert</h3>
                         <p class="card__description">
                             Passionate about development and design,
                             I carry out projects at the request of users.
                         </p>
-
                         <a href="#" class="card__button">View More</a>
                     </div>
                 </article>
 
                 <article class="card__article swiper-slide">
-
-
                     <div class="card__data">
                         <h3 class="card__name">Lexa Kin</h3>
                         <p class="card__description">
@@ -231,11 +218,19 @@
         <div class="swiper-pagination"></div>
         </div>
 
-
-
-
-
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
 
     <footer class="footer" id="footer_section">
         <div class="section__container footer__container">
@@ -278,6 +273,17 @@
         </div>
 
     </footer>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

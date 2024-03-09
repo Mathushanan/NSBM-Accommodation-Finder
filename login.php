@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +10,10 @@
 </head>
 
 <body>
-<nav>
+
+
+
+    <nav>
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
@@ -19,29 +21,44 @@
             <li class="link"><a href="register.php">Register</a></li>
         </ul>
     </nav>
+
+
+
+
+
     <div class="login-container">
         <div class="box form-box">
-      
-                <header>Login</header>
-                <form action="" method="post">
-                    <div class="field input">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" required>
-                    </div>
-                    <div class="field input">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
-                    </div>
-                    <div class="field">
-                        <input type="submit" class="btn" name="submit" value="LOGIN">
-                    </div>
-                    <div class="link">
-                        Don't have Account? <a href="register.php">Sign Up</a>
-                    </div>
-                </form>
+
+            <header>Login</header>
+            <form action="" method="post">
+                <div class="field input">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" required>
+                </div>
+                <div class="field input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <div class="field">
+                    <input type="submit" class="btn" name="submit" value="LOGIN">
+                </div>
+                <div class="link">
+                    Don't have Account? <a href="register.php">Register</a>
+                </div>
+            </form>
         </div>
-   
+
     </div>
+
+
+
+
+
+
+
+
+
+
 
 
     <footer class="footer" id="footer_section">
