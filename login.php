@@ -55,10 +55,25 @@ session_start();
                     $_SESSION['userType'] = $row['userType'];
 
                     if (isset($_SESSION['userEmail'])) {
-                    
-                        header("Location: index.php");
-                    }
 
+                        if ($_SESSION['userType'] == "Student") {
+
+                            header("Location: studentDashboard.php");
+                            
+                        } else if ($_SESSION['userType'] == "Warden") {
+
+                            header("Location: wardenDashboard.php");
+                            
+                        } else if ($_SESSION['userType'] == "Landlord") {
+
+                            header("Location: landlordDashboard.php");
+
+                        } else {
+
+                            header("Location: webadminDashboard.php");
+
+                        }
+                    }
                 } else {
 
                     echo " <div class='errorMessageBox'>
@@ -70,7 +85,6 @@ session_start();
                        </a>  
                 ";
                 }
-                
             } else {
 
             ?>
