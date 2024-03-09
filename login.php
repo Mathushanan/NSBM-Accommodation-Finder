@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,24 +35,65 @@
 
     <div class="login-container">
         <div class="box form-box">
+            <?php
 
-            <header>Login</header>
-            <form action="" method="post">
-                <div class="field input">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" required>
-                </div>
-                <div class="field input">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" required>
-                </div>
-                <div class="field">
-                    <input type="submit" class="btn" name="submit" value="LOGIN">
-                </div>
-                <div class="link">
-                    Don't have Account? <a href="register.php">Register</a>
-                </div>
-            </form>
+            include("config.php");
+            if (isset($_POST['submit'])) {
+
+                $userEmail = mysqli_real_escape_string($connection, $_POST['user_email']);
+                $userPassword = mysqli_real_escape_string($connection, $_POST['user_password']);
+
+                $result = mysqli_query($connection, "SELECT * FROM users WHERE email='$userEmail' AND password='$userPassword'") or die("Error while selecting records from database");
+                $row = mysqli_fetch_assoc($result);
+
+                if (is_array($row) && !empty($row)) {
+
+                    $_SESSION['userEmail'] = $row['email'];
+                    $_SESSION['userName'] = $row['name'];
+                    $_SESSION['userMobile'] = $row['mobile'];
+                    $_SESSION['userGender'] = $row['gender'];
+                    $_SESSION['userType'] = $row['userType'];
+
+                    if (isset($_SESSION['userEmail'])) {
+                    
+                        header("Location: index.php");
+                    }
+
+                } else {
+
+                    echo " <div class='errorMessageBox'>
+                                  <p>Wrong Email or Password!</p>
+                              </div><br>
+                ";
+                    echo " <a href='login.php'>
+                           <button class='btn back-btn'>Go Back </button>
+                       </a>  
+                ";
+                }
+                
+            } else {
+
+            ?>
+
+
+
+                <header>Login</header>
+                <form action="" method="post">
+                    <div class="field input">
+                        <label for="user_email">Email</label>
+                        <input type="text" name="user_email" id="user_email" required>
+                    </div>
+                    <div class="field input">
+                        <label for="user_password">Password</label>
+                        <input type="password" name="user_password" id="user_password" required>
+                    </div>
+                    <div class="field">
+                        <input type="submit" class="btn" name="submit" value="LOGIN">
+                    </div>
+                    <div class="link">
+                        Don't have Account? <a href="register.php">Register</a>
+                    </div>
+                </form>
         </div>
 
     </div>
@@ -103,7 +151,7 @@
 
     </footer>
 
-
+<?php } ?>
 </body>
 
 </html>

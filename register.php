@@ -102,27 +102,27 @@
                     </div>
 
                     <div class="field input">
-                        <label for="name">Name</label>
+                        <label for="user_name">Name</label>
                         <input type="text" name="user_name" id="user_name" required>
                     </div>
 
                     <div class="field input">
-                        <label for="email">Email</label>
+                        <label for="user_email">Email</label>
                         <input type="text" name="user_email" id="user_email" required>
                     </div>
 
                     <div class="field input">
-                        <label for="mobile">Mobile</label>
+                        <label for="user_mobile">Mobile</label>
                         <input type="text" name="user_mobile" id="user_mobile" required>
                     </div>
 
                     <div class="field input">
-                        <label for="password">Password</label>
+                        <label for="user_password">Password</label>
                         <input type="password" name="user_password" id="user_password" required>
                     </div>
 
                     <div class="field input">
-                        <label for="cpassword">Confirm Password</label>
+                        <label for="user_cpassword">Confirm Password</label>
                         <input type="password" name="user_cpassword" id="user_cpassword" required>
                     </div>
 
