@@ -187,10 +187,15 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
 
             let valid = true;
             const nameInput = document.getElementById("title");
-            if (nameInput.value.trim() === "") {
+            if (titleInput.value.trim() === "") {
                 valid = false;
                 alert("Title is required");
+            } else if (titleInput.value.trim().length > 26) {
+                valid = false;
+                alert("Title must contain at most 16 characters");
             }
+
+
             const contentInput = document.getElementById("content");
             if (nameInput.value.trim() === "") {
                 valid = false;

@@ -147,61 +147,38 @@
         <h2 class="section__header">Explore Our Accommodation Guides</h2>
         <div class="card__content">
             <div class="swiper-wrapper">
-                <article class="card__article swiper-slide">
-                    <div class="card__data">
-                        <h3 class="card__name">Kell Dawx</h3>
-                        <p class="card__description">
-                            Passionate about development and design,
-                            I carry out projects at the request of users.
-                        </p>
-                        <a href="#" class="card__button">View More</a>
-                    </div>
-                </article>
 
-                <article class="card__article swiper-slide">
-                    <div class="card__data">
-                        <h3 class="card__name">Lotw Fox</h3>
-                        <p class="card__description">
-                            Passionate about development and design,
-                            I carry out projects at the request of users.
-                        </p>
-                        <a href="#" class="card__button">View More</a>
-                    </div>
-                </article>
+                <?php
 
-                <article class="card__article swiper-slide">
-                    <div class="card__data">
-                        <h3 class="card__name">Sara Mit</h3>
-                        <p class="card__description">
-                            Passionate about development and design,
-                            I carry out projects at the request of users.
-                        </p>
-                        <a href="#" class="card__button">View More</a>
-                    </div>
-                </article>
+                include("config.php");
 
-                <article class="card__article swiper-slide">
-                    <div class="card__data">
-                        <h3 class="card__name">Jenny Wert</h3>
-                        <p class="card__description">
-                            Passionate about development and design,
-                            I carry out projects at the request of users.
-                        </p>
-                        <a href="#" class="card__button">View More</a>
-                    </div>
-                </article>
 
-                <article class="card__article swiper-slide">
-                    <div class="card__data">
-                        <h3 class="card__name">Lexa Kin</h3>
-                        <p class="card__description">
-                            Passionate about development and design,
-                            I carry out projects at the request of users.
-                        </p>
+                $query = "SELECT title, content FROM articles";
+                $result = mysqli_query($connection, $query);
 
-                        <a href="#" class="card__button">View More</a>
-                    </div>
-                </article>
+                if ($result) {
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<article class="card__article swiper-slide">';
+                        echo '<div class="card__data">';
+                        echo '<h3 class="card__name">' . $row['title'] . '</h3>';
+                        echo '<p class="card__description">' . substr($row['content'], 0, 200) . '</p>';
+                        echo '<a href="#" class="card__button">View More</a>';
+                        echo '</div>';
+                        echo '</article>';
+                    }
+      
+                    mysqli_free_result($result);
+                } else {
+     
+                    echo "Error: " . $query . "<br>" . mysqli_error($connection);
+                }
+                mysqli_close($connection);
+
+                ?>
+
+
+
             </div>
         </div>
 
