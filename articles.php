@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,44 +28,48 @@
 
 
 
+    <section class="section__container card__container" id="articles_section">
+        <h2 class="section__header">All Articles</h2>
 
+        <div class="articles_card__content">
+            <div class="swiper-wrapper">
 
+                <?php
+                include("config.php");
 
-        <section class="section__container card__container" id="articles_section">
-            <h2 class="section__header">All Articles</h2>
+                $query = "SELECT title, content FROM articles";
+                $result = mysqli_query($connection, $query);
 
-            <div class="articles_card__content">
-                <div class="swiper-wrapper">
-
-                    <?php
-                    include("config.php");
-
-                    $query = "SELECT title, content FROM articles";
-                    $result = mysqli_query($connection, $query);
-
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<article class="card__article">';
-                            echo '<div class="card__data">';
-                            echo '<h3 class="card__name">' . $row['title'] . '</h3>';
-                            echo '<p class="card__description">' . substr($row['content'], 0, 400) . '</p>';
-                            echo '<a href="#" class="card__button">Read</a>';
-                            echo '</div>';
-                            echo '</article>';
-                        }
-                        mysqli_free_result($result);
-                    } else {
-                        echo "Error: " . $query . "<br>" . mysqli_error($connection);
+                if ($result) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<article class="card__article">';
+                        echo '<div class="card__data">';
+                        echo '<h3 class="card__name">' . $row['title'] . '</h3>';
+                        echo '<p class="card__description">' . substr($row['content'], 0, 400) . '</p>';
+                        echo '<a href="#" class="card__button read-article" data-content="' . htmlentities($row['content']) . '">Read</a>';
+                        echo '</div>';
+                        echo '</article>';
                     }
-                    mysqli_close($connection);
-                    ?>
+                    mysqli_free_result($result);
+                } else {
+                    echo "Error: " . $query . "<br>" . mysqli_error($connection);
+                }
+                mysqli_close($connection);
+                ?>
 
-                </div>
             </div>
-        </section>
+        </div>
 
 
     </section>
+
+
+    <div id="popup" class="popup-container">
+        <div class="popup-content">
+            <button id="close-popup" class="close-popup-btn"><i class="fas fa-times"></i></button>
+            <div id="article-content"></div>
+        </div>
+    </div>
 
 
 
@@ -122,6 +125,33 @@
         </div>
 
     </footer>
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const readButtons = document.querySelectorAll('.read-article');
+            const popup = document.getElementById('popup');
+            const closeButton = document.getElementById('close-popup');
+            const articleContent = document.getElementById('article-content');
+
+            readButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const articleDescription = this.dataset.content;
+                    const articleTitle = this.parentElement.querySelector('.card__name').textContent;
+                    articleContent.innerHTML = `<h3>${articleTitle}</h3><p>${articleDescription}</p>`;
+                    popup.style.display = 'block';
+                });
+            });
+
+            closeButton.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+        });
+    </script>
 
 </body>
 

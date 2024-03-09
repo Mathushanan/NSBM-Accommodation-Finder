@@ -163,7 +163,7 @@
                         echo '<div class="card__data">';
                         echo '<h3 class="card__name">' . $row['title'] . '</h3>';
                         echo '<p class="card__description">' . substr($row['content'], 0, 200) . '</p>';
-                        echo '<a href="#" class="card__button">View More</a>';
+                        echo '<a href="articles.php" class="card__button">Read</a>';
                         echo '</div>';
                         echo '</article>';
                     }
