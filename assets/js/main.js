@@ -28,14 +28,13 @@ let swiperCards = new Swiper(".card__content", {
 
 const slider = document.querySelector('.slider');
 const slides = document.querySelector('.slides');
-const cards = document.querySelectorAll('.popular__card');
+const cards = document.querySelectorAll('.new_accommodations__card');
 const pagination = document.querySelector('.pagination');
 
 let currentIndex = 0;
 const slideWidth = cards[0].offsetWidth;
 const totalSlides = cards.length;
 
-// Create pagination dots
 for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('span');
     dot.classList.add('dot');
@@ -51,13 +50,21 @@ for (let i = 0; i < totalSlides; i++) {
 const dots = document.querySelectorAll('.dot');
 
 function nextSlide() {
-    currentIndex++;
-    if (currentIndex >= totalSlides) {
-        currentIndex = 0;
-    }
-    updateSlidePosition();
-    updatePagination();
+  currentIndex++;
+  if (currentIndex >= totalSlides) {
+      currentIndex = 0;
+  }
+  updateSlidePosition();
+  updatePagination();
+
+  if (currentIndex === 0) {
+      const firstCard = slides.children[0];
+      slides.appendChild(firstCard.cloneNode(true));
+      slides.removeChild(firstCard);
+      slides.style.transform = `translateX(0)`;
+  }
 }
+
 
 function updateSlidePosition() {
     const newPosition = -currentIndex * slideWidth;
@@ -74,7 +81,5 @@ function updatePagination() {
     });
 }
 
-// Don't need to rotate it automatically, so remove this line:
-// setInterval(nextSlide, 3000); // Change slide every 3 seconds
 
-updatePagination(); // Update pagination initially
+updatePagination();

@@ -13,6 +13,9 @@
 </head>
 
 <body>
+
+
+
     <nav>
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
@@ -23,6 +26,9 @@
             <li class="link"><a href="login.php">Login</a></li>
         </ul>
     </nav>
+
+
+
     <header class="section__container header__container" id="home_section">
         <div class="header__image__container">
             <div class="header__content">
@@ -59,95 +65,74 @@
         </div>
     </header>
 
-    <section class="section__container popular__container" id="popular_section">
+
+
+
+
+    <section class="section__container new_accommodations__container" id="popular_section">
         <h2 class="section__header">New Accommodations</h2>
         <div class="slider">
             <div class="slides">
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
+                <div class="new_accommodations__card">
+                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
+                    <div class="new_accommodations__content">
+                        <div class="new_accommodations__card__header">
                             <h4>The Plaza Hotel</h4>
                             <span class="rent">
                                 <h4>Rs.12000</h4><span>
                         </div>
                         <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
+                        <button class="view_location__button">View Location</button>
                     </div>
                 </div>
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
+                <div class="new_accommodations__card">
+                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
+                    <div class="new_accommodations__content">
+                        <div class="new_accommodations__card__header">
                             <h4>The Plaza Hotel</h4>
                             <span class="rent">
                                 <h4>Rs.12000</h4><span>
                         </div>
                         <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
+                        <button class="view_location__button">View Location</button>
                     </div>
                 </div>
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
+                <div class="new_accommodations__card">
+                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
+                    <div class="new_accommodations__content">
+                        <div class="new_accommodations__card__header">
                             <h4>The Plaza Hotel</h4>
                             <span class="rent">
                                 <h4>Rs.12000</h4><span>
                         </div>
                         <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
+                        <button class="view_location__button">View Location</button>
                     </div>
                 </div>
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
+                <div class="new_accommodations__card">
+                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
+                    <div class="new_accommodations__content">
+                        <div class="new_accommodations__card__header">
                             <h4>The Plaza Hotel</h4>
                             <span class="rent">
                                 <h4>Rs.12000</h4><span>
                         </div>
                         <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
+                        <button class="view_location__button">View Location</button>
                     </div>
                 </div>
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
+                <div class="new_accommodations__card">
+                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
+                    <div class="new_accommodations__content">
+                        <div class="new_accommodations__card__header">
                             <h4>The Plaza Hotel</h4>
                             <span class="rent">
                                 <h4>Rs.12000</h4><span>
                         </div>
                         <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
+                        <button class="view_location__button">View Location</button>
                     </div>
                 </div>
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
-                    </div>
-                </div>
-                <div class="popular__card">
-                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
-                    <div class="popular__content">
-                        <div class="popular__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="location__button">View Location</button>
-                    </div>
-                </div>
-                <!-- Add other popular cards here -->
             </div>
         </div>
         <div class="pagination"></div>

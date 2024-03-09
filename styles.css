@@ -8,7 +8,7 @@
     --extra-light: #f3f4f6;
     --white: #ffffff;
     --max-width: 1200px;
-    --rent-button-color:#F5A623;
+    --rent-button-color: #F5A623;
 }
 
 * {
@@ -27,15 +27,18 @@
 }
 
 
-/**header section**/
 
+
+
+
+
+/**header section**/
 .section__container {
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
 
 }
-
 .section__header {
     font-size: 2rem;
     font-weight: 600;
@@ -63,7 +66,6 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 }
 
 .nav__logo {
@@ -209,29 +211,34 @@ nav {
 }
 
 
-/**popular-section**/
 
-.popular__grid {
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-}
 
-.popular__card {
-    overflow: hidden;
+
+
+
+
+
+
+
+/**new_accommodations-section**/
+
+.new_accommodations__card {
+    flex: 0 0 auto;
+    margin-right: 20px;
+    width: 300px;
     border-radius: 5px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
-   
-    
 }
 
+.new_accommodations__card:last-child {
+    margin-right: 0;
+}
 
-.popular__content {
+.new_accommodations__content {
     padding: 1rem;
 }
 
-.popular__card__header {
+.new_accommodations__card__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -239,7 +246,7 @@ nav {
     margin-bottom: 0.5rem;
 }
 
-.popular__card__header h4 {
+.new_accommodations__card__header h4 {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-dark);
@@ -247,25 +254,25 @@ nav {
 
 .rent {
     display: inline-block;
-    padding: 5px 10px; 
-    background-color:var(--rent-button-color);
-    
-    border-radius: 5px; 
-    font-weight: bold; 
-    color: var(--text-light); 
+    padding: 5px 10px;
+    background-color: var(--rent-button-color);
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--text-light);
     font-size: 0.6rem;
 }
 
-.rent h4{
+.rent h4 {
     font-size: 0.8rem;
-    color: #FFFFFF; 
+    color: #FFFFFF;
 }
 
-.popular__content p {
+.new_accommodations__content p {
     font-size: 0.9rem;
     color: var(--text-light);
 }
-.location__button {
+
+.view_location__button {
     background-color: var(--primary-color);
     color: white;
     padding: 0.5rem 1rem;
@@ -277,36 +284,28 @@ nav {
     margin-top: 10px;
 }
 
-.location__button:hover {
+.view_location__button:hover {
     background-color: var(--primary-color-dark);
 }
 
 
-/**slider**/
+
+
+
+
+/**new_accommodation_slider**/
 
 .slider {
     overflow: hidden;
-    width: 100%; /* Ensure the slider takes up full width */
+    width: 100%;
     margin-top: 4rem;
-  
 }
 
 .slides {
- 
     display: flex;
     transition: transform 0.5s ease;
-    width: max-content;
-    padding:10px 0; /* Ensure the slides expand to fit content */
-}
-
-.popular__card {
-    flex: 0 0 auto;
-    margin-right: 20px; /* Adjust this value to control the spacing */
-    width: 300px; /* Set a fixed width for each card */
-}
-
-.popular__card:last-child {
-    margin-right: 0;
+    width: auto;
+    padding: 10px 0;
 }
 
 .pagination {
@@ -318,14 +317,16 @@ nav {
 .dot {
     width: 5px;
     height: 5px;
-    background-color: #bbb;
+    background-color: var(--primary-color);
     border-radius: 50%;
     margin: 0 5px;
     cursor: pointer;
 }
 
 .dot.active {
-    background-color: #333;
+    background-color: var(--rent-button-color);
+    width: 6px;
+    height: 6px;
 }
 
 
@@ -433,14 +434,11 @@ nav {
 
 /***login.php***/
 
-
-
 .login-container {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 90vh;
-  
 }
 
 .box {
@@ -450,7 +448,6 @@ nav {
     padding: 50px 40px;
     border-radius: 10px;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-
 }
 
 .form-box {
@@ -471,7 +468,6 @@ nav {
     margin-bottom: 10px;
     border-bottom: 1px solid #e6e6e6;
 
-
 }
 
 .form-box form .field {
@@ -491,22 +487,22 @@ nav {
     border-radius: 5px;
     background-position: right center;
     background-repeat: no-repeat;
-    padding-right: 60px; 
-    width:100%;
-  }
- 
-  .field select option {
+    padding-right: 60px;
+    width: 100%;
+}
+
+.field select option {
     background-color: #fff;
     color: #333;
     padding: 20px;
-  }
-  
+}
 
-  .field select:focus {
+
+.field select:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(44, 56, 85, 0.6);
-  }
-  
+}
+
 
 .form-box form .input input {
     height: 40px;
@@ -516,7 +512,6 @@ nav {
     border-radius: 5px;
     border: 1px solid #ccc;
     outline: none;
-
 }
 
 .login-container .btn {
@@ -529,8 +524,6 @@ nav {
     cursor: pointer;
     transition: all .3s;
     margin-top: 10px;
-    
-    
 }
 
 .btn:hover {
@@ -554,7 +547,7 @@ nav {
     margin-top: 20px;
 }
 
-.login-container .link a{
+.login-container .link a {
     color: #0000EE;
     text-decoration: underline;
 
@@ -599,43 +592,53 @@ nav {
 
 
 
-
-
-
-@media screen and (max-width: 830px) {
-    table {
-        font-size: 12px;
+@media (width < 900px) {
+    .booking__container form {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .quotation-btn {
-        height: 25px;
-        font-size: 12px;
+    .popular__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
+    .client__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .footer__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media screen and (max-width: 705px) {
-    table {
-        font-size: 10px;
+@media (width < 600px) {
+    .nav__links {
+        display: none;
     }
 
-}
-
-@media screen and (max-width: 645px) {
-    table {
-        font-size: 8px;
+    .header__container {
+        padding-bottom: 25rem;
     }
 
-}
-
-@media screen and (max-width: 600px) {
-    table {
-        font-size: 6px;
+    .booking__container {
+        flex-direction: column;
+        bottom: -25rem;
     }
 
-    .quotation-btn {
-        font-size: 6px;
-        height: 20px;
+    .booking__container form {
+        grid-template-columns: repeat(1, 1fr);
     }
 
+    .popular__grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .client__grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer__container {
+        gap: 2rem;
+    }
 }
