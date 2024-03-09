@@ -286,27 +286,53 @@ nav {
 
 .slider {
     overflow: hidden;
-}
-
-.popular__card {
-    margin-right: 20px; /* Adjust this value to control the spacing */
-}
-
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease;
+    width: 100%; /* Ensure the slider takes up full width */
+    margin-top: 4rem;
   
 }
 
+.slides {
+ 
+    display: flex;
+    transition: transform 0.5s ease;
+    width: max-content;
+    padding:10px 0; /* Ensure the slides expand to fit content */
+}
+
 .popular__card {
-    
+    flex: 0 0 auto;
     margin-right: 20px; /* Adjust this value to control the spacing */
+    width: 300px; /* Set a fixed width for each card */
 }
 
 .popular__card:last-child {
     margin-right: 0;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #333;
+}
+
+
+
+
+
+
 
 
 /**footer_section**/

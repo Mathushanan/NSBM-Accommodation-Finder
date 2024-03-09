@@ -111,9 +111,46 @@
                         <button class="location__button">View Location</button>
                     </div>
                 </div>
+                <div class="popular__card">
+                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                    <div class="popular__content">
+                        <div class="popular__card__header">
+                            <h4>The Plaza Hotel</h4>
+                            <span class="rent">
+                                <h4>Rs.12000</h4><span>
+                        </div>
+                        <p>New York City, USA</p>
+                        <button class="location__button">View Location</button>
+                    </div>
+                </div>
+                <div class="popular__card">
+                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                    <div class="popular__content">
+                        <div class="popular__card__header">
+                            <h4>The Plaza Hotel</h4>
+                            <span class="rent">
+                                <h4>Rs.12000</h4><span>
+                        </div>
+                        <p>New York City, USA</p>
+                        <button class="location__button">View Location</button>
+                    </div>
+                </div>
+                <div class="popular__card">
+                    <img src="assets/header_pic.jpeg" alt="popular hotel" />
+                    <div class="popular__content">
+                        <div class="popular__card__header">
+                            <h4>The Plaza Hotel</h4>
+                            <span class="rent">
+                                <h4>Rs.12000</h4><span>
+                        </div>
+                        <p>New York City, USA</p>
+                        <button class="location__button">View Location</button>
+                    </div>
+                </div>
                 <!-- Add other popular cards here -->
             </div>
         </div>
+        <div class="pagination"></div>
         </div>
     </section>
 
@@ -258,12 +295,10 @@
     </footer>
 
 
-    <!--=============== SWIPER JS ===============
-        -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
 
-    <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="<?php echo 'assets/js/main.js?v=' . filemtime('assets/js/main.js'); ?>"></script>
+
 
 
 
