@@ -711,6 +711,24 @@ nav {
 }
 
 
+/**createArticle.php**/
+
+.field.textarea label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.field.textarea textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; 
+    min-height: 100px; 
+    font-size: 16px;
+}
+
+
 
 
 
