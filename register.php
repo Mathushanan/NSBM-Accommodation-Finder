@@ -34,60 +34,116 @@
     <div class="login-container">
         <div class="box form-box register-box">
 
+            <?php
 
-            <header>Register</header>
-            <form action="" method="post" id="form">
-                <div class="field input">
-                    <select id="type" name="type">
-                        <option value="Landlord User">Landlord</option>
-                        <option value="Warden User">Warden</option>
-                        <option value="Student User">Student</option>
-                    </select>
-                </div>
-                <div class="field input">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" required>
-                </div>
-                <div class="field input">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email" required>
-                </div>
-                <div class="field input">
-                    <label for="mobile">Mobile</label>
-                    <input type="text" name="mobile" id="mobile" required>
-                </div>
+            include("config.php");
+
+            if (isset($_POST['submit'])) {
+
+                $userType = $_POST['user_type'];
+                $userName = $_POST['user_name'];
+                $userEmail = $_POST['user_email'];
+                $userMobile = $_POST['user_mobile'];
+                $userPassword = $_POST['user_password'];
+                $userGender = $_POST['user_gender'];
 
 
-                <div class="field input">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" required>
-                </div>
-                <div class="field input">
-                    <label for="cpassword">Confirm Password</label>
-                    <input type="password" name="cpassword" id="cpassword" required>
-                </div>
-                <div class="field input">
-                    <select id="type" name="type">
-                        <option value="Female">Female</option>
-                        <option value="Male">Male</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <button type="submit" class="btn" name="submit" value="SIGNUP">SIGNUP</button>
-                </div>
-                <div class="link">
-                    Already have an Account? <a href="login.php">LOGIN</a>
-                </div>
-            </form>
+                $verifyQuery = mysqli_query($connection, "SELECT * FROM users WHERE email='$userEmail'");
+
+                if (mysqli_num_rows($verifyQuery) != 0) {
+                    echo " <div class='errorMessageBox'>
+                           <p> This email address is already registered!</p>
+                       </div><br>
+                ";
+                    echo " <a href='javascript:self.history.back()'>
+                           <button class='btn back-btn'>Go Back </button>
+                       </a>  
+                ";
+                } else {
+                    $result = mysqli_query($connection, "INSERT INTO users (name,email,mobile,gender,password,userType) VALUES ('$userName','$userEmail','$userMobile','$userGender','$userPassword','$userType')");
+
+                    if ($result) {
+                        echo " <div class='successMessageBox'>
+                              <p>You are successfully registered as a $userType!
+                          </div><br>
+                ";
+                        echo " <a href='login.php'>
+                              <button class='btn send-btn'>Login Now</button>
+                           </a>  
+                ";
+                    } else {
+
+                        echo " <div class='errorMessageBox'>
+                                  <p>Failed to register!</p>
+                              </div><br>
+                ";
+                        echo " <a href='javascript:self.history.back()'>
+                           <button class='btn back-btn'>Go Back </button>
+                       </a>  
+                ";
+                    }
+                }
+            } else {
+
+
+            ?>
+
+
+                <header>Register</header>
+
+                <form action="" method="post" id="register_form">
+
+                    <div class="field input">
+                        <select id="user_type" name="user_type">
+                            <option value="Landlord">Landlord</option>
+                            <option value="Warden">Warden</option>
+                            <option value="Student">Student</option>
+                        </select>
+                    </div>
+
+                    <div class="field input">
+                        <label for="name">Name</label>
+                        <input type="text" name="user_name" id="user_name" required>
+                    </div>
+
+                    <div class="field input">
+                        <label for="email">Email</label>
+                        <input type="text" name="user_email" id="user_email" required>
+                    </div>
+
+                    <div class="field input">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" name="user_mobile" id="user_mobile" required>
+                    </div>
+
+                    <div class="field input">
+                        <label for="password">Password</label>
+                        <input type="password" name="user_password" id="user_password" required>
+                    </div>
+
+                    <div class="field input">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" name="user_cpassword" id="user_cpassword" required>
+                    </div>
+
+                    <div class="field input">
+                        <select id="user_gender" name="user_gender">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <button type="submit" class="btn" name="submit" value="SIGNUP">SIGNUP</button>
+                    </div>
+
+                    <div class="link">
+                        Already have an Account? <a href="login.php">Login</a>
+                    </div>
+                </form>
         </div>
 
     </div>
-
-
-
-
-
-
 
 
 
@@ -200,7 +256,7 @@
         }
     </script>
 
-
+<?php } ?>
 </body>
 
 </html>

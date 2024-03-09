@@ -508,7 +508,6 @@ nav {
     align-items: center;
     justify-content: center;
     min-height: 80vh;
-    border: 1px solid;
 }
 
 .login-container .btn {
@@ -527,7 +526,22 @@ nav {
     margin: 30px 0px;
 }
 
-.btn:hover {
+
+
+.login-container .btn{
+    background-color:var(--primary-color);
+    height:35px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 10px;
+    padding: 0px 10px;
+
+}
+.login-container .btn:hover {
     opacity: 0.82;
 }
 
@@ -554,20 +568,20 @@ nav {
 
 }
 
-.ErrorMessageBox {
+.errorMessageBox {
     text-align: center;
     background-color: #f9eded;
-    padding: 15px 0px;
+    padding: 15px 5px;
     border: 1px solid;
     border-radius: 5px;
     color: red;
 
 }
 
-.SuccessMessageBox {
+.successMessageBox {
     text-align: center;
     background-color: #d9f9d9;
-    padding: 15px 0px;
+    padding: 15px 5px;
     border: 1px solid;
     border-radius: 5px;
     color: #006400;
