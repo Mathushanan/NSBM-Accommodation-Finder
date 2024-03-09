@@ -725,6 +725,52 @@ nav {
 
 
 
+/* For devices with a maximum width of 768px */
+@media only screen and (max-width: 768px) {
+    .webadmin_dashboard_accommodation_container {
+        margin-top: 3rem;
+    }
+
+    .card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card__content,
+    .card__image {
+        width: 100%;
+    }
+
+    .card__image {
+        margin-top: 20px;
+    }
+}
+
+/* For devices with a maximum width of 480px */
+@media only screen and (max-width: 480px) {
+    .webadmin_dashboard_section__container .card__title {
+        font-size: 1.5rem;
+    }
+
+    .card__description {
+        font-size: 0.8rem;
+    }
+
+    .card__details p,
+    .card_footer .available_status,
+    .card_footer .not_available_status {
+        font-size: 0.8rem;
+    }
+
+    .card_footer .rent {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .big-button {
+        width: 15rem;
+    }
+}
 
 
 

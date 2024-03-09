@@ -42,8 +42,8 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
 
     <section class="section__container webadmin_dashboard_section__container" id="popular_section">
         <div class="webadmin_dashboard_buttons_container">
-            <button class="big-button">Create New Account</button>
-            <button class="big-button">Post New Article</button>
+            <a href="createAccount.php"><button class="big-button">Create New Account</button></a>
+            <a href="createAccount.php"><button class="big-button">Post New Article</button></a>
         </div>
 
     </section>
