@@ -729,6 +729,48 @@ nav {
 }
 
 
+/**articles.php**/
+.articles_card__content{
+
+    margin-top: 5rem;
+
+}
+
+.articles_card__content .card__article {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.articles_card__content .card__name {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.articles_card__content  .card__description {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.articles_card__content  .card__button {
+    background-color:var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width:10rem;
+    text-align: center;
+}
+
+.articles_card__content  .card__button:hover {
+    background-color:var(--primary-color-dark);
+}
+
 
 
 
