@@ -2,6 +2,13 @@
 
 session_start();
 
+include("config.php");
+
+if(!isset($_SESSION['userEmail'])){
+    header("Location: login.php");
+    exit();
+}
+
 ?>
 
 
@@ -25,7 +32,7 @@ session_start();
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
-            <li class="link"><a href="register.php">Register</a></li>
+            <li class="link"><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 
