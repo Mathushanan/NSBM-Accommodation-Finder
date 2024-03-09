@@ -199,47 +199,35 @@
 
 
     <script>
-        document.getElementById("form").onsubmit = function() {
+        document.getElementById("register_form").onsubmit = function() {
             return validateForm();
         };
         var validateForm = () => {
 
 
             let valid = true;
-            const nameInput = document.getElementById("name");
+            const nameInput = document.getElementById("user_name");
             if (nameInput.value.trim() === "") {
                 valid = false;
                 alert("Name is required");
             }
 
-            const emailInput = document.getElementById("email");
+            const emailInput = document.getElementById("user_email");
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(emailInput.value)) {
                 valid = false;
                 alert("Invalid email address");
             }
 
-            const mobileInput = document.getElementById("mobile");
+            const mobileInput = document.getElementById("user_mobile");
             const mobileRegex = /^[0-9]{10}$/;
             if (!mobileRegex.test(mobileInput.value)) {
                 valid = false;
                 alert("Invalid mobile number");
             }
 
-            const addressInput = document.getElementById("address");
-            if (addressInput.value.trim() === "") {
-                valid = false;
-                alert("Address is required");
-            }
-
-            const dobInput = document.getElementById("dob");
-            if (dobInput.value === "") {
-                valid = false;
-                alert("Date of Birth is required");
-            }
-
-            const passwordInput = document.getElementById("password");
-            const cpasswordInput = document.getElementById("cpassword");
+            const passwordInput = document.getElementById("user_password");
+            const cpasswordInput = document.getElementById("user_cpassword");
             if (passwordInput.value.length < 6) {
                 valid = false;
                 alert("Password must be at least 6 characters");
