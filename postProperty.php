@@ -21,6 +21,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
     <title>UniNest NSBM</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css\all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
@@ -172,50 +173,43 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
 
-
-    <!-- Include any necessary JavaScript files here -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        function initMap() {
-            // Initialize the map
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                } // Default center
-            });
+        let map = L.map('map').setView([51.505, -0.09], 13); // Default view
 
-            // Create a marker
-            var marker = new google.maps.Marker({
-                position: map.getCenter(),
-                map: map,
-                draggable: true
-            });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-            // Update form fields when marker is dragged
-            google.maps.event.addListener(marker, 'dragend', function() {
-                document.getElementById('latitude').value = marker.getPosition().lat();
-                document.getElementById('longitude').value = marker.getPosition().lng();
-            });
-        }
+        let marker;
 
-        // Function to search location
         function searchLocation() {
-            var geocoder = new google.maps.Geocoder();
-            var address = document.getElementById('searchInput').value;
+            const searchInput = document.getElementById('searchInput').value;
 
-            geocoder.geocode({
-                'address': address
-            }, function(results, status) {
-                if (status == 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    marker.setPosition(results[0].geometry.location);
-                    document.getElementById('latitude').value = results[0].geometry.location.lat();
-                    document.getElementById('longitude').value = results[0].geometry.location.lng();
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${searchInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const {
+                            lat,
+                            lon
+                        } = data[0];
+                        const newLatLng = new L.LatLng(lat, lon);
+                        map.setView(newLatLng, 13); // Zoom level may vary
+                        if (marker) {
+                            map.removeLayer(marker);
+                        }
+                        marker = L.marker(newLatLng).addTo(map);
+                        document.getElementById('locationLink').value = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}`;
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lon;
+                    } else {
+                        console.log('Location not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     </script>
 
