@@ -40,10 +40,20 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType']!="Landlord") {
 
 
 
-    <div class="login-container">
-        <p>landlord</p>
+    <section class="section__container webadmin_dashboard_section__container" id="popular_section">
+        <div class="webadmin_dashboard_buttons_container">
+            <a href="viewReservations.php"><button class="big-button">View Reservation Requests</button></a>
+            <a href="postProperty.php"><button class="big-button">Add New Property</button></a>
+        </div>
 
-    </div>
+    </section>
+
+
+    
+
+
+
+
 
 
 

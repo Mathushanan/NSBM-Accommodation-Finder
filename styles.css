@@ -38,6 +38,7 @@
     margin: auto;
     padding: 5rem 1rem;
    
+   
 }
 
 .section__header {
@@ -626,6 +627,14 @@ nav {
     
 }
 
+.webadmin_dashboard_buttons_container{
+    
+    padding:2rem 0;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+}
+
 .webadmin_dashboard_accommodation_container{
     margin-top: 5rem;
 }
@@ -824,6 +833,79 @@ nav {
  
 }
 
+
+/**postProperties.php**/
+
+
+.form_map_container{
+    display: flex;
+    justify-content: space-between;
+    border :1px solid blue;
+    margin-top: 5rem;
+}
+.form_map_container .form-box{
+    width: 600px;
+}
+
+.left-section {
+    width: 40%;
+    border: 1px solid;
+}
+
+.right-section {
+    width: 55%; 
+    border: 1px solid red;/* Adjusted width for the map and search box */
+}
+
+/* Form Styles */
+#propertyForm {
+    margin-bottom: 20px;
+}
+
+
+
+#propertyForm textarea {
+    height: 100px;
+}
+
+#propertyForm button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Map Styles */
+#map {
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Search Box Styles */
+#searchBox {
+    margin-top: 20px;
+}
+
+#searchBox input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+#searchBox button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
 
 
 
