@@ -904,6 +904,28 @@ nav {
     opacity: 0.82;
 }
 
+input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+/* Style for the custom file input button */
+.custom-file-input {
+    display: inline-block;
+    background-color:rgb(184, 181, 181);
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Style for the selected file names */
+.selected-files {
+    margin-top: 5px;
+}
+
 
 
 

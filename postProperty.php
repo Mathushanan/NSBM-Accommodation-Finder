@@ -45,49 +45,96 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
         <div class="form_map_container">
             <div class="box form-box left-box">
-                <form id="propertyForm">
-
-                    <div class="field input">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title">
-                    </div>
-
-                    <div class="field textarea">
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" required></textarea>
-                    </div>
-
-                    <div class="field input">
-                        <label for="locationLink">Location Link</label>
-                        <input type="text" id="locationLink" name="locationLink" disabled>
-                    </div>
-
-                    <div class="field input">
-                        <label for="latitude">Latitude</label>
-                        <input type="text" id="latitude" name="latitude" disabled>
-                    </div>
-
-                    <div class="field input">
-                        <label for="longitude">Longitude</label>
-                        <input type="text" id="longitude" name="longitude" disabled>
-                    </div>
-
-                    <div class="field input">
-                        <label for="rent">Rent</label>
-                        <input type="text" id="rent" name="rent">
-                    </div>
-
-                    <div class="field input">
-                        <label for="bedCounts">Bed Counts</label>
-                        <input type="number" id="bedCounts" name="bedCounts">
-                    </div>
 
 
-                    <div class="field">
-                        <button type="submit" class="btn" name="submit" value="POST">POST</button>
-                    </div>
+                <?php
 
-                </form>
+
+                if (isset($_POST['submit'])) {
+
+                    $userId=$_SESSION['userId'];
+                    $userName=$_SESSION['userName'];
+                    $status="Pending";
+
+                    $title = $_POST['title'];
+                    $description = $_POST['description'];
+                    $rent = $_POST['rent'];
+                    $bedCounts = $_POST['bedCounts'];
+                    $locationLink = $_POST['locationLink'];
+                    $latitude = $_POST['latitude'];
+                    $longitude = $_POST['longitude'];
+
+
+
+                    $insertQuery = "INSERT INTO properties (userId,postedBy,title, description, locationLink, latitude, longitude,rent,status,bedCounts) VALUES ('$userId', '$userName', '$title', '$description', '$locationLink', '$latitude', '$longitude','$rent','$status','$bedCounts')";
+                    
+                    $resultProperty = mysqli_query($connection, $insertQuery);
+                    
+                    if (!$resultProperty) {
+                        die("Error: " . mysqli_error($connection));
+                    }
+                    $property_id = mysqli_insert_id($connection);
+
+
+                } else {
+
+
+
+
+
+
+                ?>
+                    <form id="propertyForm" method="post" action="">
+
+                        <div class="field input">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title">
+                        </div>
+
+                        <div class="field textarea">
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" required></textarea>
+                        </div>
+
+                        <div class="field input">
+                            <label for="locationLink">Location Link</label>
+                            <input type="text" id="locationLink" name="locationLink" readonly>
+                        </div>
+
+                        <div class="field input">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" id="latitude" name="latitude" readonly>
+                        </div>
+
+                        <div class="field input">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" id="longitude" name="longitude" readonly>
+                        </div>
+
+                        <div class="field input">
+                            <label for="rent">Rent</label>
+                            <input type="text" id="rent" name="rent">
+                        </div>
+
+                        <div class="field input">
+                            <label for="bedCounts">Bed Counts</label>
+                            <input type="number" id="bedCounts" name="bedCounts">
+                        </div>
+
+                        <div class="field">
+                            <label for="images">Select up to 5 Images</label>
+                            <label for="images" class="custom-file-input">Choose Images</label>
+                            <input type="file" id="images" name="images[]" accept="image/*" multiple>
+                            <div class="selected-files"></div>
+                        </div>
+
+
+                        <div class="field">
+                            <input type="submit" class="btn" name="submit" value="POST" onclick="validateForm();">
+                        </div>
+
+
+                    </form>
             </div>
 
 
@@ -102,7 +149,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             </div>
 
         </div>
-
+    <?php } ?>
 
     </section>
 
@@ -175,13 +222,84 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        let map = L.map('map').setView([51.505, -0.09], 13); // Default view
+        document.getElementById('images').addEventListener('change', function(event) {
+            var files = event.target.files;
+            var numSelectedImages = files.length;
+            var selectedFilesContainer = document.querySelector('.selected-files');
+            selectedFilesContainer.textContent = numSelectedImages + " image(s) selected";
+        });
+
+
+
+        function validateForm() {
+            const title = document.getElementById('title').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const rent = document.getElementById('rent').value.trim();
+            const bedCounts = document.getElementById('bedCounts').value.trim();
+            const latitude = document.getElementById('latitude').value.trim();
+            const longitude = document.getElementById('longitude').value.trim();
+            const files = document.getElementById('images').files;
+
+            let isValid = true;
+
+
+            if (files.length === 0) {
+                isValid = false;
+                alert("Please select at least one image.");
+
+            }
+
+            if (title === '') {
+                isValid = false;
+                alert('Please enter a title.');
+            }
+
+            if (description === '') {
+                isValid = false;
+                alert('Please enter a description.');
+            }
+
+            if (rent === '') {
+                isValid = false;
+                alert('Please enter rent amount.');
+            } else if (isNaN(rent)) {
+                isValid = false;
+                alert('Rent amount must be a number.');
+            }
+
+            if (latitude === '') {
+                isValid = false;
+                alert('Please search and select a location.');
+            }
+
+
+            if (longitude === '') {
+                isValid = false;
+                alert('Please search and select a location.');
+            }
+
+            if (bedCounts === '') {
+                isValid = false;
+                alert('Please enter bed counts.');
+            } else if (isNaN(bedCounts) || bedCounts <= 0) {
+                isValid = false;
+                alert('Bed counts must be a positive number.');
+            }
+
+            return isValid;
+        }
+
+
+
+
+
+        let map = L.map('map').setView([6.8208936, 80.03972288538341], 15); // Default view
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        let marker;
+        let marker = L.marker([6.8208936, 80.03972288538341]).addTo(map);;
 
         function searchLocation() {
             const searchInput = document.getElementById('searchInput').value;
@@ -195,14 +313,17 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                             lon
                         } = data[0];
                         const newLatLng = new L.LatLng(lat, lon);
-                        map.setView(newLatLng, 13); // Zoom level may vary
+                        map.setView(newLatLng, 13);
                         if (marker) {
                             map.removeLayer(marker);
                         }
+
                         marker = L.marker(newLatLng).addTo(map);
                         document.getElementById('locationLink').value = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}`;
                         document.getElementById('latitude').value = lat;
                         document.getElementById('longitude').value = lon;
+
+
                     } else {
                         console.log('Location not found');
                     }

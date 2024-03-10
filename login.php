@@ -47,7 +47,8 @@ session_start();
                 $row = mysqli_fetch_assoc($result);
 
                 if (is_array($row) && !empty($row)) {
-
+                    
+                    $_SESSION['userId']=$row['userId'];
                     $_SESSION['userEmail'] = $row['email'];
                     $_SESSION['userName'] = $row['name'];
                     $_SESSION['userMobile'] = $row['mobile'];
