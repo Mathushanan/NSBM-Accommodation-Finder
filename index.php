@@ -69,74 +69,45 @@
 
 
 
-    <section class="section__container new_accommodations__container" id="new_accommodations_section">
+      <!-- Section for new accommodations -->
+      <section class="section__container new_accommodations__container" id="new_accommodations_section">
         <h2 class="section__header">New Accommodations</h2>
         <div class="slider">
             <div class="slides">
-                <div class="new_accommodations__card">
-                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
-                    <div class="new_accommodations__content">
-                        <div class="new_accommodations__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="view_location__button">View Location</button>
-                    </div>
-                </div>
-                <div class="new_accommodations__card">
-                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
-                    <div class="new_accommodations__content">
-                        <div class="new_accommodations__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="view_location__button">View Location</button>
-                    </div>
-                </div>
-                <div class="new_accommodations__card">
-                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
-                    <div class="new_accommodations__content">
-                        <div class="new_accommodations__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="view_location__button">View Location</button>
-                    </div>
-                </div>
-                <div class="new_accommodations__card">
-                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
-                    <div class="new_accommodations__content">
-                        <div class="new_accommodations__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="view_location__button">View Location</button>
-                    </div>
-                </div>
-                <div class="new_accommodations__card">
-                    <img src="assets/header_pic.jpeg" alt="Accommodation" />
-                    <div class="new_accommodations__content">
-                        <div class="new_accommodations__card__header">
-                            <h4>The Plaza Hotel</h4>
-                            <span class="rent">
-                                <h4>Rs.12000</h4><span>
-                        </div>
-                        <p>New York City, USA</p>
-                        <button class="view_location__button">View Location</button>
-                    </div>
-                </div>
+                <?php
+                // Include database connection
+                include("config.php");
+
+                // Query to fetch new accommodations
+                $sql = "SELECT properties.*, images.imageData FROM properties INNER JOIN images ON properties.propertyId = images.propertyId";
+                $result = $connection->query($sql);
+
+                // Check if there are results
+                if ($result && $result->num_rows > 0) {
+                    // Output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<div class="new_accommodations__card">';
+                        echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="Accommodation" />';
+                        echo '<div class="new_accommodations__content">';
+                        echo '<div class="new_accommodations__card__header">';
+                        echo '<h4>' . $row["title"] . '</h4>';
+                        echo '<span class="rent"><h4>' . $row["rent"] . '</h4></span>';
+                        echo '</div>';
+                        echo '<p>' . $row["description"]. '</p>';
+                        echo '<p class="posted_at"><span>Posted at: </span>' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
+                        echo '<button class="view_location__button">View Location</button>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "No new accommodations found.";
+                }
+                // Close database connection
+                $connection->close();
+                ?>
             </div>
         </div>
         <div class="pagination"></div>
-        </div>
     </section>
 
 
@@ -150,7 +121,7 @@
 
                 <?php
 
-                include("config.php");
+                 include("config.php");
 
 
                 $query = "SELECT title, content FROM articles";
@@ -167,10 +138,10 @@
                         echo '</div>';
                         echo '</article>';
                     }
-      
+
                     mysqli_free_result($result);
                 } else {
-     
+
                     echo "Error: " . $query . "<br>" . mysqli_error($connection);
                 }
                 mysqli_close($connection);

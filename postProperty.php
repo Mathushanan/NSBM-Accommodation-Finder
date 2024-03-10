@@ -43,161 +43,156 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
         <h2 class="section__header">Post New Accommodation</h2>
 
 
-
         
+        <?php
 
-            
-
-
-                <?php
-
-                include("config.php");
+        include("config.php");
 
 
-                if (isset($_POST['submit'])) {
+        if (isset($_POST['submit'])) {
 
-                    $userId = $_SESSION['userId'];
-                    $userName = $_SESSION['userName'];
-                    $status = "Pending";
+            $userId = $_SESSION['userId'];
+            $userName = $_SESSION['userName'];
+            $status = "Pending";
 
-                    $title = $_POST['title'];
-                    $description = $_POST['description'];
-                    $rent = $_POST['rent'];
-                    $bedCounts = $_POST['bedCounts'];
-                    $locationLink = $_POST['locationLink'];
-                    $latitude = $_POST['latitude'];
-                    $longitude = $_POST['longitude'];
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $rent = $_POST['rent'];
+            $bedCounts = $_POST['bedCounts'];
+            $locationLink = $_POST['locationLink'];
+            $latitude = $_POST['latitude'];
+            $longitude = $_POST['longitude'];
 
-                    $insertQuery = "INSERT INTO properties (userId,postedBy,title, description, locationLink, latitude, longitude,rent,status,bedCounts) VALUES ('$userId', '$userName', '$title', '$description', '$locationLink', '$latitude', '$longitude','$rent','$status','$bedCounts')";
-                    $resultProperty = mysqli_query($connection, $insertQuery);
+            $insertQuery = "INSERT INTO properties (userId,postedBy,title, description, locationLink, latitude, longitude,rent,status,bedCounts) VALUES ('$userId', '$userName', '$title', '$description', '$locationLink', '$latitude', '$longitude','$rent','$status','$bedCounts')";
+            $resultProperty = mysqli_query($connection, $insertQuery);
 
-                    if (!$resultProperty) {
-                        echo " <div class='errorMessageBox'>
+            if (!$resultProperty) {
+                echo " <div class='errorMessageBox'>
                                   <p>Error occurred in server!</p>
                               </div><br>
                               ";
-                        echo " <a href='postProperty.php'>
+                echo " <a href='postProperty.php'>
                                  <button class='btn back-btn'>Go Back </button>
                               </a>  
                              ";
-                    } else {
+            } else {
 
-                        $property_id = mysqli_insert_id($connection);
+                $property_id = mysqli_insert_id($connection);
 
-                        if (isset($_FILES['images'])) {
+                if (isset($_FILES['images'])) {
 
-                            $file = $_FILES['images'];
+                    $file = $_FILES['images'];
 
-                            $insertImageQuery = "INSERT INTO images (propertyId, imageData) VALUES (?, ?)";
-                            $stmt = mysqli_prepare($connection, $insertImageQuery);
+                    $insertImageQuery = "INSERT INTO images (propertyId, imageData) VALUES (?, ?)";
+                    $stmt = mysqli_prepare($connection, $insertImageQuery);
 
-                            if ($stmt) {
+                    if ($stmt) {
 
-                                mysqli_stmt_bind_param($stmt, "is", $property_id, $imageData);
+                        mysqli_stmt_bind_param($stmt, "is", $property_id, $imageData);
 
-                                foreach ($file['tmp_name'] as $key => $tmp_name) {
-                                    $fileError = $file['error'][$key];
-                                    $fileTmpName = $tmp_name;
+                        foreach ($file['tmp_name'] as $key => $tmp_name) {
+                            $fileError = $file['error'][$key];
+                            $fileTmpName = $tmp_name;
 
-                                    if ($fileError == 0) {
-                                        $imageData = file_get_contents($fileTmpName);
-                                        mysqli_stmt_execute($stmt);
-                                    }
-                                }
-                                echo " <div class='successMessageBox'>
+                            if ($fileError == 0) {
+                                $imageData = file_get_contents($fileTmpName);
+                                mysqli_stmt_execute($stmt);
+                            }
+                        }
+                        echo " <div class='successMessageBox'>
                                                   <p>Your property successfully posted!</p>
                                                      </div><br>
                                                    ";
-                                echo " <a href='landlordDashboard.php'>
+                        echo " <a href='landlordDashboard.php'>
                                                    <button class='btn back-btn'>Go Back</button>
                                                    </a>";
-                            }
+                    }
 
-                            mysqli_stmt_close($stmt);
-                        } else {
+                    mysqli_stmt_close($stmt);
+                } else {
 
-                            echo " <div class='errorMessageBox'>
+                    echo " <div class='errorMessageBox'>
                                                   <p>Error occurred in server!</p>
                                                      </div><br>
                                                    ";
-                            echo " <a href='postProperty.php'>
+                    echo " <a href='postProperty.php'>
                                                    <button class='btn back-btn'>Go Back </button>
                                                    </a>";
-                        }
-                    }
-                } else {
+                }
+            }
+        } else {
 
-                ?>
-                <div class="form_map_container">
-                    <div class="box form-box left-box">
+        ?>
+            <div class="form_map_container">
+                <div class="box form-box left-box">
 
-                        <form id="propertyForm" method="post" action="" enctype="multipart/form-data">
+                    <form id="propertyForm" method="post" action="" enctype="multipart/form-data">
 
-                            <div class="field input">
-                                <label for="title">Title</label>
-                                <input type="text" id="title" name="title">
-                            </div>
-
-                            <div class="field textarea">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" required></textarea>
-                            </div>
-
-                            <div class="field input">
-                                <label for="locationLink">Location Link</label>
-                                <input type="text" id="locationLink" name="locationLink" readonly>
-                            </div>
-
-                            <div class="field input">
-                                <label for="latitude">Latitude</label>
-                                <input type="text" id="latitude" name="latitude" readonly>
-                            </div>
-
-                            <div class="field input">
-                                <label for="longitude">Longitude</label>
-                                <input type="text" id="longitude" name="longitude" readonly>
-                            </div>
-
-                            <div class="field input">
-                                <label for="rent">Rent</label>
-                                <input type="text" id="rent" name="rent">
-                            </div>
-
-                            <div class="field input">
-                                <label for="bedCounts">Bed Counts</label>
-                                <input type="number" id="bedCounts" name="bedCounts">
-                            </div>
-
-                            <div class="field">
-                                <label for="images">Select up to 5 Images</label>
-                                <label for="images" class="custom-file-input">Choose Images</label>
-                                <input type="file" id="images" name="images[]" accept="image/*" multiple>
-                                <div class="selected-files"></div>
-                            </div>
-
-
-                            <div class="field">
-                                <input type="submit" class="btn" name="submit" value="POST" onclick="validateForm();">
-                            </div>
-
-
-                        </form>
-                    </div>
-
-
-                    <div class="box form-box right-box">
-
-                        <div id="searchBox">
-                            <input type="text" id="searchInput" placeholder="Enter a location">
-                            <button onclick="searchLocation()">Search</button>
+                        <div class="field input">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title">
                         </div>
 
-                        <div id="map"></div>
-                    </div>
-          
-        <?php } ?>
+                        <div class="field textarea">
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" required></textarea>
+                        </div>
 
-        </div>
+                        <div class="field input">
+                            <label for="locationLink">Location Link</label>
+                            <input type="text" id="locationLink" name="locationLink" readonly>
+                        </div>
+
+                        <div class="field input">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" id="latitude" name="latitude" readonly>
+                        </div>
+
+                        <div class="field input">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" id="longitude" name="longitude" readonly>
+                        </div>
+
+                        <div class="field input">
+                            <label for="rent">Rent</label>
+                            <input type="text" id="rent" name="rent">
+                        </div>
+
+                        <div class="field input">
+                            <label for="bedCounts">Bed Counts</label>
+                            <input type="number" id="bedCounts" name="bedCounts">
+                        </div>
+
+                        <div class="field">
+                            <label for="images">Select up to 5 Images</label>
+                            <label for="images" class="custom-file-input">Choose Images</label>
+                            <input type="file" id="images" name="images[]" accept="image/*" multiple>
+                            <div class="selected-files"></div>
+                        </div>
+
+
+                        <div class="field">
+                            <input type="submit" class="btn" name="submit" value="POST" >
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+                <div class="box form-box right-box">
+
+                    <div id="searchBox">
+                        <input type="text" id="searchInput" placeholder="Enter a location">
+                        <button onclick="searchLocation()">Search</button>
+                    </div>
+
+                    <div id="map"></div>
+                </div>
+
+            <?php } ?>
+
+            </div>
 
 
     </section>
@@ -316,13 +311,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                 alert('Rent amount must be a number.');
             }
 
-            if (latitude === '') {
-                isValid = false;
-                alert('Please search and select a location.');
-            }
-
-
-            if (longitude === '') {
+            if (latitude === '' || longitude === '') {
                 isValid = false;
                 alert('Please search and select a location.');
             }
@@ -337,6 +326,12 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
             return isValid;
         }
+
+        document.getElementById('propertyForm').addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
 
 
 

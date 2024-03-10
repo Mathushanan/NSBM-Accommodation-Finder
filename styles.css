@@ -234,6 +234,17 @@ nav {
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
 
+.new_accommodations__card span{
+
+    color:black;
+
+}
+.new_accommodations__card .posted_at{
+
+    margin-top: 10px;
+
+}
+
 .new_accommodations__card:last-child {
     margin-right: 0;
 }
