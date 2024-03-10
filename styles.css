@@ -513,17 +513,7 @@ nav {
     
 }
 
-.login-container .btn {
-    background-color: var(--primary-color);
-    height: 40px;
-    border: 0;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all .3s;
-    margin-top: 10px;
-}
+
 .register-box {
     padding: 25px 40px;
     margin: 30px 0px;
@@ -834,21 +824,18 @@ nav {
 }
 
 
-/**postProperties.php**/
+/**postProperty.php**/
 
 
 .form_map_container{
     display: flex;
     justify-content: space-between;
-    border :1px solid blue;
     margin-top: 5rem;
 }
 .form_map_container .form-box{
     width: 600px;
 }
 
-
-/* Form Styles */
 #propertyForm {
     margin-bottom: 20px;
 }
@@ -858,13 +845,21 @@ nav {
     font-size: 16px;
 }
 
-#propertyForm button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
+#propertyForm .btn {
+    background-color:var(--primary-color);
+    height:35px;
+    border: 0;
     border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
     cursor: pointer;
+    transition: all .3s;
+    margin-top: 10px;
+    padding: 0px 10px;
+}
+
+.btn:hover {
+    opacity: 0.82;
 }
 
 /* Map Styles */
@@ -879,7 +874,7 @@ nav {
 /* Search Box Styles */
 #searchBox {
     margin-bottom: 2rem;
-    border: 1px solid;
+
 }
 
 #searchBox input[type="text"] {
@@ -891,19 +886,22 @@ nav {
     padding: 0 10px;
     border: 1px solid #ccc;
     outline: none;
-    vertical-align: top; /* Align input field to top */
+    vertical-align: top; 
 }
 
 #searchBox button {
     padding: 10px 20px;
-    background-color: #333;
+    background-color:var(--primary-color);
     color: #fff;
     border: 1px solid;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     height: 40px;
     font-size: 16px;
-    vertical-align: top; /* Align button to top */
+    vertical-align: top; 
+}
+#searchBox button:hover {
+    opacity: 0.82;
 }
 
 
@@ -937,6 +935,7 @@ nav {
         margin-top: 20px;
     }
 }
+
 
 /* For devices with a maximum width of 480px */
 @media only screen and (max-width: 480px) {
@@ -1064,25 +1063,24 @@ nav {
 }
 @media screen and (max-width: 800px) {
     .form_map_container {
-        display: flex;
-        flex-direction: column; /* Arrange children in a column */
-        align-items: stretch; /* Stretch children to fill the container's width */
+        flex-direction: column; 
+        align-items: center; 
     }
 
     .form_map_container .form-box {
-        width: 100%; /* Make the form box take full width */
-        margin-top: 20px; /* Add some space between map and form */
-        box-sizing: border-box; /* Include padding and borders in the width */
+        width: 90%; 
+        margin-top: 20px; 
+        box-sizing: border-box; 
     }
 
     #map {
-        order: -1; /* Move the map to the top */
-        margin-bottom: 0; /* Remove margin bottom for the map */
-        width: 100%; /* Ensure the map takes full width */
+        order: -1;
+        width: 90%; 
+        margin-bottom: 20px; 
     }
 
     #searchBox {
-        margin-bottom: 1rem; /* Adjust margin bottom for search box */
-        width: 100%; /* Ensure the search box takes full width */
+        width: 90%; 
     }
 }
+

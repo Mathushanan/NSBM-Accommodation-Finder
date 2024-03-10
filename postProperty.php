@@ -44,8 +44,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
         <div class="form_map_container">
             <div class="box form-box left-box">
-
-
                 <form id="propertyForm">
 
                     <div class="field input">
@@ -60,16 +58,19 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
                     <div class="field input">
                         <label for="locationLink">Location Link</label>
-                        <input type="text" id="locationLink" name="locationLink">
+                        <input type="text" id="locationLink" name="locationLink" disabled>
                     </div>
+
                     <div class="field input">
                         <label for="latitude">Latitude</label>
-                        <input type="text" id="latitude" name="latitude">
+                        <input type="text" id="latitude" name="latitude" disabled>
                     </div>
+
                     <div class="field input">
                         <label for="longitude">Longitude</label>
-                        <input type="text" id="longitude" name="longitude">
+                        <input type="text" id="longitude" name="longitude" disabled>
                     </div>
+
                     <div class="field input">
                         <label for="rent">Rent</label>
                         <input type="text" id="rent" name="rent">
@@ -84,19 +85,18 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                     <div class="field">
                         <button type="submit" class="btn" name="submit" value="POST">POST</button>
                     </div>
+
                 </form>
             </div>
 
 
             <div class="box form-box right-box">
 
-
                 <div id="searchBox">
-                    
-                        <input type="text" id="searchInput" placeholder="Enter a location">
-                    
+                    <input type="text" id="searchInput" placeholder="Enter a location">
                     <button onclick="searchLocation()">Search</button>
                 </div>
+
                 <div id="map"></div>
             </div>
 
