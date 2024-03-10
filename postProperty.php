@@ -43,69 +43,63 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
         <div class="form_map_container">
-            <div class="box form-box register-box">
-
-        
-                    <form id="propertyForm">
+            <div class="box form-box left-box">
 
 
+                <form id="propertyForm">
 
-                        <div class="field input">
-                            <label for="postedBy">Posted By</label>
-                            <input type="text" id="postedBy" name="postedBy">
-                        </div>
-
-                        <div class="field input">
-                            <label for="title">Title</label>
-                            <input type="text" id="title" name="title">
-                        </div>
-
-                        <div class="field input">
-                            <label for="description">Description</label>
-                            <textarea id="description" name="description"></textarea>
-                        </div>
-                        <div class="field input">
-                            <label for="locationLink">Location Link</label>
-                            <input type="text" id="locationLink" name="locationLink">
-                        </div>
-                        <div class="field input">
-                            <label for="latitude">Latitude</label>
-                            <input type="text" id="latitude" name="latitude">
-                        </div>
-                        <div class="field input">
-                            <label for="longitude">Longitude</label>
-                            <input type="text" id="longitude" name="longitude">
-                        </div>
-                        <div class="field input">
-                            <label for="rent">Rent</label>
-                            <input type="text" id="rent" name="rent">
-                        </div>
-                        <div class="field input">
-                            <label for="status">Status</label>
-                            <input type="text" id="status" name="status">
-                        </div>
-                        <div class="field input">
-                            <label for="bedCounts">Bed Counts</label>
-                            <input type="number" id="bedCounts" name="bedCounts">
-                        </div>
-                        <div class="field input">
-                            <label for="postedAt">Posted At</label>
-                            <input type="date" id="postedAt" name="postedAt">
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-
-                <!-- Right Section with Map and Search Box -->
-                <div class="box form-box register-box">
-
-                    <div id="map"></div>
-                    <div id="searchBox">
-                        <input type="text" id="searchInput" placeholder="Enter a location">
-                        <button onclick="searchLocation()">Search</button>
+                    <div class="field input">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title">
                     </div>
+
+                    <div class="field textarea">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" required></textarea>
+                    </div>
+
+                    <div class="field input">
+                        <label for="locationLink">Location Link</label>
+                        <input type="text" id="locationLink" name="locationLink">
+                    </div>
+                    <div class="field input">
+                        <label for="latitude">Latitude</label>
+                        <input type="text" id="latitude" name="latitude">
+                    </div>
+                    <div class="field input">
+                        <label for="longitude">Longitude</label>
+                        <input type="text" id="longitude" name="longitude">
+                    </div>
+                    <div class="field input">
+                        <label for="rent">Rent</label>
+                        <input type="text" id="rent" name="rent">
+                    </div>
+
+                    <div class="field input">
+                        <label for="bedCounts">Bed Counts</label>
+                        <input type="number" id="bedCounts" name="bedCounts">
+                    </div>
+
+
+                    <div class="field">
+                        <button type="submit" class="btn" name="submit" value="POST">POST</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="box form-box right-box">
+
+
+                <div id="searchBox">
+                    
+                        <input type="text" id="searchInput" placeholder="Enter a location">
+                    
+                    <button onclick="searchLocation()">Search</button>
                 </div>
-            
+                <div id="map"></div>
+            </div>
+
         </div>
 
 

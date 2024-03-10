@@ -847,25 +847,15 @@ nav {
     width: 600px;
 }
 
-.left-section {
-    width: 40%;
-    border: 1px solid;
-}
-
-.right-section {
-    width: 55%; 
-    border: 1px solid red;/* Adjusted width for the map and search box */
-}
 
 /* Form Styles */
 #propertyForm {
     margin-bottom: 20px;
 }
 
-
-
 #propertyForm textarea {
     height: 100px;
+    font-size: 16px;
 }
 
 #propertyForm button[type="submit"] {
@@ -888,24 +878,35 @@ nav {
 
 /* Search Box Styles */
 #searchBox {
-    margin-top: 20px;
+    margin-bottom: 2rem;
+    border: 1px solid;
 }
 
 #searchBox input[type="text"] {
-    width: calc(100% - 100px);
-    padding: 10px;
+    width: calc(100% - 103px);
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    vertical-align: top; /* Align input field to top */
 }
 
 #searchBox button {
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
-    border: none;
+    border: 1px solid;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+    height: 40px;
+    font-size: 16px;
+    vertical-align: top; /* Align button to top */
 }
+
+
 
 
 
@@ -1060,4 +1061,28 @@ nav {
         font-weight: 600;
     }
 
+}
+@media screen and (max-width: 800px) {
+    .form_map_container {
+        display: flex;
+        flex-direction: column; /* Arrange children in a column */
+        align-items: stretch; /* Stretch children to fill the container's width */
+    }
+
+    .form_map_container .form-box {
+        width: 100%; /* Make the form box take full width */
+        margin-top: 20px; /* Add some space between map and form */
+        box-sizing: border-box; /* Include padding and borders in the width */
+    }
+
+    #map {
+        order: -1; /* Move the map to the top */
+        margin-bottom: 0; /* Remove margin bottom for the map */
+        width: 100%; /* Ensure the map takes full width */
+    }
+
+    #searchBox {
+        margin-bottom: 1rem; /* Adjust margin bottom for search box */
+        width: 100%; /* Ensure the search box takes full width */
+    }
 }
