@@ -538,9 +538,7 @@ nav {
     opacity: 0.82;
 }
 
-.back-btn {
-    background-color: #4CAF50;
-}
+
 
 .send-btn {
     background-color: #f44336;
@@ -830,7 +828,7 @@ nav {
 .form_map_container{
     display: flex;
     justify-content: space-between;
-    margin-top: 5rem;
+    
 }
 .form_map_container .form-box{
     width: 600px;
@@ -926,7 +924,26 @@ input[type="file"] {
     margin-top: 5px;
 }
 
+.post_property_section__container .btn{
+    background-color:var(--primary-color);
+    height:35px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 10px;
+    padding: 0px 10px;
 
+}
+.post_property_section__container .btn:hover {
+    opacity: 0.82;
+}
+.post_property_section__container .section__header{
+    margin-bottom: 5rem;
+
+}
 
 
 

@@ -68,7 +68,7 @@
                           </div><br>
                 ";
                         echo " <a href='login.php'>
-                              <button class='btn send-btn'>Login Now</button>
+                              <button class='btn'>Login Now</button>
                            </a>  
                 ";
                     } else {
@@ -78,7 +78,7 @@
                               </div><br>
                 ";
                         echo " <a href='javascript:self.history.back()'>
-                           <button class='btn back-btn'>Go Back </button>
+                           <button class='btn'>Go Back </button>
                        </a>  
                 ";
                     }
