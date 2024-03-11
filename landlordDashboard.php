@@ -40,7 +40,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
 
-    <section class="section__container webadmin_dashboard_section__container" id="popular_section">
+    <section class="section__container landlord_dashboard_section__container" id="my_accommodations_section">
         <div class="webadmin_dashboard_buttons_container">
             <a href="viewReservations.php"><button class="big-button">View Reservation Requests</button></a>
             <a href="postProperty.php"><button class="big-button">Add New Property</button></a>
@@ -75,29 +75,38 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="card">';
+                    
                     echo '<div class="card__content">';
+                    
+                    echo '<div class="card__buttons">';
+                    echo '<button class="delete-button">Delete</button>';
+                    echo '<button class="update-button">Update</button>';
+                    echo '</div>';
+
                     echo '<h2 class="card__title">' . $row["title"] . '</h2>';
                     echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
+                    
                     echo '<div class="card__details">';
                     echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
                     echo '<p class="beds"><strong>Posted at</strong> ' . date("Y/m/d", strtotime($row["postedAt"])) . '</p>';
                     echo '</div>';
+                    
                     echo '<div class="card_footer">';
-                    if ($row["bedCounts"] >0) {
+                    if ($row["bedCounts"] > 0) {
                         echo '<span class="available_status">Available</span>';
                     } else {
                         echo '<span class="not_available_status">Not Available</span>';
                     }
-                    if ($row["status"] =="Pending") {
+                    if ($row["status"] == "Pending") {
                         echo '<span class="pending_status">Pending</span>';
                     }
-                    if($row["status"] =="Accepted"){
+                    if ($row["status"] == "Accepted") {
                         echo '<span class="accepted_status">Accepted</span>';
                     }
-                    if($row["status"] =="Rejected"){
+                    if ($row["status"] == "Rejected") {
                         echo '<span class="rejected_status">Rejected</span>';
                     }
-                    
+
                     echo '<span class="rent">' . $row["rent"] . '</span>';
                     echo '</div>';
                     echo '</div>';
