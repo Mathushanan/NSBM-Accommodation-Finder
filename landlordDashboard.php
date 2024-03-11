@@ -46,7 +46,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             <a href="postProperty.php"><button class="big-button">Add New Property</button></a>
         </div>
 
-
     </section>
 
 
@@ -55,7 +54,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
     <section class="section__container webadmin_dashboard_section__container" id="popular_section">
         <h2 class="section__header">All Accommodations</h2>
         <div class="webadmin_dashboard_accommodation_container">
-
 
             <?php
             include("config.php");

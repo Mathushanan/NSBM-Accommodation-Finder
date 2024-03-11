@@ -4,37 +4,56 @@ session_start();
 
 include("config.php");
 
+
 if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     header("Location: login.php");
     exit();
 }
+
+$propertyStatus = isset($_GET['status']) ? $_GET['status'] : ''; 
+
+if($propertyStatus=="Accepted"){
+    $acceptButtonDisplay="";
+    $rejectButtonDisplay="none";
+}
+if($propertyStatus=="Rejected"){
+    $acceptButtonDisplay="none";
+    $rejectButtonDisplay="";
+}
+if($propertyStatus=="Pending"){
+    $acceptButtonDisplay="";
+    $rejectButtonDisplay="";
+}
+
+
+
+
 if (isset($_GET['action']) && isset($_GET['property_id'])) {
-    // Continue with property update logic
+
     $action = $_GET['action'];
     $propertyId = $_GET['property_id'];
 
-    // Update the property status based on action
+
     if ($action === 'accept') {
         $updateQuery = "UPDATE properties SET status = 'Accepted' WHERE propertyId = $propertyId";
     } elseif ($action === 'reject') {
         $updateQuery = "UPDATE properties SET status = 'Rejected' WHERE propertyId = $propertyId";
     } else {
-        http_response_code(400); // Bad Request
+        http_response_code(400); 
         exit("Invalid action");
     }
 
-    // Execute the update query
     if ($connection->query($updateQuery) === TRUE) {
-        http_response_code(200); // OK
+        http_response_code(200); 
         exit("Property $action successfully");
     } else {
-        http_response_code(500); // Internal Server Error
+        http_response_code(500); 
         exit("Error updating property: " . $connection->error);
     }
 
-    // Close connection
-    $connection->close();
+    
 }
+$connection->close();
 
 ?>
 
@@ -246,6 +265,16 @@ if (isset($_GET['action']) && isset($_GET['property_id'])) {
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
+      
+        document.getElementById('acceptBtn').innerText = '<?php echo $propertyStatus=="Pending"?"Accept":$propertyStatus; ?>';
+        document.getElementById('rejectBtn').innerText = '<?php echo $propertyStatus=="Pending"?"Reject":$propertyStatus; ?>';
+
+
+        document.getElementById('acceptBtn').style.display = '<?php echo $acceptButtonDisplay; ?>';
+        document.getElementById('rejectBtn').style.display = '<?php echo $rejectButtonDisplay; ?>';
+
+
+
         function showImage(image, imageId) {
             document.getElementById('big-image').src = image;
             var allImages = document.getElementsByClassName('small-images');
@@ -303,11 +332,11 @@ if (isset($_GET['action']) && isset($_GET['property_id'])) {
 
 
         function acceptProperty(propertyId) {
-            // Make an AJAX request to update the property status
+    
             fetch(`viewProperty.php?action=accept&property_id=${propertyId}`)
                 .then(response => {
                     if (response.ok) {
-                        // Hide reject button and show accepted button
+                 
                         document.getElementById('rejectBtn').style.display = 'none';
                         document.getElementById('acceptBtn').innerText = 'Accepted';
                         console.log('Property accepted successfully');
@@ -320,13 +349,13 @@ if (isset($_GET['action']) && isset($_GET['property_id'])) {
                 });
         }
 
-        // JavaScript function to handle reject action
+
         function rejectProperty(propertyId) {
-            // Make an AJAX request to update the property status
+        
             fetch(`viewProperty.php?action=reject&property_id=${propertyId}`)
                 .then(response => {
                     if (response.ok) {
-                        // Hide accept button and show rejected button
+                
                         document.getElementById('acceptBtn').style.display = 'none';
                         document.getElementById('acceptBtn').innerText = 'Rejected';
                         console.log('Property rejected successfully');
