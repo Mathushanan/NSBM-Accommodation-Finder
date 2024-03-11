@@ -69,22 +69,27 @@
 
 
 
-      <!-- Section for new accommodations -->
-      <section class="section__container new_accommodations__container" id="new_accommodations_section">
+    <section class="section__container new_accommodations__container" id="new_accommodations_section">
         <h2 class="section__header">New Accommodations</h2>
         <div class="slider">
             <div class="slides">
                 <?php
-                // Include database connection
+
                 include("config.php");
 
-                // Query to fetch new accommodations
-                $sql = "SELECT properties.*, images.imageData FROM properties INNER JOIN images ON properties.propertyId = images.propertyId";
+                $sql = "SELECT properties.*, images.imageData 
+                FROM properties 
+                INNER JOIN (
+                    SELECT propertyId, MAX(imageId) AS maxImageId 
+                    FROM images 
+                    GROUP BY propertyId
+                ) AS latest_images ON properties.propertyId = latest_images.propertyId
+                INNER JOIN images ON latest_images.maxImageId = images.imageId
+                ORDER BY properties.postedAt DESC";
                 $result = $connection->query($sql);
 
-                // Check if there are results
                 if ($result && $result->num_rows > 0) {
-                    // Output data of each row
+
                     while ($row = $result->fetch_assoc()) {
                         echo '<div class="new_accommodations__card">';
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="Accommodation" />';
@@ -93,16 +98,16 @@
                         echo '<h4>' . $row["title"] . '</h4>';
                         echo '<span class="rent"><h4>' . $row["rent"] . '</h4></span>';
                         echo '</div>';
-                        echo '<p>' . $row["description"]. '</p>';
+                        echo '<p>' . substr($row['description'], 0, 90) . '...</p>';
                         echo '<p class="posted_at"><span>Posted at: </span>' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
-                        echo '<button class="view_location__button">View Location</button>';
+                        echo '<a href="login.php"><button class="reserve__button">Reserve</button></a>';
                         echo '</div>';
                         echo '</div>';
                     }
                 } else {
                     echo "No new accommodations found.";
                 }
-                // Close database connection
+
                 $connection->close();
                 ?>
             </div>
@@ -121,7 +126,7 @@
 
                 <?php
 
-                 include("config.php");
+                include("config.php");
 
 
                 $query = "SELECT title, content FROM articles";

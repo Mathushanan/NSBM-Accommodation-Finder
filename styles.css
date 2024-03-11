@@ -233,6 +233,12 @@ nav {
     border-radius: 5px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
+.new_accommodations__container img{
+
+    height:200px;
+
+
+}
 
 .new_accommodations__card span{
 
@@ -287,7 +293,7 @@ nav {
     color: var(--text-light);
 }
 
-.view_location__button {
+.reserve__button {
     background-color: var(--primary-color);
     color: white;
     padding: 0.5rem 1rem;
@@ -297,9 +303,10 @@ nav {
     transition: background-color 0.3s ease;
     width: 100%;
     margin-top: 10px;
+    font-size: 16px;
 }
 
-.view_location__button:hover {
+.reserve__button:hover {
     background-color: var(--primary-color-dark);
 }
 

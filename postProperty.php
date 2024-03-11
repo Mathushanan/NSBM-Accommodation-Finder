@@ -43,7 +43,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
         <h2 class="section__header">Post New Accommodation</h2>
 
 
-        
+
         <?php
 
         include("config.php");
@@ -63,8 +63,13 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             $latitude = $_POST['latitude'];
             $longitude = $_POST['longitude'];
 
-            $insertQuery = "INSERT INTO properties (userId,postedBy,title, description, locationLink, latitude, longitude,rent,status,bedCounts) VALUES ('$userId', '$userName', '$title', '$description', '$locationLink', '$latitude', '$longitude','$rent','$status','$bedCounts')";
-            $resultProperty = mysqli_query($connection, $insertQuery);
+            $insertQuery = "INSERT INTO properties (userId, postedBy, title, description, locationLink, latitude, longitude, rent, status, bedCounts) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            $stmt = mysqli_prepare($connection, $insertQuery);
+
+            mysqli_stmt_bind_param($stmt, "ssssssssss", $userId, $userName, $title, $description, $locationLink, $latitude, $longitude, $rent, $status, $bedCounts);
+
+            $resultProperty = mysqli_stmt_execute($stmt);
 
             if (!$resultProperty) {
                 echo " <div class='errorMessageBox'>
@@ -172,7 +177,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
                         <div class="field">
-                            <input type="submit" class="btn" name="submit" value="POST" >
+                            <input type="submit" class="btn" name="submit" value="POST">
                         </div>
 
 
