@@ -1082,6 +1082,77 @@ input[type="file"] {
 }
 
 
+/**viewProperty.php**/
+
+.main-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.image-viewer {
+   
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #e0e0e0; /* Add a subtle border */
+    border-radius: 8px; /* Add some rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a soft shadow */
+}
+
+#big-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Same rounded corners as the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#small-image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.small-images {
+    margin: 5px;
+    cursor: pointer;
+    width: calc(25% - 10px); /* Adjust as needed */
+    border-radius: 5px;
+    transition: transform 0.3s ease, border 0.3s ease; /* Smooth transitions */
+}
+
+.small-images:hover {
+    transform: scale(1.1); /* Grow the thumbnail on hover */
+    border: 3px solid #4285f4; /* Highlight border */
+}
+
+
+
+.property-card {
+    flex: 1;
+    max-width: 400px; /* Adjust as needed */
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+.box.form-box.right-box {
+    margin: 0 auto;
+    flex: 1;
+    max-width: 400px; /* Adjust as needed */
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
 
 
 

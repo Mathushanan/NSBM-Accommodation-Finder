@@ -4,12 +4,10 @@ session_start();
 
 include("config.php");
 
-if (!isset($_SESSION['userEmail']) || $_SESSION['userType']!="Warden") {
+if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     header("Location: login.php");
     exit();
 }
-
-var_dump($_GET);
 
 ?>
 
@@ -23,6 +21,7 @@ var_dump($_GET);
     <title>UniNest NSBM</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css\all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
@@ -38,16 +37,81 @@ var_dump($_GET);
         </ul>
     </nav>
 
+    <?php
+
+    include("config.php");
+
+
+    $selectQuery = "SELECT imageData FROM images WHERE propertyId={$_GET['property_id']}";
+    $big_result = $connection->query($selectQuery);
+    $small_result = $connection->query($selectQuery);
+
+    ?>
+
+
+    <section class="section__container viewProperty_section__container" id="my_accommodations_section">
+        <div class="main-box">
+            <div class="property-card">
+                <h2><?php echo $_GET['title']; ?></h2>
+                <p><?php echo $_GET['description']; ?></p>
+                <p>Bedrooms: <?php echo $_GET['bedCounts']; ?></p>
+                <p>Posted At: <?php echo $_GET['postedAt']; ?></p>
+                <p>Rent: <?php echo $_GET['rent']; ?></p>
+                <a href="<?php echo $_GET['locationLink']; ?>" target="_blank">Location Link</a>
+            </div>
+
+
+            <div class="image-viewer">
+                <?php
+                if ($big_result->num_rows > 0) {
+                    $row = $big_result->fetch_assoc();
+                    $bigImage = $row['imageData'];
+                    $bigImageData = base64_encode($bigImage);
+
+                    echo '<img src="data:image/jpeg;base64,' . $bigImageData . '" alt="Thumbnail 1"  id="big-image" >';
+                }
+
+                ?>
+
+                <div id="small-image-container">
+                    <?php
+                    if ($small_result->num_rows > 0) {
+                        $count = 1;
+                        while ($row = $small_result->fetch_assoc()) {
+
+                            $image = $row['imageData'];
+                            $imageData = base64_encode($image);
+                            $src = "data:image/jpeg;base64," . $imageData;
+                            $borderStyle = '';
+                            if ($count == 1) {
+                                $borderStyle = 'border: 3px solid #4285f4;';
+                            }
+                            $imageId = "image" . $count;
+
+                            echo "<img src='$src' alt='Thumbnail' class='small-images' id='$imageId'onclick='showImage(\"$src\",\"$imageId\")' style='$borderStyle'>";
+
+                            $count++;
+                        }
+                    }
+                    ?>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="box form-box right-box">
+            <div id="map"></div>
+        </div>
 
 
 
 
-    <div class="login-container">
-        <p>Student</p>
-
-    </div>
 
 
+    </section>
 
 
 
@@ -100,6 +164,63 @@ var_dump($_GET);
 
     </footer>
 
+
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        function showImage(image, imageId) {
+            document.getElementById('big-image').src = image;
+            var allImages = document.getElementsByClassName('small-images');
+            for (image of allImages) {
+                image.style.border = 'none';
+            }
+            document.getElementById(imageId).style.border = '3px solid #4285f4';
+
+
+        }
+
+        let latitude = "<?php echo isset($_GET['latitude']) ? htmlspecialchars($_GET['latitude']) : ''; ?>";
+        let longitude = "<?php echo isset($_GET['longitude']) ? htmlspecialchars($_GET['longitude']) : ''; ?>";
+        let map = L.map('map').setView([latitude, longitude], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        let marker = L.marker([latitude, longitude]).addTo(map);;
+
+        function searchLocation() {
+            const searchInput = document.getElementById('searchInput').value;
+
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${searchInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const {
+                            lat,
+                            lon
+                        } = data[0];
+                        const newLatLng = new L.LatLng(lat, lon);
+                        map.setView(newLatLng, 13);
+                        if (marker) {
+                            map.removeLayer(marker);
+                        }
+
+                        marker = L.marker(newLatLng).addTo(map);
+                        document.getElementById('locationLink').value = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}`;
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lon;
+
+
+                    } else {
+                        console.log('Location not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
 </body>
 
 </html>
