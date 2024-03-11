@@ -101,7 +101,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                     echo '<div class="card__buttons">';
                     echo '<input type="hidden" name="property_id" value="' . $row["propertyId"] . '">';
                     echo '<button type="submit" class="delete-button" name="delete_button">Delete</button>';
-                    echo '<a href="updateAccommodation.php>"<button class="update-button">Update</button></a>';
+                    echo '<a href="updateProperty.php?property_id='.$row["propertyId"].'&title='.$row["title"].'&description='.$row["description"].'&bedCounts='.$row["bedCounts"].'&postedAt='.$row["postedAt"].'&rent='.$row["rent"].'&longitude='.$row["longitude"].'&latitude='.$row["latitude"].'&locationLink='.$row["locationLink"].'" class="update-button">Update</a>';
                     echo '</div>';
                     echo '</form>';
 
