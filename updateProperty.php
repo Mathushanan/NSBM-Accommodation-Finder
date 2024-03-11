@@ -154,12 +154,12 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                             <input type="text" id="locationLink" name="locationLink" readonly value="<?php echo isset($_GET['locationLink']) ? htmlspecialchars($_GET['locationLink']) : ''; ?>">
                         </div>
 
-                        <div class="field input">
-                            <label for="latitude">Latitude</label>
+                        <div class="field input" style="display: none;">
+                            <label for="latitude" >Latitude</label>
                             <input type="text" id="latitude" name="latitude" readonly value="<?php echo isset($_GET['latitude']) ? htmlspecialchars($_GET['latitude']) : ''; ?>">
                         </div>
 
-                        <div class="field input">
+                        <div class="field input" style="display: none;">
                             <label for="longitude">Longitude</label>
                             <input type="text" id="longitude" name="longitude" readonly value="<?php echo isset($_GET['longitude']) ? htmlspecialchars($_GET['longitude']) : ''; ?>">
                         </div>

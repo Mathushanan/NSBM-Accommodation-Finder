@@ -148,12 +148,12 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                             <input type="text" id="locationLink" name="locationLink" readonly>
                         </div>
 
-                        <div class="field input">
+                        <div class="field input" style="display: none;">
                             <label for="latitude">Latitude</label>
                             <input type="text" id="latitude" name="latitude" readonly>
                         </div>
 
-                        <div class="field input">
+                        <div class="field input" style="display: none;">
                             <label for="longitude">Longitude</label>
                             <input type="text" id="longitude" name="longitude" readonly>
                         </div>
