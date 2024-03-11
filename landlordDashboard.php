@@ -80,13 +80,14 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             }
 
             $sql = "SELECT properties.*, images.imageData 
-        FROM properties 
+        FROM properties  
         INNER JOIN (
             SELECT propertyId, MAX(imageId) AS maxImageId 
             FROM images 
             GROUP BY propertyId
         ) AS latest_images ON properties.propertyId = latest_images.propertyId
         INNER JOIN images ON latest_images.maxImageId = images.imageId
+        WHERE userId={$_SESSION['userId']}
         ORDER BY properties.postedAt DESC";
 
             $result = $connection->query($sql);

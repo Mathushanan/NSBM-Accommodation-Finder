@@ -97,7 +97,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
                     echo '<div class="card__buttons">';
                     echo '<input type="hidden" name="property_id" value="' . $row["propertyId"] . '">';
                     echo '<button type="submit" class="delete-button" name="delete_button">Delete</button>';
-                    echo '<a href="updateAccommodation.php>"<button class="update-button">Update</button></a>';
+                    
                     echo '</div>';
                     echo '</form>';
 

@@ -33,6 +33,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
+            <li class="link"><a href="landlordDashboard.php">Dashboard</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
             <li class="link"><a href="logout.php">Logout</a></li>
         </ul>
@@ -40,7 +41,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
     <section class="section__container post_property_section__container" id="popular_section">
-        <h2 class="section__header">Update Accommodation</h2>
+        <h2 class="section__header">Update Property</h2>
 
 
 
