@@ -48,7 +48,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
         include("config.php");
 
-      
+
 
 
         if (isset($_POST['submit'])) {
@@ -65,11 +65,13 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             $latitude = $_POST['latitude'];
             $longitude = $_POST['longitude'];
 
-            $insertQuery = "INSERT INTO properties (userId, postedBy, title, description, locationLink, latitude, longitude, rent, status, bedCounts) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $property_id = $_GET['property_id'];
 
-            $stmt = mysqli_prepare($connection, $insertQuery);
+            $updateQuery = "UPDATE properties SET title=?, description=?, locationLink=?, latitude=?, longitude=?, rent=?, status=?, bedCounts=? WHERE propertyId=?";
 
-            mysqli_stmt_bind_param($stmt, "ssssssssss", $userId, $userName, $title, $description, $locationLink, $latitude, $longitude, $rent, $status, $bedCounts);
+            $stmt = mysqli_prepare($connection, $updateQuery);
+
+            mysqli_stmt_bind_param($stmt, "sssssssss",$title, $description, $locationLink, $latitude, $longitude, $rent, $status, $bedCounts,$property_id);
 
             $resultProperty = mysqli_stmt_execute($stmt);
 
@@ -84,7 +86,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                              ";
             } else {
 
-                $property_id = mysqli_insert_id($connection);
+                
 
                 if (isset($_FILES['images'])) {
 
@@ -180,7 +182,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
                         <div class="field">
-                            <input type="submit" class="btn" name="submit" value="POST">
+                            <input type="submit" class="btn" name="submit" value="UPDATE">
                         </div>
 
 
@@ -344,14 +346,15 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
 
 
-
-        let map = L.map('map').setView([6.8208936, 80.03972288538341], 15); // Default view
+        let latitude = "<?php echo isset($_GET['latitude']) ? htmlspecialchars($_GET['latitude']) : ''; ?>";
+        let longitude = "<?php echo isset($_GET['longitude']) ? htmlspecialchars($_GET['longitude']) : ''; ?>";
+        let map = L.map('map').setView([latitude, longitude], 15); // Default view
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        let marker = L.marker([6.8208936, 80.03972288538341]).addTo(map);;
+        let marker = L.marker([latitude, longitude]).addTo(map);;
 
         function searchLocation() {
             const searchInput = document.getElementById('searchInput').value;
