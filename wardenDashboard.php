@@ -9,6 +9,139 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     exit();
 }
 
+$headerText = "All Accommodations";
+
+// Check if 'status' parameter is set and equal to 'pending'
+if (isset($_GET['status']) && $_GET['status'] == 'pending') {
+    $headerText = "Pending for Approval";
+}
+
+
+
+function fetchPendingAccommodations($connection)
+{
+    $sql = "SELECT properties.*, images.imageData 
+            FROM properties  
+            INNER JOIN (
+                SELECT propertyId, MAX(imageId) AS maxImageId 
+                FROM images 
+                GROUP BY propertyId
+            ) AS latest_images ON properties.propertyId = latest_images.propertyId
+            INNER JOIN images ON latest_images.maxImageId = images.imageId
+            WHERE properties.status = 'Pending'
+            ORDER BY properties.postedAt DESC";
+
+    $result = $connection->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<a href="updateProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
+            echo '<div class="card">';
+
+            echo '<div class="card__content">';
+
+
+
+            echo '<h2 class="card__title">' . $row["title"] . '</h2>';
+            echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
+
+            echo '<div class="card__details">';
+            echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
+            echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
+            echo '</div>';
+
+            echo '<div class="card_footer">';
+            if ($row["bedCounts"] > 0) {
+                echo '<span class="available_status">Available</span>';
+            } else {
+                echo '<span class="not_available_status">Not Available</span>';
+            }
+            if ($row["status"] == "Pending") {
+                echo '<span class="pending_status">Pending</span>';
+            }
+            if ($row["status"] == "Accepted") {
+                echo '<span class="accepted_status">Accepted</span>';
+            }
+            if ($row["status"] == "Rejected") {
+                echo '<span class="rejected_status">Rejected</span>';
+            }
+
+            echo '<span class="rent">' . $row["rent"] . '</span>';
+            echo '</div>';
+            echo '</div>';
+            echo '<div class="card__image">';
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+        }
+    } else {
+        echo "No pending accommodations found.";
+    }
+}
+
+// Function to fetch all accommodations
+function fetchAllAccommodations($connection)
+{
+    $sql = "SELECT properties.*, images.imageData 
+            FROM properties  
+            INNER JOIN (
+                SELECT propertyId, MAX(imageId) AS maxImageId 
+                FROM images 
+                GROUP BY propertyId
+            ) AS latest_images ON properties.propertyId = latest_images.propertyId
+            INNER JOIN images ON latest_images.maxImageId = images.imageId
+            ORDER BY properties.postedAt DESC";
+
+    $result = $connection->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<a href="updateProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
+            echo '<div class="card">';
+
+            echo '<div class="card__content">';
+
+
+
+            echo '<h2 class="card__title">' . $row["title"] . '</h2>';
+            echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
+
+            echo '<div class="card__details">';
+            echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
+            echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
+            echo '</div>';
+
+            echo '<div class="card_footer">';
+            if ($row["bedCounts"] > 0) {
+                echo '<span class="available_status">Available</span>';
+            } else {
+                echo '<span class="not_available_status">Not Available</span>';
+            }
+            if ($row["status"] == "Pending") {
+                echo '<span class="pending_status">Pending</span>';
+            }
+            if ($row["status"] == "Accepted") {
+                echo '<span class="accepted_status">Accepted</span>';
+            }
+            if ($row["status"] == "Rejected") {
+                echo '<span class="rejected_status">Rejected</span>';
+            }
+
+            echo '<span class="rent">' . $row["rent"] . '</span>';
+            echo '</div>';
+            echo '</div>';
+            echo '<div class="card__image">';
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
+        }
+    } else {
+        echo "No accommodations found.";
+    }
+}
+
 ?>
 
 
@@ -42,102 +175,25 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
 
     <section class="section__container landlord_dashboard_section__container" id="my_accommodations_section">
         <div class="webadmin_dashboard_buttons_container">
-            <a href="viewReservations.php"><button class="big-button">View Reservation Requests</button></a>
-            <a href="postProperty.php"><button class="big-button">Add New Property</button></a>
+            <a href="wardenDashboard.php?status=pending"><button class="big-button" id="pendingBtn">Pending for Approval</button></a>
+            <a href="wardenDashboard.php"><button class="big-button" id="allAccommodationsBtn">All Accommodations</button></a>
         </div>
-
-
     </section>
 
 
 
 
     <section class="section__container webadmin_dashboard_section__container" id="popular_section">
-        <h2 class="section__header">All Accommodations</h2>
+        <h2 class="section__header"><?php echo $headerText; ?></h2>
         <div class="webadmin_dashboard_accommodation_container">
 
 
             <?php
-            include("config.php");
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_button'])) {
-
-                if (isset($_POST['property_id'])) {
-                    $propertyId = $_POST['property_id'];
-
-
-                    $deleteImagesQuery = "DELETE FROM images WHERE propertyId = $propertyId";
-                    $connection->query($deleteImagesQuery);
-
-                    $deletePropertyQuery = "DELETE FROM properties WHERE propertyId = $propertyId";
-                    if ($connection->query($deletePropertyQuery) === TRUE) {
-                    } else {
-                        echo "Error deleting property: " . $connection->error;
-                    }
-                } else {
-                    echo "Property ID is not set.";
-                }
-            }
-
-            $sql = "SELECT properties.*, images.imageData 
-        FROM properties  
-        INNER JOIN (
-            SELECT propertyId, MAX(imageId) AS maxImageId 
-            FROM images 
-            GROUP BY propertyId
-        ) AS latest_images ON properties.propertyId = latest_images.propertyId
-        INNER JOIN images ON latest_images.maxImageId = images.imageId
-        ORDER BY properties.postedAt DESC";
-
-            $result = $connection->query($sql);
-
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo '<a href="updateProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
-                    echo '<div class="card">';
-
-                    echo '<div class="card__content">';
-
-                    
-
-                    echo '<h2 class="card__title">' . $row["title"] . '</h2>';
-                    echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
-
-                    echo '<div class="card__details">';
-                    echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
-                    echo '<p class="beds"><strong>Posted at</strong> ' . date("Y/m/d", strtotime($row["postedAt"])) . '</p>';
-                    echo '</div>';
-
-                    echo '<div class="card_footer">';
-                    if ($row["bedCounts"] > 0) {
-                        echo '<span class="available_status">Available</span>';
-                    } else {
-                        echo '<span class="not_available_status">Not Available</span>';
-                    }
-                    if ($row["status"] == "Pending") {
-                        echo '<span class="pending_status">Pending</span>';
-                    }
-                    if ($row["status"] == "Accepted") {
-                        echo '<span class="accepted_status">Accepted</span>';
-                    }
-                    if ($row["status"] == "Rejected") {
-                        echo '<span class="rejected_status">Rejected</span>';
-                    }
-
-                    echo '<span class="rent">' . $row["rent"] . '</span>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '<div class="card__image">';
-                    echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</a>';
-                }
+            if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['status']) && $_GET['status'] == 'pending') {
+                fetchPendingAccommodations($connection);
             } else {
-                echo "No accommodations found.";
+                fetchAllAccommodations($connection);
             }
-
-            $connection->close();
             ?>
 
 
@@ -197,6 +253,10 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
         </div>
 
     </footer>
+
+
+
+
 
 </body>
 
