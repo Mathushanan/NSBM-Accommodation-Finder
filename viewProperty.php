@@ -46,6 +46,46 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     $big_result = $connection->query($selectQuery);
     $small_result = $connection->query($selectQuery);
 
+    $selectUserIdQuery = "SELECT userId FROM properties WHERE propertyId={$_GET['property_id']}";
+    $result = $connection->query($selectUserIdQuery);
+    if ($result) {
+
+        $row = $result->fetch_assoc();
+        if ($row) {
+
+            $landlordId = $row['userId'];
+        }
+    }
+    $selectUserDeatils = "SELECT name,email,mobile,gender FROM users WHERE userId=$landlordId";
+    $sql = "SELECT name,email,mobile,gender FROM users WHERE userId=$landlordId";
+
+    // Execute query
+    $userResult = $connection->query($sql);
+
+    if ($userResult) {
+        // Check if any rows were returned
+        if ($userResult->num_rows > 0) {
+            // Fetch associative array
+            $row = $userResult->fetch_assoc();
+
+            // Store data in separate variables
+            $name = $row["name"];
+            $email = $row["email"];
+            $mobile = $row["mobile"];
+            $gender = $row["gender"];
+
+            // Now $name, $email, $mobile, and $gender variables hold the retrieved data
+            // You can use them as needed
+        } else {
+            echo "No records found";
+        }
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    // Close connection
+    $connection->close();
+
     ?>
 
 
@@ -58,10 +98,17 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
             <div class="property-card">
                 <h2><?php echo $_GET['title']; ?></h2>
                 <p><?php echo $_GET['description']; ?></p>
-                <p>Bedrooms: <?php echo $_GET['bedCounts']; ?></p>
-                <p>Posted At: <?php echo $_GET['postedAt']; ?></p>
-                <p>Rent: <?php echo $_GET['rent']; ?></p>
-                <a href="<?php echo $_GET['locationLink']; ?>" target="_blank">Location Link</a>
+                <p><strong>Spaces Available: </strong><?php echo $_GET['bedCounts']; ?></p>
+                <p><strong>Posted At: </strong><?php echo $_GET['postedAt']; ?></p>
+                <p><strong>Rent: </strong><?php echo $_GET['rent']; ?></p>
+                <a href="<?php echo $_GET['locationLink']; ?>" target="_blank">Location</a>
+                <div class="user-details">
+                    <p><?php echo $name ?></p>
+                    <p><?php echo $email ?></p>
+                    <p><?php echo $mobile ?></p>
+                </div>
+
+
             </div>
 
 
@@ -178,7 +225,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
             for (image of allImages) {
                 image.style.border = 'none';
             }
-            document.getElementById(imageId).style.border = '3px solid #4285f4';
+            document.getElementById(imageId).style.border = '4px solid #4285f4';
 
 
         }
