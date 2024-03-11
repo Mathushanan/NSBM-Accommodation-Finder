@@ -1181,6 +1181,28 @@ input[type="file"] {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.accept-btn {
+    background-color: #4CAF50; /* Green color for accept button */
+    color: #fff; 
+}
+
+.reject-btn {
+    background-color: #FF5722;
+    color: #fff; 
+}
+.accept-btn:hover {
+    background-color: #27AE60;
+    /* Adjust as needed */
+}
+
+.reject-btn:hover {
+    background-color: #D35400;
+
+}
+.property-card .webadmin_dashboard_buttons_container{
+    margin-top: 20px;
+
+}
 
 
 

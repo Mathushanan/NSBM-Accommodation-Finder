@@ -8,6 +8,33 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     header("Location: login.php");
     exit();
 }
+if (isset($_GET['action']) && isset($_GET['property_id'])) {
+    // Continue with property update logic
+    $action = $_GET['action'];
+    $propertyId = $_GET['property_id'];
+
+    // Update the property status based on action
+    if ($action === 'accept') {
+        $updateQuery = "UPDATE properties SET status = 'Accepted' WHERE propertyId = $propertyId";
+    } elseif ($action === 'reject') {
+        $updateQuery = "UPDATE properties SET status = 'Rejected' WHERE propertyId = $propertyId";
+    } else {
+        http_response_code(400); // Bad Request
+        exit("Invalid action");
+    }
+
+    // Execute the update query
+    if ($connection->query($updateQuery) === TRUE) {
+        http_response_code(200); // OK
+        exit("Property $action successfully");
+    } else {
+        http_response_code(500); // Internal Server Error
+        exit("Error updating property: " . $connection->error);
+    }
+
+    // Close connection
+    $connection->close();
+}
 
 ?>
 
@@ -59,23 +86,19 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     $selectUserDeatils = "SELECT name,email,mobile,gender FROM users WHERE userId=$landlordId";
     $sql = "SELECT name,email,mobile,gender FROM users WHERE userId=$landlordId";
 
-    // Execute query
+
     $userResult = $connection->query($sql);
 
     if ($userResult) {
-        // Check if any rows were returned
+
         if ($userResult->num_rows > 0) {
-            // Fetch associative array
+
             $row = $userResult->fetch_assoc();
 
-            // Store data in separate variables
             $name = $row["name"];
             $email = $row["email"];
             $mobile = $row["mobile"];
             $gender = $row["gender"];
-
-            // Now $name, $email, $mobile, and $gender variables hold the retrieved data
-            // You can use them as needed
         } else {
             echo "No records found";
         }
@@ -83,7 +106,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
         echo "Error: " . $conn->error;
     }
 
-    // Close connection
     $connection->close();
 
     ?>
@@ -106,6 +128,11 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
                     <p><?php echo $name ?></p>
                     <p><?php echo $email ?></p>
                     <p><?php echo $mobile ?></p>
+                </div>
+                <div class="webadmin_dashboard_buttons_container">
+                    <a href="#" onclick="acceptProperty(<?php echo $_GET['property_id']; ?>)"><button id="acceptBtn" class="big-button accept-btn">Accept</button></a>
+                    <a href="#" onclick="rejectProperty(<?php echo $_GET['property_id']; ?>)"><button id="rejectBtn" class="big-button reject-btn">Reject</button></a>
+
                 </div>
 
 
@@ -271,7 +298,49 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
                     console.error('Error:', error);
                 });
         }
+
+
+
+
+        function acceptProperty(propertyId) {
+            // Make an AJAX request to update the property status
+            fetch(`viewProperty.php?action=accept&property_id=${propertyId}`)
+                .then(response => {
+                    if (response.ok) {
+                        // Hide reject button and show accepted button
+                        document.getElementById('rejectBtn').style.display = 'none';
+                        document.getElementById('acceptBtn').innerText = 'Accepted';
+                        console.log('Property accepted successfully');
+                    } else {
+                        console.error('Failed to accept property');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // JavaScript function to handle reject action
+        function rejectProperty(propertyId) {
+            // Make an AJAX request to update the property status
+            fetch(`viewProperty.php?action=reject&property_id=${propertyId}`)
+                .then(response => {
+                    if (response.ok) {
+                        // Hide accept button and show rejected button
+                        document.getElementById('acceptBtn').style.display = 'none';
+                        document.getElementById('acceptBtn').innerText = 'Rejected';
+                        console.log('Property rejected successfully');
+                    } else {
+                        console.error('Failed to reject property');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
+
+
 </body>
 
 </html>
