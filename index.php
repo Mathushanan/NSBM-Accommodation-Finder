@@ -98,7 +98,7 @@
                         echo '<h4>' . $row["title"] . '</h4>';
                         echo '<span class="rent"><h4>' . $row["rent"] . '</h4></span>';
                         echo '</div>';
-                        echo '<p>' . substr($row['description'], 0, 90) . '...</p>';
+                        echo '<p>' . substr($row['description'], 0, 80) . '...</p>';
                         echo '<p class="posted_at"><span>Posted at: </span>' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
                         echo '<a href="login.php"><button class="reserve__button">Reserve</button></a>';
                         echo '</div>';
