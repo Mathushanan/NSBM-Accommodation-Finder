@@ -50,7 +50,11 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
 
 
     <section class="section__container viewProperty_section__container" id="my_accommodations_section">
+
         <div class="main-box">
+
+
+
             <div class="property-card">
                 <h2><?php echo $_GET['title']; ?></h2>
                 <p><?php echo $_GET['description']; ?></p>
@@ -102,7 +106,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
 
         </div>
 
-        <div class="box form-box right-box">
+        <div class="box form-box map-box">
             <div id="map"></div>
         </div>
 

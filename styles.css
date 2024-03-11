@@ -832,9 +832,9 @@ nav {
 
 
 /**wardenDashboard.php**/
-#wardenDashboard_section .card:hover{
+#wardenDashboard_section .card:hover {
     transform: scale(1.01);
-  }
+}
 
 
 
@@ -1084,27 +1084,40 @@ input[type="file"] {
 
 /**viewProperty.php**/
 
-.main-box{
+.main-box {
     display: flex;
     justify-content: space-between;
 }
 
+.property-card {
+    flex: 1;
+    /* Adjust as needed */
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+}
 
 .image-viewer {
-   
+
     display: flex;
     flex-direction: column;
     padding: 20px;
-    width: 400px;
-    border: 1px solid #e0e0e0; /* Add a subtle border */
-    border-radius: 8px; /* Add some rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a soft shadow */
+    width: 60%;
+    border: 1px solid #e0e0e0;
+    /* Add a subtle border */
+    border-radius: 8px;
+    /* Add some rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a soft shadow */
 }
 
 #big-image {
     max-width: 100%;
     height: auto;
-    border-radius: 8px; /* Same rounded corners as the container */
+    border-radius: 8px;
+    /* Same rounded corners as the container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -1117,37 +1130,30 @@ input[type="file"] {
 .small-images {
     margin: 5px;
     cursor: pointer;
-    width: calc(25% - 10px); /* Adjust as needed */
+    width: calc(25% - 10px);
+    /* Adjust as needed */
     border-radius: 5px;
-    transition: transform 0.3s ease, border 0.3s ease; /* Smooth transitions */
+    transition: transform 0.3s ease, border 0.3s ease;
+    /* Smooth transitions */
 }
 
 .small-images:hover {
-    transform: scale(1.1); /* Grow the thumbnail on hover */
-    border: 3px solid #4285f4; /* Highlight border */
-}
-
-
-
-.property-card {
-    flex: 1;
-    max-width: 400px; /* Adjust as needed */
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+    /* Grow the thumbnail on hover */
+    border: 3px solid #4285f4;
+    /* Highlight border */
 }
 
 
 
 
 
-.box.form-box.right-box {
-    margin: 0 auto;
+.map-box {
+    margin: 40px auto;
     flex: 1;
-    max-width: 400px; /* Adjust as needed */
+    width: 100%;
+    /* Adjust as needed */
     padding: 20px;
-    background-color: #f0f0f0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -1213,6 +1219,8 @@ input[type="file"] {
 
 
 @media (width < 900px) {
+
+
     .booking__container form {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1324,10 +1332,11 @@ input[type="file"] {
         font-size: 0.6rem;
 
     }
+
     .big-button {
-       
+
         font-size: 15px;
-        
+
     }
 
 }
@@ -1372,6 +1381,41 @@ input[type="file"] {
         order: -1;
         width: 90%;
         margin-bottom: 20px;
+    }
+
+    .main-box {
+        display: block;
+    }
+
+    .property-card {
+        width: 100%;
+    }
+
+    .map-box {
+        display: block;
+        margin: 20px 0;
+        flex: 1;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-box {
+        box-sizing: border-box;
+    }
+
+    .map-box #map {
+        order: -1;
+        width: 100%;
+      
+    }
+
+
+    .image-viewer {
+
+        width: 100%;
+        margin-top: 20px;
     }
 
     #searchBox {
