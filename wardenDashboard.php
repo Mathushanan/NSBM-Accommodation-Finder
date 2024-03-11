@@ -11,7 +11,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
 
 $headerText = "All Accommodations";
 
-// Check if 'status' parameter is set and equal to 'pending'
 if (isset($_GET['status']) && $_GET['status'] == 'pending') {
     $headerText = "Pending for Approval";
 }
@@ -35,7 +34,7 @@ function fetchPendingAccommodations($connection)
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<a href="updateProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
+            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
             echo '<div class="card">';
 
             echo '<div class="card__content">';
@@ -97,7 +96,7 @@ function fetchAllAccommodations($connection)
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<a href="updateProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
+            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '">';
             echo '<div class="card">';
 
             echo '<div class="card__content">';
@@ -183,7 +182,7 @@ function fetchAllAccommodations($connection)
 
 
 
-    <section class="section__container webadmin_dashboard_section__container" id="popular_section">
+    <section class="section__container webadmin_dashboard_section__container" id="wardenDashboard_section">
         <h2 class="section__header"><?php echo $headerText; ?></h2>
         <div class="webadmin_dashboard_accommodation_container">
 
