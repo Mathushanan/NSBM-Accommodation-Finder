@@ -56,6 +56,25 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
             <?php
             include("config.php");
 
+            if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_button'])) {
+
+                if (isset($_POST['property_id'])) {
+                    $propertyId = $_POST['property_id'];
+
+
+                    $deleteImagesQuery = "DELETE FROM images WHERE propertyId = $propertyId";
+                    $connection->query($deleteImagesQuery);
+
+                    $deletePropertyQuery = "DELETE FROM properties WHERE propertyId = $propertyId";
+                    if ($connection->query($deletePropertyQuery) === TRUE) {
+                    } else {
+                        echo "Error deleting property: " . $connection->error;
+                    }
+                } else {
+                    echo "Property ID is not set.";
+                }
+            }
+
             $sql = "SELECT properties.*, images.imageData 
         FROM properties 
         INNER JOIN (
@@ -74,10 +93,13 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
 
                     echo '<div class="card__content">';
 
+                    echo '<form method="post">';
                     echo '<div class="card__buttons">';
-                    echo '<button class="delete-button">Delete</button>';
-                    echo '<button class="update-button">Update</button>';
+                    echo '<input type="hidden" name="property_id" value="' . $row["propertyId"] . '">';
+                    echo '<button type="submit" class="delete-button" name="delete_button">Delete</button>';
+                    echo '<a href="updateAccommodation.php>"<button class="update-button">Update</button></a>';
                     echo '</div>';
+                    echo '</form>';
 
                     echo '<h2 class="card__title">' . $row["title"] . '</h2>';
                     echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';

@@ -44,7 +44,7 @@
 .section__header {
     font-size: 2rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--primary-color);
     text-align: center;
 }
 
@@ -649,6 +649,7 @@ nav {
     margin-top: 5rem;
 }
 
+
 .card__content {
     flex: 1;
     padding: 20px;
@@ -757,7 +758,7 @@ nav {
 
 .card__image {
     width: 40%;
-    height:80%;
+    height: 80%;
     background-color: #eee;
     background-size: contain;
     margin: 0;
@@ -789,10 +790,12 @@ nav {
 .card__buttons {
     margin-top: 5px;
 }
-.update-button{
+
+.update-button {
     margin-left: 10px;
     padding: 8px 16px;
-    background-color: #2ECC71; /* Adjust as needed */
+    background-color: #2ECC71;
+    /* Adjust as needed */
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -802,9 +805,10 @@ nav {
 
 }
 
-.delete-button{
+.delete-button {
     padding: 8px 16px;
-    background-color: #FF5733; /* Adjust as needed */
+    background-color: #FF5733;
+    /* Adjust as needed */
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -814,17 +818,17 @@ nav {
 }
 
 .update-button:hover {
-    background-color: #27AE60; /* Adjust as needed */
+    background-color: #27AE60;
+    /* Adjust as needed */
 }
-.delete-button:hover{
+
+.delete-button:hover {
     background-color: #D35400;
 
 }
 
 /**landlordDashboard.php**/
-.landlord_dashboard_section__container{
 
-}
 
 
 
@@ -1203,7 +1207,8 @@ input[type="file"] {
         line-height: 4rem;
         font-weight: 600;
     }
-    .webadmin_dashboard_section__container .card__title{
+
+    .webadmin_dashboard_section__container .card__title {
         font-size: 1rem;
     }
 
@@ -1220,7 +1225,7 @@ input[type="file"] {
 
     .webadmin_dashboard_section__container .card_footer .accepted_status {
 
-        
+
         font-size: 0.6rem;
 
     }
@@ -1236,6 +1241,7 @@ input[type="file"] {
         font-size: 0.6rem;
 
     }
+
     .webadmin_dashboard_section__container .card_footer .rent {
         font-size: 0.6rem;
 
