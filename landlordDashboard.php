@@ -57,30 +57,64 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
         <div class="webadmin_dashboard_accommodation_container">
 
 
-            <div class="card">
-                <div class="card__content">
-                    <h2 class="card__title">Green Hostel</h2>
-                    <p class="card__description">Very clean and neat high quality rooms available near NSBM Green University</p>
+            <?php
+            include("config.php");
 
-                    <div class="card__details">
-                        <p class="address">13th NSBM road, Homagama</p>
-                        <p class="beds"><strong>20</strong> Beds Available</p>
-                        <p class="beds"><strong>Posted at</strong> 2024/05/01</p>
-                    </div>
+            $sql = "SELECT properties.*, images.imageData 
+        FROM properties 
+        INNER JOIN (
+            SELECT propertyId, MAX(imageId) AS maxImageId 
+            FROM images 
+            GROUP BY propertyId
+        ) AS latest_images ON properties.propertyId = latest_images.propertyId
+        INNER JOIN images ON latest_images.maxImageId = images.imageId
+        ORDER BY properties.postedAt DESC";
 
-                    <div class="card_footer">
-                        <span class="available_status">Available</span>
-                        <span class="status">Accepted</span>
-                        <span class="rent">Rs.18000</span>
-                    </div>
-                </div>
+            $result = $connection->query($sql);
 
-                <div class="card__image">
-                    <img src="assets\header_pic.jpeg" alt="">
-                </div>
-            </div>
-         
-         
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="card">';
+                    echo '<div class="card__content">';
+                    echo '<h2 class="card__title">' . $row["title"] . '</h2>';
+                    echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
+                    echo '<div class="card__details">';
+                    echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
+                    echo '<p class="beds"><strong>Posted at</strong> ' . date("Y/m/d", strtotime($row["postedAt"])) . '</p>';
+                    echo '</div>';
+                    echo '<div class="card_footer">';
+                    if ($row["bedCounts"] >0) {
+                        echo '<span class="available_status">Available</span>';
+                    } else {
+                        echo '<span class="not_available_status">Not Available</span>';
+                    }
+                    if ($row["status"] =="Pending") {
+                        echo '<span class="pending_status">Pending</span>';
+                    }
+                    if($row["status"] =="Accepted"){
+                        echo '<span class="accepted_status">Accepted</span>';
+                    }
+                    if($row["status"] =="Rejected"){
+                        echo '<span class="rejected_status">Rejected</span>';
+                    }
+                    
+                    echo '<span class="rent">' . $row["rent"] . '</span>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="card__image">';
+                    echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "No accommodations found.";
+            }
+
+            $connection->close();
+            ?>
+
+
+
         </div>
     </section>
 
