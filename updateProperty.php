@@ -35,7 +35,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             <li class="link"><a href="index.php">Home</a></li>
             <li class="link"><a href="landlordDashboard.php">Dashboard</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
-            <li class="link"><a href="logout.php">Logout</a></li>
+            <li class="link"><a href="logout.php">Log Out</a></li>
         </ul>
     </nav>
 
