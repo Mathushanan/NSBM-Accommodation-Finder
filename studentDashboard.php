@@ -30,12 +30,12 @@ function fetchAllAccommodations($connection)
         while ($row = $result->fetch_assoc()) {
 
 
-            $locationLink = $row['locationLink'];
-            $logitude = $row['longitude'];
+            $longitude = $row['longitude'];
             $latitude = $row['latitude'];
 
-            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '&status=' . $row["status"] . '">';
-            echo '<div class="card">';
+          
+          
+            echo '<div class="card" data-latitude="' . $latitude . '" data-longitude="' . $longitude . '">';
 
             echo '<div class="card__content">';
 
@@ -72,7 +72,7 @@ function fetchAllAccommodations($connection)
             echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
             echo '</div>';
             echo '</div>';
-            echo '</a>';
+            
         }
     } else {
         echo "No accommodations found.";
@@ -90,6 +90,7 @@ function fetchAllAccommodations($connection)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniNest NSBM</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css\all.min.css">
 </head>
@@ -196,15 +197,32 @@ function fetchAllAccommodations($connection)
 
     </footer>
 
-
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        let map = L.map('map').setView([6.8208936, 80.03972288538341], 15); // Default view
+        let map = L.map('map').setView([6.8208936, 80.03972288538341], 15);
+
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        let marker = L.marker([6.8208936, 80.03972288538341]).addTo(map);;
+        let marker = L.marker([6.8208936, 80.03972288538341]).addTo(map);
+
+        function updateMarkerPosition(latitude, longitude) {
+            marker.setLatLng([latitude, longitude]);
+        }
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Retrieve latitude and longitude from data attributes
+                const latitude = parseFloat(this.dataset.latitude);
+                const longitude = parseFloat(this.dataset.longitude);
+                // Update map marker position
+                updateMarkerPosition(latitude, longitude);
+                // Center map to the new coordinates
+                map.setView([latitude, longitude], 15);
+            });
+        });
 
 
         // Get the map container and set its height
