@@ -106,7 +106,7 @@ session_start();
                         <input type="submit" class="btn" name="submit" value="LOGIN">
                     </div>
                     <div class="link">
-                        Don't have Account? <a href="register.php">Register</a>
+                        Don't have an Account? <a href="register.php">Register</a>
                     </div>
                 </form>
         </div>
@@ -134,7 +134,7 @@ session_start();
 
                 </p>
                 <p>
-                    Say goodbye to accommodation worries and hello to a stress-free booking experience with UniNest NSBM.
+                    Say Goodbye to Accommodation Worries and Hello to a Stress-free Booking Experience With UniNest NSBM.
                 </p>
             </div>
             <div class="footer__col">
@@ -161,7 +161,7 @@ session_start();
         </div>
 
         <div class="footer__bar">
-            Copyright © nsbm. All rights reserved.
+            Copyright © NSBM. All rights reserved.
         </div>
 
     </footer>
