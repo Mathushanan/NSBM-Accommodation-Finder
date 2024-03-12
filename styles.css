@@ -629,12 +629,10 @@ nav {
     display: flex;
     border-radius: 5px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1), 0 -8px 12px rgba(0, 0, 0, 0.1), 8px 0 12px rgba(0, 0, 0, 0.1), -8px 0 12px rgba(0, 0, 0, 0.1);
-
     overflow: hidden;
     margin-bottom: 40px;
     transition: transform 0.3s ease;
     background-color: white;
-
 
 }
 
@@ -1206,24 +1204,214 @@ input[type="file"] {
 
 
 /**studentDashboard.php**/
-.webadmin_dashboard_accommodation_container {
+#studentDashboard_section .webadmin_dashboard_accommodation_container {
     display: flex;
+    border:1px solid;
 }
 
-.property-cards-container {
+#studentDashboard_section .property-cards-container {
     flex: 1;
     overflow-y: auto; /* Enable vertical scrolling */
-    height: 100vh; /* Set max height to fit viewport */
+    height: 100vh;
+    border:1px solid red;
+    padding:20px /* Set max height to fit viewport */
 }
 
-.map-container {
+#studentDashboard_section .map-container {
     width: 500px; /* Adjust width as needed */
     position: sticky;
     top: 0;
     height: 100vh; /* Set max height to fit viewport */
 }
+#studentDashboard_section .property-cards-container .card {
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1), 0 -8px 12px rgba(0, 0, 0, 0.1), 8px 0 12px rgba(0, 0, 0, 0.1), -8px 0 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+    background-color: white;
+
+}
+
+#all_accommodations_section{
+    padding:1rem 0;
+    border: 1px solid;
+}
+
+#studentDashboard_section .webadmin_dashboard_accommodation_container {
+    margin-top: 5rem;
+}
+
+
+#studentDashboard_section .card__content {
+    flex: 1;
+    padding: 10px;
+    background-color: #fff;
+}
+
+
+#studentDashboard_section .card__content h2,
+.card__content p,
+.card__content .card__details,
+.card__content .card_footer {
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+#studentDashboard_section .property-cards-container .card__details {
+    margin-bottom: 5px;
+
+}
+#studentDashboard_section .property-cards-container .card__details p{
+    font-size: 14px;
+    margin: 0;
+
+}
+
+#studentDashboard_section .property-cards-container .card__title {
+    color: var(--primary-color);
+}
+
+#studentDashboard_section .property-cards-container .card_footer {
+    display: flex;
+    justify-content: space-around;
+
+
+}
+
+#studentDashboard_section .property-cards-container .card_footer .available_status {
+    padding: 5px 10px;
+    background-color: #2196F3;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+}
+
+
+#studentDashboard_section .property-cards-container .card_footer .not_available_status {
+    padding: 5px 10px;
+    background-color: #9E9E9E;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+}
+
+#studentDashboard_section .property-cards-container .card_footer .accepted_status {
+
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+}
+
+#studentDashboard_section .property-cards-container .card_footer .pending_status {
+
+    padding: 5px 10px;
+    background-color: #FFC107;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+}
+
+#studentDashboard_section .property-cards-container .card_footer .rejected_status {
+
+    padding: 5px 10px;
+    background-color: #F44336;
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+}
+
+#studentDashboard_section .property-cards-container .card_footer .rent {
+
+    padding: 5px 10px;
+    background-color: var(--rent-button-color);
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+}
+
+
+#studentDashboard_section .card:hover {
+    transform: translateY(-5px);
+}
+
+
+
+#studentDashboard_section .card__image {
+    width: 40%;
+    height: 100%;
+    background-color: #eee;
+    background-size: contain;
+    margin: 0;
+    padding: 0;
+
+}
+
+#studentDashboard_section .card__title {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 16px;
+
+}
+
+#studentDashboard_section .card__description {
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+#studentDashboard_section .card__details p {
+    margin: 10px 0;
+    color: #444;
+    font-size: 14px;
+}
+
+#studentDashboard_section .card__details strong {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #222;
+}
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

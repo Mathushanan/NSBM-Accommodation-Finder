@@ -112,18 +112,17 @@ function fetchAllAccommodations($connection)
 
 
 
-    <section class="section__container landlord_dashboard_section__container" id="my_accommodations_section">
+    <section class="section__container landlord_dashboard_section__container" id="all_accommodations_section">
         <div class="webadmin_dashboard_buttons_container">
             <a href="studentReservations.php"><button class="big-button" id="pendingBtn">My Reservations</button></a>
 
         </div>
     </section>
 
-    <section class="section__container webadmin_dashboard_section__container" id="wardenDashboard_section">
-        <div class="webadmin_dashboard_accommodation_container">
-
-
-
+    <section class="section__container webadmin_dashboard_section__container" id="studentDashboard_section">
+    <h2 class="section__header">Browse Accommodations</h2>
+        
+    <div class="webadmin_dashboard_accommodation_container">
             <div class="property-cards-container">
 
                 <?php
