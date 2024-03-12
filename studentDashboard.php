@@ -10,8 +10,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Student") {
 }
 
 
-
-// Function to fetch all accommodations
 function fetchAllAccommodations($connection)
 {
     $sql = "SELECT properties.*, images.imageData 
@@ -55,7 +53,7 @@ function fetchAllAccommodations($connection)
             } else {
                 echo '<span class="not_available_status">Not Available</span>';
             }
-           
+
 
             echo '<span class="rent">' . $row["rent"] . '</span>';
             echo '</div>';
@@ -191,14 +189,15 @@ function fetchAllAccommodations($connection)
 
 
     <div id="propertyModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalDescription"></p>
-            <div id="modalDetails"></div>
-            <button id="reserveBtn">Reserve</button>
-        </div>
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="Property Image">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <div id="modalDetails"></div>
+        <button id="reserveBtn">Reserve</button>
     </div>
+</div>
 
 
 
@@ -220,18 +219,18 @@ function fetchAllAccommodations($connection)
 
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', function() {
-                // Retrieve latitude and longitude from data attributes
+
                 const latitude = parseFloat(this.dataset.latitude);
                 const longitude = parseFloat(this.dataset.longitude);
-                // Update map marker position
+
                 updateMarkerPosition(latitude, longitude);
-                // Center map to the new coordinates
+  
                 map.setView([latitude, longitude], 15);
             });
         });
 
 
-        // Get the map container and set its height
+
         window.addEventListener('load', function() {
             var mapContainer = document.getElementById('map-container');
             var propertyCardsContainer = document.querySelector('.property-cards-container');
@@ -242,7 +241,7 @@ function fetchAllAccommodations($connection)
             mapContainer.style.height = mapHeight + 'px';
         });
 
-        // Update map height on window resize
+
         window.addEventListener('resize', function() {
             var mapContainer = document.getElementById('map-container');
             var propertyCardsContainer = document.querySelector('.property-cards-container');
@@ -261,46 +260,47 @@ function fetchAllAccommodations($connection)
 
         var modal = document.getElementById("propertyModal");
 
-        // Get the <span> element that closes the modal
+
         var closeBtn = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on <span> (x), close the modal
         closeBtn.onclick = function() {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
+
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
 
-        // Function to open modal and populate with property details
-        function openModal(title, description, details) {
+
+        function openModal(title, description, details, imageSrc) {
             document.getElementById("modalTitle").innerText = title;
             document.getElementById("modalDescription").innerText = description;
             document.getElementById("modalDetails").innerHTML = details;
+            document.getElementById("modalImage").src = imageSrc;
             modal.style.display = "block";
         }
 
-        // Add click event listener to reserve button
+
         document.getElementById("reserveBtn").addEventListener("click", function() {
-            // Navigate to reservation page passing property details
+
             window.location.href = "reservation.php?title=" + encodeURIComponent(document.getElementById("modalTitle").innerText) +
                 "&description=" + encodeURIComponent(document.getElementById("modalDescription").innerText) +
                 "&details=" + encodeURIComponent(document.getElementById("modalDetails").innerHTML);
         });
 
-        // Add click event listener to property cards
+
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', function() {
-                // Retrieve property details from card attributes
+
                 const title = this.querySelector('.card__title').innerText;
                 const description = this.querySelector('.card__description').innerText;
                 const details = this.querySelector('.card__details').innerHTML;
-                // Open modal with property details
-                openModal(title, description, details);
+                const imageSrc = this.querySelector('.card__image img').src;
+
+                openModal(title, description, details, imageSrc);
             });
         });
     </script>
