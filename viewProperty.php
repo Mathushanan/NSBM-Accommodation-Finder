@@ -10,19 +10,19 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Warden") {
     exit();
 }
 
-$propertyStatus = isset($_GET['status']) ? $_GET['status'] : ''; 
+$propertyStatus = isset($_GET['status']) ? $_GET['status'] : '';
 
-if($propertyStatus=="Accepted"){
-    $acceptButtonDisplay="";
-    $rejectButtonDisplay="none";
+if ($propertyStatus == "Accepted") {
+    $acceptButtonDisplay = "";
+    $rejectButtonDisplay = "none";
 }
-if($propertyStatus=="Rejected"){
-    $acceptButtonDisplay="none";
-    $rejectButtonDisplay="";
+if ($propertyStatus == "Rejected") {
+    $acceptButtonDisplay = "none";
+    $rejectButtonDisplay = "";
 }
-if($propertyStatus=="Pending"){
-    $acceptButtonDisplay="";
-    $rejectButtonDisplay="";
+if ($propertyStatus == "Pending") {
+    $acceptButtonDisplay = "";
+    $rejectButtonDisplay = "";
 }
 
 
@@ -39,19 +39,17 @@ if (isset($_GET['action']) && isset($_GET['property_id'])) {
     } elseif ($action === 'reject') {
         $updateQuery = "UPDATE properties SET status = 'Rejected' WHERE propertyId = $propertyId";
     } else {
-        http_response_code(400); 
+        http_response_code(400);
         exit("Invalid action");
     }
 
     if ($connection->query($updateQuery) === TRUE) {
-        http_response_code(200); 
+        http_response_code(200);
         exit("Property $action successfully");
     } else {
-        http_response_code(500); 
+        http_response_code(500);
         exit("Error updating property: " . $connection->error);
     }
-
-    
 }
 $connection->close();
 
@@ -265,13 +263,49 @@ $connection->close();
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-      
-        document.getElementById('acceptBtn').innerText = '<?php echo $propertyStatus=="Pending"?"Accept":$propertyStatus; ?>';
-        document.getElementById('rejectBtn').innerText = '<?php echo $propertyStatus=="Pending"?"Reject":$propertyStatus; ?>';
+        document.getElementById('acceptBtn').innerText = '<?php echo $propertyStatus == "Pending" ? "Accept" : $propertyStatus; ?>';
+        document.getElementById('rejectBtn').innerText = '<?php echo $propertyStatus == "Pending" ? "Reject" : $propertyStatus; ?>';
 
 
         document.getElementById('acceptBtn').style.display = '<?php echo $acceptButtonDisplay; ?>';
         document.getElementById('rejectBtn').style.display = '<?php echo $rejectButtonDisplay; ?>';
+
+        function acceptProperty(propertyId) {
+
+            fetch(`viewProperty.php?action=accept&property_id=${propertyId}`)
+                .then(response => {
+                    if (response.ok) {
+
+                        document.getElementById('rejectBtn').style.display = 'none';
+                        document.getElementById('acceptBtn').innerText = 'Accepted';
+                        console.log('Property accepted successfully');
+                    } else {
+                        console.error('Failed to accept property');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+        function rejectProperty(propertyId) {
+
+            fetch(`viewProperty.php?action=reject&property_id=${propertyId}`)
+                .then(response => {
+                    if (response.ok) {
+
+                        document.getElementById('acceptBtn').style.display = 'none';
+                        document.getElementById('rejectBtn').innerText = 'Rejected';
+                        console.log('Property rejected successfully');
+                    } else {
+                        console.error('Failed to reject property');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
 
 
 
@@ -321,46 +355,6 @@ $connection->close();
 
                     } else {
                         console.log('Location not found');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-
-
-
-        function acceptProperty(propertyId) {
-    
-            fetch(`viewProperty.php?action=accept&property_id=${propertyId}`)
-                .then(response => {
-                    if (response.ok) {
-                 
-                        document.getElementById('rejectBtn').style.display = 'none';
-                        document.getElementById('acceptBtn').innerText = 'Accepted';
-                        console.log('Property accepted successfully');
-                    } else {
-                        console.error('Failed to accept property');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-
-        function rejectProperty(propertyId) {
-        
-            fetch(`viewProperty.php?action=reject&property_id=${propertyId}`)
-                .then(response => {
-                    if (response.ok) {
-                
-                        document.getElementById('acceptBtn').style.display = 'none';
-                        document.getElementById('acceptBtn').innerText = 'Rejected';
-                        console.log('Property rejected successfully');
-                    } else {
-                        console.error('Failed to reject property');
                     }
                 })
                 .catch(error => {

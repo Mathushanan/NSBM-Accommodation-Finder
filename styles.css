@@ -1205,6 +1205,26 @@ input[type="file"] {
 }
 
 
+/**studentDashboard.php**/
+.webadmin_dashboard_accommodation_container {
+    display: flex;
+}
+
+.property-cards-container {
+    flex: 1;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100vh; /* Set max height to fit viewport */
+}
+
+.map-container {
+    width: 500px; /* Adjust width as needed */
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Set max height to fit viewport */
+}
+
+  
+
 
 
 
