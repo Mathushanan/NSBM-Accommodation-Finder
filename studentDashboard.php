@@ -33,8 +33,8 @@ function fetchAllAccommodations($connection)
             $longitude = $row['longitude'];
             $latitude = $row['latitude'];
 
-          
-          
+
+
             echo '<div class="card" data-latitude="' . $latitude . '" data-longitude="' . $longitude . '">';
 
             echo '<div class="card__content">';
@@ -55,15 +55,7 @@ function fetchAllAccommodations($connection)
             } else {
                 echo '<span class="not_available_status">Not Available</span>';
             }
-            if ($row["status"] == "Pending") {
-                echo '<span class="pending_status">Pending</span>';
-            }
-            if ($row["status"] == "Accepted") {
-                echo '<span class="accepted_status">Accepted</span>';
-            }
-            if ($row["status"] == "Rejected") {
-                echo '<span class="rejected_status">Rejected</span>';
-            }
+           
 
             echo '<span class="rent">' . $row["rent"] . '</span>';
             echo '</div>';
@@ -72,7 +64,6 @@ function fetchAllAccommodations($connection)
             echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
             echo '</div>';
             echo '</div>';
-            
         }
     } else {
         echo "No accommodations found.";
@@ -120,9 +111,9 @@ function fetchAllAccommodations($connection)
     </section>
 
     <section class="section__container webadmin_dashboard_section__container" id="studentDashboard_section">
-    <h2 class="section__header">Browse Accommodations</h2>
-        
-    <div class="webadmin_dashboard_accommodation_container">
+        <h2 class="section__header">Browse Accommodations</h2>
+
+        <div class="webadmin_dashboard_accommodation_container">
             <div class="property-cards-container">
 
                 <?php
@@ -196,6 +187,22 @@ function fetchAllAccommodations($connection)
 
     </footer>
 
+
+
+
+    <div id="propertyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <div id="modalDetails"></div>
+            <button id="reserveBtn">Reserve</button>
+        </div>
+    </div>
+
+
+
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         let map = L.map('map').setView([6.8208936, 80.03972288538341], 15);
@@ -244,6 +251,57 @@ function fetchAllAccommodations($connection)
             var mapHeight = windowHeight > propertyCardsContainerHeight ? windowHeight : propertyCardsContainerHeight;
 
             mapContainer.style.height = mapHeight + 'px';
+        });
+
+
+
+
+
+
+
+        var modal = document.getElementById("propertyModal");
+
+        // Get the <span> element that closes the modal
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to open modal and populate with property details
+        function openModal(title, description, details) {
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalDescription").innerText = description;
+            document.getElementById("modalDetails").innerHTML = details;
+            modal.style.display = "block";
+        }
+
+        // Add click event listener to reserve button
+        document.getElementById("reserveBtn").addEventListener("click", function() {
+            // Navigate to reservation page passing property details
+            window.location.href = "reservation.php?title=" + encodeURIComponent(document.getElementById("modalTitle").innerText) +
+                "&description=" + encodeURIComponent(document.getElementById("modalDescription").innerText) +
+                "&details=" + encodeURIComponent(document.getElementById("modalDetails").innerHTML);
+        });
+
+        // Add click event listener to property cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Retrieve property details from card attributes
+                const title = this.querySelector('.card__title').innerText;
+                const description = this.querySelector('.card__description').innerText;
+                const details = this.querySelector('.card__details').innerHTML;
+                // Open modal with property details
+                openModal(title, description, details);
+            });
         });
     </script>
 
