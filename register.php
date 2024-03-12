@@ -165,7 +165,7 @@
 
                 </p>
                 <p>
-                    Say goodbye to accommodation worries and hello to a stress-free booking experience with UniNest NSBM.
+                    Say Goodbye to Accommodation Worries and Hello to a Stress-free Booking Experience With UniNest NSBM.
                 </p>
             </div>
             <div class="footer__col">
@@ -192,7 +192,7 @@
         </div>
 
         <div class="footer__bar">
-            Copyright © nsbm. All rights reserved.
+            Copyright © NSBM. All Rights Reserved.
         </div>
 
     </footer>
