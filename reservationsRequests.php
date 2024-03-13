@@ -4,7 +4,7 @@ session_start();
 
 include("config.php");
 
-if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Student") {
+if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
     header("Location: login.php");
     exit();
 }
@@ -26,7 +26,7 @@ function fetchAllAccommodations($connection)
                 GROUP BY propertyId
             ) AS min_images ON properties.propertyId = min_images.propertyId
             LEFT JOIN images ON min_images.minImageId = images.imageId
-            WHERE reservations.userId = $userId";
+            WHERE properties.userId = $userId";
             
             
 

@@ -42,7 +42,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
     <section class="section__container landlord_dashboard_section__container" id="my_accommodations_section">
         <div class="webadmin_dashboard_buttons_container">
-            <a href="viewReservations.php"><button class="big-button">View Reservation Requests</button></a>
+            <a href="reservationsRequests.php"><button class="big-button">View Reservation Requests</button></a>
             <a href="postProperty.php"><button class="big-button">Add New Property</button></a>
         </div>
 
