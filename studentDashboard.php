@@ -106,7 +106,7 @@ function fetchAllAccommodations($connection)
 
     <section class="section__container landlord_dashboard_section__container" id="all_accommodations_section">
         <div class="webadmin_dashboard_buttons_container">
-            <a href="studentReservations.php"><button class="big-button" id="pendingBtn">My Reservations</button></a>
+            <a href="reservedProperties.php"><button class="big-button" id="pendingBtn">My Reservations</button></a>
 
         </div>
     </section>

@@ -14,14 +14,14 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Student") {
 $propertyId = $_GET['propertyId'];
 $userId = $_SESSION['userId'];
 
-// Check if the student has already reserved this property
+
 $reservationQuery = "SELECT * FROM reservations WHERE propertyId = $propertyId AND userId = '$userId'";
 $reservationResult = $connection->query($reservationQuery);
 
 $reserved = ($reservationResult && $reservationResult->num_rows > 0);
 
 if (isset($_POST['reserve'])) {
-    // If Reserve button is clicked, insert a record into the reservation table
+
     $insertReservationQuery = "INSERT INTO reservations (userId,propertyId,status) VALUES ('$userId','$propertyId', 'Pending')";
     if ($connection->query($insertReservationQuery) === TRUE) {
         $reserved = true;
@@ -56,6 +56,7 @@ if (isset($_POST['reserve'])) {
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
+            <li class="link"><a href="studentdashboard.php">Dashboard</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
             <li class="link"><a href="logout.php">Logout</a></li>
         </ul>

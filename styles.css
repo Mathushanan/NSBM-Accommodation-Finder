@@ -1256,9 +1256,9 @@ input[type="file"] {
 
 
 #studentDashboard_section .card__content h2,
-.card__content p,
-.card__content .card__details,
-.card__content .card_footer {
+#studentDashboard_section .card__content p,
+#studentDashboard_section .card__content .card__details,
+#studentDashboard_section .card__content .card_footer {
     margin-top: 0.6rem;
     margin-bottom: 0.6rem;
 }
@@ -1354,7 +1354,7 @@ input[type="file"] {
 #studentDashboard_section .card:hover {
     transform: translateY(0);
     border: 2px solid #2196F3;
-    ;
+    
 }
 
 
