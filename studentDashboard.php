@@ -111,7 +111,7 @@ function fetchAllAccommodations($connection)
     <section class="section__container webadmin_dashboard_section__container" id="studentDashboard_section">
         <h2 class="section__header">Browse Accommodations</h2>
 
-        <div class="webadmin_dashboard_accommodation_container">
+        <div class="webadmin_dashboard_accommodation_container" id="card-map-container">
             <div class="property-cards-container">
 
                 <?php
@@ -123,7 +123,6 @@ function fetchAllAccommodations($connection)
                 ?>
             </div>
             <div class="box form-box map-container" id="map-container">
-
                 <div id="map"></div>
             </div>
 
@@ -189,15 +188,15 @@ function fetchAllAccommodations($connection)
 
 
     <div id="propertyModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <img id="modalImage" src="" alt="Property Image">
-        <h2 id="modalTitle"></h2>
-        <p id="modalDescription"></p>
-        <div id="modalDetails"></div>
-        <button id="reserveBtn">Reserve</button>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Property Image">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <div id="modalDetails"></div>
+            <button id="reserveBtn">Reserve</button>
+        </div>
     </div>
-</div>
 
 
 
@@ -224,7 +223,7 @@ function fetchAllAccommodations($connection)
                 const longitude = parseFloat(this.dataset.longitude);
 
                 updateMarkerPosition(latitude, longitude);
-  
+
                 map.setView([latitude, longitude], 15);
             });
         });
@@ -275,32 +274,44 @@ function fetchAllAccommodations($connection)
         }
 
 
-        function openModal(title, description, details, imageSrc) {
+        function openModal(title, description, details, imageSrc, latitude, longitude) {
             document.getElementById("modalTitle").innerText = title;
             document.getElementById("modalDescription").innerText = description;
             document.getElementById("modalDetails").innerHTML = details;
             document.getElementById("modalImage").src = imageSrc;
+
+            // Store latitude and longitude in data attributes of the reserve button
+            document.getElementById("reserveBtn").setAttribute("data-latitude", latitude);
+            document.getElementById("reserveBtn").setAttribute("data-longitude", longitude);
+
             modal.style.display = "block";
         }
 
-
         document.getElementById("reserveBtn").addEventListener("click", function() {
+            // Retrieve latitude and longitude from data attributes of the reserve button
+            const latitude = document.getElementById("reserveBtn").getAttribute("data-latitude");
+            const longitude = document.getElementById("reserveBtn").getAttribute("data-longitude");
 
-            window.location.href = "reservation.php?title=" + encodeURIComponent(document.getElementById("modalTitle").innerText) +
+            // Construct URL with title, description, details, latitude, and longitude parameters
+            const reservationURL = "studentReservation.php?title=" + encodeURIComponent(document.getElementById("modalTitle").innerText) +
                 "&description=" + encodeURIComponent(document.getElementById("modalDescription").innerText) +
-                "&details=" + encodeURIComponent(document.getElementById("modalDetails").innerHTML);
-        });
+                "&details=" + encodeURIComponent(document.getElementById("modalDetails").innerHTML) +
+                "&latitude=" + encodeURIComponent(latitude) +
+                "&longitude=" + encodeURIComponent(longitude);
 
+            window.location.href = reservationURL;
+        });
 
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', function() {
-
                 const title = this.querySelector('.card__title').innerText;
                 const description = this.querySelector('.card__description').innerText;
                 const details = this.querySelector('.card__details').innerHTML;
                 const imageSrc = this.querySelector('.card__image img').src;
+                const latitude = this.dataset.latitude; // Retrieve latitude from data attribute
+                const longitude = this.dataset.longitude; // Retrieve longitude from data attribute
 
-                openModal(title, description, details, imageSrc);
+                openModal(title, description, details, imageSrc, latitude, longitude);
             });
         });
     </script>
