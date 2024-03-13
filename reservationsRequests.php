@@ -9,9 +9,10 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
     exit();
 }
 
-$headerText = "Pending Properties"; // Set default header text to "Pending Properties"
+$headerText = "Pending Properties"; 
 
-// Function to fetch accommodations based on status
+
+
 function fetchAccommodationsByStatus($connection, $status)
 {
     $userId = $_SESSION['userId'];
@@ -62,12 +63,17 @@ function fetchAccommodationsByStatus($connection, $status)
             echo '</div>';
         }
     } else {
-        echo "Error: " . $connection->error; // Output any database errors
-        echo "No accommodations found."; // Output message for no accommodations found
+        echo "Error: " . $connection->error; 
+        echo "No accommodations found."; 
+    }
+}
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+    if ($status === 'Pending' || $status === 'Accepted' || $status === 'Rejected') {
+        $headerText = ucfirst($status) . " Properties";
     }
 }
 
-// Check if a specific button is clicked or if the status parameter is set
 
 
 
@@ -93,7 +99,7 @@ function fetchAccommodationsByStatus($connection, $status)
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
-            <li class="link"><a href="studentDashboard.php">Dashboard</a></li>
+            <li class="link"><a href="landlordDashboard.php">Dashboard</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
             <li class="link"><a href="logout.php">Logout</a></li>
         </ul>
@@ -126,14 +132,14 @@ function fetchAccommodationsByStatus($connection, $status)
                 $status = $_GET['status'];
                 if ($status === 'Pending' || $status === 'Accepted' || $status === 'Rejected') {
                     $headerText = ucfirst($status) . " Properties";
-                    // Call the function to fetch accommodations based on status
+   
                     fetchAccommodationsByStatus($connection, $status);
-                    exit(); // Prevent further execution
+                    exit(); 
                 }
             } else {
-                // If no status parameter is set, default to Pending
+              
                 fetchAccommodationsByStatus($connection, 'Pending');
-                exit(); // Prevent further execution
+                exit(); 
             }
 
 
