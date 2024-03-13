@@ -1180,14 +1180,16 @@ input[type="file"] {
 }
 
 .accept-btn {
-    background-color: #4CAF50; /* Green color for accept button */
-    color: #fff; 
+    background-color: #4CAF50;
+    /* Green color for accept button */
+    color: #fff;
 }
 
 .reject-btn {
     background-color: #FF5722;
-    color: #fff; 
+    color: #fff;
 }
+
 .accept-btn:hover {
     background-color: #27AE60;
     /* Adjust as needed */
@@ -1197,7 +1199,8 @@ input[type="file"] {
     background-color: #D35400;
 
 }
-.property-card .webadmin_dashboard_buttons_container{
+
+.property-card .webadmin_dashboard_buttons_container {
     margin-top: 20px;
 
 }
@@ -1206,23 +1209,28 @@ input[type="file"] {
 /**studentDashboard.php**/
 #studentDashboard_section .webadmin_dashboard_accommodation_container {
     display: flex;
-    border:1px solid;
+
 }
 
 #studentDashboard_section .property-cards-container {
     flex: 1;
-    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
     height: 100vh;
-    border:1px solid red;
-    padding:20px /* Set max height to fit viewport */
+    border: 1px solid red;
+    padding: 20px
+        /* Set max height to fit viewport */
 }
 
 #studentDashboard_section .map-container {
-    width: 500px; /* Adjust width as needed */
+    width: 500px;
+    /* Adjust width as needed */
     position: sticky;
     top: 0;
-    height: 100vh; /* Set max height to fit viewport */
+    height: 100vh;
+    /* Set max height to fit viewport */
 }
+
 #studentDashboard_section .property-cards-container .card {
     display: flex;
     border-radius: 5px;
@@ -1234,8 +1242,8 @@ input[type="file"] {
 
 }
 
-#all_accommodations_section{
-    padding:1rem 0;
+#all_accommodations_section {
+    padding: 1rem 0;
     border: 1px solid;
 }
 
@@ -1263,7 +1271,8 @@ input[type="file"] {
     margin-bottom: 5px;
 
 }
-#studentDashboard_section .property-cards-container .card__details p{
+
+#studentDashboard_section .property-cards-container .card__details p {
     font-size: 14px;
     margin: 0;
 
@@ -1348,7 +1357,8 @@ input[type="file"] {
 
 #studentDashboard_section .card:hover {
     transform: translateY(0);
-    border: 2px solid #2196F3;;
+    border: 2px solid #2196F3;
+    ;
 }
 
 
@@ -1391,17 +1401,17 @@ input[type="file"] {
 
 /* Modal styles */
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
-    z-index: 1000; 
-    right: 20px; 
-    bottom: 20px; 
-    background-color: #fefefe; 
-    border: 1px solid #888; 
-    border-radius: 5px; 
-    width: 300px; 
-    max-height: 80%; 
-    overflow-y: auto; 
+    z-index: 1000;
+    right: 20px;
+    bottom: 20px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 300px;
+    max-height: 80%;
+    overflow-y: auto;
 }
 
 /* Modal Content */
@@ -1414,7 +1424,8 @@ input[type="file"] {
     margin: 0 auto;
     border: 1px solid;
 }
-#modalImage{
+
+#modalImage {
     border-radius: 5px;
 }
 
@@ -1547,7 +1558,27 @@ input[type="file"] {
     }
 }
 
+@media screen and (max-width: 1000px) {
 
+    #studentDashboard_section .webadmin_dashboard_accommodation_container {
+        display: block;
+    }
+    #map-container{
+        border:10px solid;
+        padding:0;
+        width: 500px;
+        position:absolute;
+        top: 0;
+        height: 100px;
+        /* Set max height to fit viewport */
+        margin:auto;
+        margin-top: 20px;
+    }
+    #map{
+        border:1px solid blue;
+    }
+
+}
 
 
 @media (width < 900px) {
@@ -1740,7 +1771,7 @@ input[type="file"] {
     .map-box #map {
         order: -1;
         width: 100%;
-      
+
     }
 
 
