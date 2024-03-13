@@ -1215,20 +1215,16 @@ input[type="file"] {
 #studentDashboard_section .property-cards-container {
     flex: 1;
     overflow-y: auto;
-    /* Enable vertical scrolling */
     height: 100vh;
-    border: 1px solid red;
     padding: 20px
-        /* Set max height to fit viewport */
+
 }
 
 #studentDashboard_section .map-container {
     width: 500px;
-    /* Adjust width as needed */
     position: sticky;
     top: 0;
     height: 100vh;
-    /* Set max height to fit viewport */
 }
 
 #studentDashboard_section .property-cards-container .card {
@@ -1244,7 +1240,7 @@ input[type="file"] {
 
 #all_accommodations_section {
     padding: 1rem 0;
-    border: 1px solid;
+
 }
 
 #studentDashboard_section .webadmin_dashboard_accommodation_container {
@@ -1564,18 +1560,18 @@ input[type="file"] {
         display: block;
     }
     #map-container{
-        border:10px solid;
         padding:0;
         width: 500px;
         position:absolute;
         top: 0;
-        height: 100px;
-        /* Set max height to fit viewport */
+        height: 50px;
         margin:auto;
         margin-top: 20px;
     }
     #map{
-        border:1px solid blue;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 0;
     }
 
 }
