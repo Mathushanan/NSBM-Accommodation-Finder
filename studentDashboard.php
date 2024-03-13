@@ -30,10 +30,13 @@ function fetchAllAccommodations($connection)
 
             $longitude = $row['longitude'];
             $latitude = $row['latitude'];
+            $propertyId = $row['propertyId'];
 
 
 
-            echo '<div class="card" data-latitude="' . $latitude . '" data-longitude="' . $longitude . '">';
+
+            echo '<div class="card" data-latitude="' . $latitude . '" data-longitude="' . $longitude . '" data-propertyid="' . $propertyId . '">';
+
 
             echo '<div class="card__content">';
 
@@ -44,7 +47,7 @@ function fetchAllAccommodations($connection)
 
             echo '<div class="card__details">';
             echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
-            echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
+            echo '<p class="postedAt"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
             echo '</div>';
 
             echo '<div class="card_footer">';
@@ -274,30 +277,43 @@ function fetchAllAccommodations($connection)
         }
 
 
-        function openModal(title, description, details, imageSrc, latitude, longitude) {
+        function openModal(title, description, details, imageSrc, latitude, longitude, propertyId, bedCounts, postedAt, rent) {
             document.getElementById("modalTitle").innerText = title;
             document.getElementById("modalDescription").innerText = description;
             document.getElementById("modalDetails").innerHTML = details;
             document.getElementById("modalImage").src = imageSrc;
 
-            // Store latitude and longitude in data attributes of the reserve button
+            // Set dataset attributes for latitude, longitude, and propertyId
             document.getElementById("reserveBtn").setAttribute("data-latitude", latitude);
             document.getElementById("reserveBtn").setAttribute("data-longitude", longitude);
+            document.getElementById("reserveBtn").setAttribute("data-propertyId", propertyId);
+            document.getElementById("reserveBtn").setAttribute("data-bedCounts", bedCounts); // Add bedCounts to the button
+            document.getElementById("reserveBtn").setAttribute("data-postedAt", postedAt); // Add postedAt to the button
+            document.getElementById("reserveBtn").setAttribute("data-rent", rent); // Add rent to the button
 
             modal.style.display = "block";
         }
 
         document.getElementById("reserveBtn").addEventListener("click", function() {
-            // Retrieve latitude and longitude from data attributes of the reserve button
+            // Retrieve latitude, longitude, propertyId, bedCounts, postedAt, and rent from dataset
             const latitude = document.getElementById("reserveBtn").getAttribute("data-latitude");
             const longitude = document.getElementById("reserveBtn").getAttribute("data-longitude");
+            const propertyId = document.getElementById("reserveBtn").getAttribute("data-propertyId");
+            const bedCounts = document.getElementById("reserveBtn").getAttribute("data-bedCounts");
+            const postedAt = document.getElementById("reserveBtn").getAttribute("data-postedAt");
+            const rent = document.getElementById("reserveBtn").getAttribute("data-rent");
 
-            // Construct URL with title, description, details, latitude, and longitude parameters
-            const reservationURL = "studentReservation.php?title=" + encodeURIComponent(document.getElementById("modalTitle").innerText) +
+            // Construct reservation URL with all necessary parameters
+            const reservationURL = "studentReservation.php?" +
+                "title=" + encodeURIComponent(document.getElementById("modalTitle").innerText) +
                 "&description=" + encodeURIComponent(document.getElementById("modalDescription").innerText) +
                 "&details=" + encodeURIComponent(document.getElementById("modalDetails").innerHTML) +
                 "&latitude=" + encodeURIComponent(latitude) +
-                "&longitude=" + encodeURIComponent(longitude);
+                "&longitude=" + encodeURIComponent(longitude) +
+                "&propertyId=" + encodeURIComponent(propertyId) +
+                "&bedCounts=" + encodeURIComponent(bedCounts) + // Append bedCounts to the URL
+                "&postedAt=" + encodeURIComponent(postedAt) + // Append postedAt to the URL
+                "&rent=" + encodeURIComponent(rent); // Append rent to the URL
 
             window.location.href = reservationURL;
         });
@@ -308,10 +324,14 @@ function fetchAllAccommodations($connection)
                 const description = this.querySelector('.card__description').innerText;
                 const details = this.querySelector('.card__details').innerHTML;
                 const imageSrc = this.querySelector('.card__image img').src;
-                const latitude = this.dataset.latitude; // Retrieve latitude from data attribute
-                const longitude = this.dataset.longitude; // Retrieve longitude from data attribute
+                const latitude = this.dataset.latitude;
+                const longitude = this.dataset.longitude;
+                const propertyId = this.dataset.propertyid;
+                const bedCounts = this.querySelector('.beds').innerText.match(/\d+/)[0]; // Extract bedCounts from the card
+                const postedAt = this.querySelector(' .postedAt').innerText.match(/\d{4}-\d{2}-\d{2}/)[0]; // Extract postedAt from the card
+                const rent = this.querySelector('.rent').innerText; // Extract rent from the card
 
-                openModal(title, description, details, imageSrc, latitude, longitude);
+                openModal(title, description, details, imageSrc, latitude, longitude, propertyId, bedCounts, postedAt, rent);
             });
         });
     </script>
