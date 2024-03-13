@@ -22,9 +22,30 @@ $reserved = ($reservationResult && $reservationResult->num_rows > 0);
 
 if (isset($_POST['reserve'])) {
 
-    $insertReservationQuery = "INSERT INTO reservations (userId,propertyId,status) VALUES ('$userId','$propertyId', 'Pending')";
-    if ($connection->query($insertReservationQuery) === TRUE) {
-        $reserved = true;
+    $selectPropertyQuery = "SELECT bedCounts FROM properties WHERE propertyId = $propertyId";
+    $propertyResult = $connection->query($selectPropertyQuery);
+    if ($propertyResult && $propertyResult->num_rows > 0) {
+        $propertyData = $propertyResult->fetch_assoc();
+        $bedCounts = $propertyData['bedCounts'];
+        if ($bedCounts > 0) {
+
+            $updateBedCountsQuery = "UPDATE properties SET bedCounts = bedCounts - 1 WHERE propertyId = $propertyId";
+            if ($connection->query($updateBedCountsQuery) === TRUE) {
+      
+                $insertReservationQuery = "INSERT INTO reservations (userId, propertyId, status) VALUES ('$userId', '$propertyId', 'Pending')";
+                if ($connection->query($insertReservationQuery) === TRUE) {
+                    $reserved = true;
+  
+                    echo "<script>document.getElementById('bedCounts').innerText = '$bedCounts';</script>";
+                } else {
+                    echo "Error: " . $connection->error;
+                }
+            } else {
+                echo "Error: " . $connection->error;
+            }
+        } else {
+            echo "No available spaces.";
+        }
     } else {
         echo "Error: " . $connection->error;
     }
@@ -118,7 +139,7 @@ if (isset($_POST['reserve'])) {
             <div class="property-card">
                 <h2><?php echo $_GET['title']; ?></h2>
                 <p><?php echo $_GET['description']; ?></p>
-                <p><strong>Spaces Available: </strong><?php echo $_GET['bedCounts']; ?></p>
+                <p ><strong>Spaces Available: </strong><span id="bedCounts"><?php echo $_GET['bedCounts']; ?></span></p>
                 <p><strong>Posted At: </strong><?php echo $_GET['postedAt']; ?></p>
                 <p><strong>Rent: </strong><?php echo $_GET['rent']; ?></p>
                 <div class="user-details">
@@ -300,6 +321,13 @@ if (isset($_POST['reserve'])) {
                     console.error('Error:', error);
                 });
         }
+
+
+        <?php if ($reserved) : ?>
+            var bedCounts = document.getElementById('bedCounts');
+            bedCounts.innerText = parseInt(bedCounts.innerText) - 1;
+        <?php endif; ?>
+
     </script>
 
 
