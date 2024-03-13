@@ -11,6 +11,27 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Student") {
 }
 
 
+$propertyId = $_GET['propertyId'];
+$userId = $_SESSION['userId'];
+
+// Check if the student has already reserved this property
+$reservationQuery = "SELECT * FROM reservations WHERE propertyId = $propertyId AND userId = '$userId'";
+$reservationResult = $connection->query($reservationQuery);
+
+$reserved = ($reservationResult && $reservationResult->num_rows > 0);
+
+if (isset($_POST['reserve'])) {
+    // If Reserve button is clicked, insert a record into the reservation table
+    $insertReservationQuery = "INSERT INTO reservations (userId,propertyId,status) VALUES ('$userId','$propertyId', 'Pending')";
+    if ($connection->query($insertReservationQuery) === TRUE) {
+        $reserved = true;
+    } else {
+        echo "Error: " . $connection->error;
+    }
+}
+
+
+
 
 ?>
 
@@ -104,8 +125,15 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Student") {
                     <p><?php echo $email ?></p>
                     <p><?php echo $mobile ?></p>
                 </div>
+
                 <div class="webadmin_dashboard_buttons_container">
-                    <a href=""><button id="accept-Btn" class="big-button accept-btn">Reserve</button></a>
+                    <?php if ($reserved) : ?>
+                        <button class="big-button reserved-btn" disabled>Reserved</button>
+                    <?php else : ?>
+                        <form method="post">
+                            <button type="submit" name="reserve" id="reserve-Btn" class="big-button reserve-btn">Reserve</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
 
 
@@ -219,11 +247,6 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Student") {
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-       
-
-
-
-
         function showImage(image, imageId) {
             document.getElementById('big-image').src = image;
             var allImages = document.getElementsByClassName('small-images');
