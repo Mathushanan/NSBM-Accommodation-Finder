@@ -9,12 +9,10 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
     exit();
 }
 
-$headerText = "Reserved Properties";
+$headerText = "Pending Properties"; // Set default header text to "Pending Properties"
 
-
-
-// Function to fetch all accommodations
-function fetchAllAccommodations($connection)
+// Function to fetch accommodations based on status
+function fetchAccommodationsByStatus($connection, $status)
 {
     $userId = $_SESSION['userId'];
     $sql = "SELECT reservations.*, properties.title, properties.description, properties.bedCounts, properties.postedAt, properties.rent, properties.longitude, properties.latitude, properties.locationLink, properties.status AS propertyStatus, images.imageData 
@@ -26,29 +24,20 @@ function fetchAllAccommodations($connection)
                 GROUP BY propertyId
             ) AS min_images ON properties.propertyId = min_images.propertyId
             LEFT JOIN images ON min_images.minImageId = images.imageId
-            WHERE properties.userId = $userId";
-            
-            
+            WHERE properties.userId = $userId AND reservations.status = '$status'";
 
     $result = $connection->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-           
             echo '<div class="card">';
-
             echo '<div class="card__content">';
-
-
-
             echo '<h2 class="card__title">' . $row["title"] . '</h2>';
             echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
-
             echo '<div class="card__details">';
             echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
             echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
             echo '</div>';
-
             echo '<div class="card_footer">';
             if ($row["bedCounts"] > 0) {
                 echo '<span class="available_status">Available</span>';
@@ -64,7 +53,6 @@ function fetchAllAccommodations($connection)
             if ($row["status"] == "Rejected") {
                 echo '<span class="rejected_status">Rejected</span>';
             }
-
             echo '<span class="rent">' . $row["rent"] . '</span>';
             echo '</div>';
             echo '</div>';
@@ -72,12 +60,16 @@ function fetchAllAccommodations($connection)
             echo '<img src="data:image/jpeg;base64,' . base64_encode($row["imageData"]) . '" alt="' . $row["title"] . '">';
             echo '</div>';
             echo '</div>';
-            
         }
     } else {
-        echo "No accommodations found.";
+        echo "Error: " . $connection->error; // Output any database errors
+        echo "No accommodations found."; // Output message for no accommodations found
     }
 }
+
+// Check if a specific button is clicked or if the status parameter is set
+
+
 
 ?>
 
@@ -112,6 +104,15 @@ function fetchAllAccommodations($connection)
 
 
 
+    <section class="section__container landlord_dashboard_section__container" id="all_accommodations_section">
+        <div class="webadmin_dashboard_buttons_container">
+            <a href="?status=Pending"><button class="big-button" id="pendingBtn">Pending</button></a>
+            <a href="?status=Accepted"><button class="big-button" id="acceptedBtn">Accepted</button></a>
+            <a href="?status=Rejected"><button class="big-button" id="rejectedBtn">Rejected</button></a>
+        </div>
+    </section>
+
+
 
 
 
@@ -121,9 +122,21 @@ function fetchAllAccommodations($connection)
 
 
             <?php
-            
-                fetchAllAccommodations($connection);
-            
+            if (isset($_GET['status'])) {
+                $status = $_GET['status'];
+                if ($status === 'Pending' || $status === 'Accepted' || $status === 'Rejected') {
+                    $headerText = ucfirst($status) . " Properties";
+                    // Call the function to fetch accommodations based on status
+                    fetchAccommodationsByStatus($connection, $status);
+                    exit(); // Prevent further execution
+                }
+            } else {
+                // If no status parameter is set, default to Pending
+                fetchAccommodationsByStatus($connection, 'Pending');
+                exit(); // Prevent further execution
+            }
+
+
             ?>
 
 
