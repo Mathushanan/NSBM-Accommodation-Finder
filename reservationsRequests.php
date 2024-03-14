@@ -9,9 +9,42 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
     exit();
 }
 
-$headerText = "Pending Properties"; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_POST['reservationId'])) {
+    $action = $_POST['action'];
+    $reservationId = $_POST['reservationId'];
+
+    if ($action === 'accept') {
+        // Update the database to mark the reservation as accepted
+        $sql = "UPDATE reservations SET status = 'Accepted' WHERE reservationId = $reservationId";
+        if ($connection->query($sql) === TRUE) {
+            // Success response
+            echo "Reservation accepted successfully";
+        } else {
+            // Error response
+            echo "Error accepting reservation";
+        }
+    } elseif ($action === 'reject') {
+        // Update the database to mark the reservation as rejected
+        $sql = "UPDATE reservations SET status = 'Rejected' WHERE reservationId = $reservationId";
+        if ($connection->query($sql) === TRUE) {
+            // Success response
+            echo "Reservation rejected successfully";
+        } else {
+            // Error response
+            echo "Error rejecting reservation";
+        }
+    } else {
+        // Invalid action
+        echo "Invalid action";
+    }
+    exit(); // Terminate further processing
+}
 
 
+
+
+$headerText = "Pending Properties";
 
 function fetchAccommodationsByStatus($connection, $status)
 {
@@ -32,7 +65,17 @@ function fetchAccommodationsByStatus($connection, $status)
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo '<div class="card">';
+
             echo '<div class="card__content">';
+            if ($row["status"] == "Pending") {
+                echo '<form id="reservationForm_' . $row['reservationId'] . '" method="post">';
+                echo '<div class="card__buttons">';
+                echo '<input type="hidden" name="reservationId" value="' . $row["reservationId"] . '">';
+                echo '<button type="button" class="delete-button" onclick="rejectReservation(' . $row['reservationId'] . ')">Reject</button>';
+                echo '<button type="button" class="accept-button" onclick="acceptReservation(' . $row['reservationId'] . ')">Accept</button>';
+                echo '</div>';
+                echo '</form>';
+            }
             echo '<h2 class="card__title">' . $row["title"] . '</h2>';
             echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
             echo '<div class="card__details">';
@@ -63,8 +106,8 @@ function fetchAccommodationsByStatus($connection, $status)
             echo '</div>';
         }
     } else {
-        echo "Error: " . $connection->error; 
-        echo "No accommodations found."; 
+        echo "Error: " . $connection->error;
+        echo "No accommodations found.";
     }
 }
 if (isset($_GET['status'])) {
@@ -89,6 +132,40 @@ if (isset($_GET['status'])) {
     <title>UniNest NSBM</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="css\all.min.css">
+
+    <script>
+        function acceptReservation(reservationId) {
+            performAction(reservationId, 'accept');
+        }
+
+        function rejectReservation(reservationId) {
+            performAction(reservationId, 'reject');
+        }
+
+        function performAction(reservationId, action) {
+            var formData = new FormData();
+            formData.append('action', action);
+            formData.append('reservationId', reservationId);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'reservationsRequests.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Handle success response
+                    console.log(xhr.responseText);
+                    // You can update UI or display a message here
+                } else {
+                    // Handle error
+                    console.error('Error performing action: ' + xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                // Handle network errors
+                console.error('Network error occurred');
+            };
+            xhr.send(formData);
+        }
+    </script>
 </head>
 
 <body>
@@ -132,14 +209,14 @@ if (isset($_GET['status'])) {
                 $status = $_GET['status'];
                 if ($status === 'Pending' || $status === 'Accepted' || $status === 'Rejected') {
                     $headerText = ucfirst($status) . " Properties";
-   
+
                     fetchAccommodationsByStatus($connection, $status);
-                    exit(); 
+                    exit();
                 }
             } else {
-              
+
                 fetchAccommodationsByStatus($connection, 'Pending');
-                exit(); 
+                exit();
             }
 
 
@@ -202,6 +279,7 @@ if (isset($_GET['status'])) {
         </div>
 
     </footer>
+
 
 
 

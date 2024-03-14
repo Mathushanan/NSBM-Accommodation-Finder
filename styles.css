@@ -1394,6 +1394,32 @@ input[type="file"] {
     color: #222;
 }
 
+.accept-button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    background-color: #2ECC71;
+    /* Adjust as needed */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+
+}
+
+.delete-button {
+    padding: 8px 16px;
+    background-color: #FF5733;
+    /* Adjust as needed */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
 
 /* Modal styles */
 .modal {
@@ -1408,6 +1434,11 @@ input[type="file"] {
     width: 300px;
     max-height: 80%;
     overflow-y: auto;
+}
+
+.accept-button:hover {
+    background-color: #27AE60;
+    /* Adjust as needed */
 }
 
 /* Modal Content */
