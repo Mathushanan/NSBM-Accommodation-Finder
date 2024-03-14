@@ -64,7 +64,7 @@ function fetchAccommodationsByStatus($connection, $status)
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<div class="card">';
+            echo '<div class="card" id="card_' . $row['reservationId'] . '">';
 
             echo '<div class="card__content">';
             if ($row["status"] == "Pending") {
@@ -153,6 +153,11 @@ if (isset($_GET['status'])) {
                 if (xhr.status === 200) {
                     // Handle success response
                     console.log(xhr.responseText);
+                    // Hide the card after action is performed
+                    var card = document.getElementById('card_' + reservationId);
+                    if (card) {
+                        card.style.display = 'none';
+                    }
                     // You can update UI or display a message here
                 } else {
                     // Handle error
