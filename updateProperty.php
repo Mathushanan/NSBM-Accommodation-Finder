@@ -298,11 +298,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
             let isValid = true;
 
 
-            if (files.length === 0) {
-                isValid = false;
-                alert("Please select at least one image.");
-
-            }
+          
 
             if (title === '') {
                 isValid = false;
@@ -340,7 +336,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
         document.getElementById('propertyForm').addEventListener('submit', function(event) {
             if (!validateForm()) {
-                event.preventDefault(); // Prevent form submission if validation fails
+                event.preventDefault(); 
             }
         });
 
@@ -349,7 +345,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
         let latitude = "<?php echo isset($_GET['latitude']) ? htmlspecialchars($_GET['latitude']) : ''; ?>";
         let longitude = "<?php echo isset($_GET['longitude']) ? htmlspecialchars($_GET['longitude']) : ''; ?>";
-        let map = L.map('map').setView([latitude, longitude], 15); // Default view
+        let map = L.map('map').setView([latitude, longitude], 15); 
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

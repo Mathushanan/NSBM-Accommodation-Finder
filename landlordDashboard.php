@@ -62,31 +62,41 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
 
                 if (isset($_POST['property_id'])) {
                     $propertyId = $_POST['property_id'];
-
-
                     $deleteImagesQuery = "DELETE FROM images WHERE propertyId = $propertyId";
-                    $connection->query($deleteImagesQuery);
 
-                    $deletePropertyQuery = "DELETE FROM properties WHERE propertyId = $propertyId";
-                    if ($connection->query($deletePropertyQuery) === TRUE) {
+                    if ($connection->query($deleteImagesQuery) === TRUE) {
+                        $deleteReservationsQuery = "DELETE FROM reservations WHERE propertyId = $propertyId";
+
+                        if ($connection->query($deleteReservationsQuery) === TRUE) {
+                            $deletePropertyQuery = "DELETE FROM properties WHERE propertyId = $propertyId";
+
+                            if ($connection->query($deletePropertyQuery) === TRUE) {
+                                
+                            } else {
+                                echo "Error deleting property: " . $connection->error;
+                            }
+                        } else {
+                            echo "Error deleting reservations: " . $connection->error;
+                        }
                     } else {
-                        echo "Error deleting property: " . $connection->error;
+                        echo "Error deleting images: " . $connection->error;
                     }
                 } else {
                     echo "Property ID is not set.";
                 }
             }
 
+
             $sql = "SELECT properties.*, images.imageData 
-        FROM properties  
-        INNER JOIN (
-            SELECT propertyId, MAX(imageId) AS maxImageId 
-            FROM images 
-            GROUP BY propertyId
-        ) AS latest_images ON properties.propertyId = latest_images.propertyId
-        INNER JOIN images ON latest_images.maxImageId = images.imageId
-        WHERE userId={$_SESSION['userId']}
-        ORDER BY properties.postedAt DESC";
+                    FROM properties  
+                    INNER JOIN (
+                        SELECT propertyId, MAX(imageId) AS maxImageId 
+                        FROM images 
+                        GROUP BY propertyId
+                    ) AS latest_images ON properties.propertyId = latest_images.propertyId
+                    INNER JOIN images ON latest_images.maxImageId = images.imageId
+                    WHERE userId={$_SESSION['userId']}
+                    ORDER BY properties.postedAt DESC";
 
             $result = $connection->query($sql);
 
@@ -97,10 +107,14 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "Landlord") {
                     echo '<div class="card__content">';
 
                     echo '<form method="post">';
+
                     echo '<div class="card__buttons">';
                     echo '<input type="hidden" name="property_id" value="' . $row["propertyId"] . '">';
+
                     echo '<button type="submit" class="delete-button" name="delete_button">Delete</button>';
-                    echo '<a href="updateProperty.php?property_id='.$row["propertyId"].'&title='.$row["title"].'&description='.$row["description"].'&bedCounts='.$row["bedCounts"].'&postedAt='.$row["postedAt"].'&rent='.$row["rent"].'&longitude='.$row["longitude"].'&latitude='.$row["latitude"].'&locationLink='.$row["locationLink"].'" class="update-button">Update</a>';
+
+                    echo '<a href="updateProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '" class="update-button">Update</a>';
+
                     echo '</div>';
                     echo '</form>';
 
