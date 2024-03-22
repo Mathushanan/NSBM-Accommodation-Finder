@@ -97,7 +97,7 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
                     echo '<div class="card__buttons">';
                     echo '<input type="hidden" name="property_id" value="' . $row["propertyId"] . '">';
                     echo '<button type="submit" class="delete-button" name="delete_button">Delete</button>';
-                    
+
                     echo '</div>';
                     echo '</form>';
 
@@ -105,8 +105,8 @@ if (!isset($_SESSION['userEmail']) || $_SESSION['userType'] != "WebAdmin") {
                     echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
 
                     echo '<div class="card__details">';
-                    echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
-                    echo '<p class="beds"><strong>Posted at</strong> ' . date("Y/m/d", strtotime($row["postedAt"])) . '</p>';
+                    echo '<p class="beds"><strong>Beds Available</strong>' . $row["bedCounts"] . '</p>';
+                    echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
                     echo '</div>';
 
                     echo '<div class="card_footer">';

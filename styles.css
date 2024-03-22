@@ -670,12 +670,11 @@ nav {
 
 }
 
-.card__content .card__details{
- 
-}
+
 .card__content .card_footer {
    
     margin-bottom: 0;
+    margin-top: 20px;
 
 }
 
@@ -1390,14 +1389,14 @@ input[type="file"] {
 
 #studentDashboard_section .card__details p {
     margin: 10px 0;
-    color: #444;
+    color: #666;
     font-size: 14px;
 }
 
 #studentDashboard_section .card__details strong {
     font-weight: bold;
     margin-right: 5px;
-    color: #222;
+    color: var(--primary-color)
 }
 
 .accept-button {

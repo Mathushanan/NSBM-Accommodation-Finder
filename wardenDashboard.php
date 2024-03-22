@@ -34,18 +34,16 @@ function fetchPendingAccommodations($connection)
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '&status=' . $row["status"]. '">';
+            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '&status=' . $row["status"] . '">';
             echo '<div class="card">';
 
             echo '<div class="card__content">';
-
-
 
             echo '<h2 class="card__title">' . $row["title"] . '</h2>';
             echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
 
             echo '<div class="card__details">';
-            echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
+            echo '<p class="beds"><strong>Beds Available</strong>' . $row["bedCounts"] . '</p>';
             echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
             echo '</div>';
 
@@ -96,7 +94,7 @@ function fetchAllAccommodations($connection)
 
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] .'&status=' . $row["status"]. '">';
+            echo '<a href="viewProperty.php?property_id=' . $row["propertyId"] . '&title=' . $row["title"] . '&description=' . $row["description"] . '&bedCounts=' . $row["bedCounts"] . '&postedAt=' . $row["postedAt"] . '&rent=' . $row["rent"] . '&longitude=' . $row["longitude"] . '&latitude=' . $row["latitude"] . '&locationLink=' . $row["locationLink"] . '&status=' . $row["status"] . '">';
             echo '<div class="card">';
 
             echo '<div class="card__content">';
@@ -107,7 +105,7 @@ function fetchAllAccommodations($connection)
             echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
 
             echo '<div class="card__details">';
-            echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
+            echo '<p class="beds"><strong>Beds Available</strong>' . $row["bedCounts"] . '</p>';
             echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
             echo '</div>';
 
