@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+include("config.php");
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +23,9 @@
 
 <body>
 
-
-
+    <?php
+    if (!isset($_SESSION['userEmail'])) {
+        echo '
     <nav>
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
@@ -25,7 +35,71 @@
             <li class="link"><a href="#footer_section">Contact</a></li>
             <li class="link"><a href="login.php">Login</a></li>
         </ul>
-    </nav>
+    </nav>';
+    } else {
+        if ($_SESSION['userType'] == "WebAdmin") {
+            echo '
+        <nav>
+            <div class="nav__logo">UniNest NSBM</div>
+            <ul class="nav__links">
+                <li class="link"><a href="#home_section">Home</a></li>
+                <li class="link"><a href="webadminDashboard.php">Dashboard</a></li>
+                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#blog_section">Blog</a></li>
+                <li class="link"><a href="#footer_section">Contact</a></li>
+                <li class="link"><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>';
+        }
+        if ($_SESSION['userType'] == "Student") {
+            echo '
+        <nav>
+            <div class="nav__logo">UniNest NSBM</div>
+            <ul class="nav__links">
+                <li class="link"><a href="#home_section">Home</a></li>
+                <li class="link"><a href="studentDashboard.php">Dashboard</a></li>
+                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#blog_section">Blog</a></li>
+                <li class="link"><a href="#footer_section">Contact</a></li>
+                <li class="link"><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>';
+        }
+        if ($_SESSION['userType'] == "Warden") {
+
+            echo '
+        <nav>
+            <div class="nav__logo">UniNest NSBM</div>
+            <ul class="nav__links">
+                <li class="link"><a href="#home_section">Home</a></li>
+                <li class="link"><a href="wardenDashboard.php">Dashboard</a></li>
+                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#blog_section">Blog</a></li>
+                <li class="link"><a href="#footer_section">Contact</a></li>
+                <li class="link"><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>';
+        }
+        if ($_SESSION['userType'] == "Landlord") {
+            echo '
+        <nav>
+            <div class="nav__logo">UniNest NSBM</div>
+            <ul class="nav__links">
+                <li class="link"><a href="#home_section">Home</a></li>
+                <li class="link"><a href="landlordDashboard.php">Dashboard</a></li>
+                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#blog_section">Blog</a></li>
+                <li class="link"><a href="#footer_section">Contact</a></li>
+                <li class="link"><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>';
+        }
+    }
+
+
+
+
+    ?>
 
 
 
