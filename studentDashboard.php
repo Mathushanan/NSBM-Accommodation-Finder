@@ -20,6 +20,7 @@ function fetchAllAccommodations($connection)
                 GROUP BY propertyId
             ) AS latest_images ON properties.propertyId = latest_images.propertyId
             INNER JOIN images ON latest_images.maxImageId = images.imageId
+            WHERE properties.status='Accepted'
             ORDER BY properties.postedAt DESC";
 
     $result = $connection->query($sql);
