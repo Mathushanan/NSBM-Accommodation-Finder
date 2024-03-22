@@ -320,8 +320,8 @@ $connection->close();
 
         }
 
-        let latitude = "<?php echo isset($_GET['latitude']) ? htmlspecialchars($_GET['latitude']) : ''; ?>";
-        let longitude = "<?php echo isset($_GET['longitude']) ? htmlspecialchars($_GET['longitude']) : ''; ?>";
+        let latitude = <?php echo json_encode(isset($_GET['latitude']) ? $_GET['latitude'] : ''); ?>;
+        let longitude = <?php echo json_encode(isset($_GET['longitude']) ? $_GET['longitude'] : ''); ?>;
         let map = L.map('map').setView([latitude, longitude], 15);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

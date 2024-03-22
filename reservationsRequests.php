@@ -15,30 +15,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
     $reservationId = $_POST['reservationId'];
 
     if ($action === 'accept') {
-        // Update the database to mark the reservation as accepted
+
         $sql = "UPDATE reservations SET status = 'Accepted' WHERE reservationId = $reservationId";
         if ($connection->query($sql) === TRUE) {
-            // Success response
+
             echo "Reservation accepted successfully";
         } else {
-            // Error response
+
             echo "Error accepting reservation";
         }
     } elseif ($action === 'reject') {
-        // Update the database to mark the reservation as rejected
+
         $sql = "UPDATE reservations SET status = 'Rejected' WHERE reservationId = $reservationId";
         if ($connection->query($sql) === TRUE) {
-            // Success response
+
             echo "Reservation rejected successfully";
         } else {
-            // Error response
+
             echo "Error rejecting reservation";
         }
     } else {
-        // Invalid action
+
         echo "Invalid action";
     }
-    exit(); // Terminate further processing
+    exit(); 
 }
 
 
@@ -151,21 +151,21 @@ if (isset($_GET['status'])) {
             xhr.open('POST', 'reservationsRequests.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    // Handle success response
+                
                     console.log(xhr.responseText);
-                    // Hide the card after action is performed
+                  
                     var card = document.getElementById('card_' + reservationId);
                     if (card) {
                         card.style.display = 'none';
                     }
-                    // You can update UI or display a message here
+         
                 } else {
-                    // Handle error
+             
                     console.error('Error performing action: ' + xhr.statusText);
                 }
             };
             xhr.onerror = function() {
-                // Handle network errors
+    
                 console.error('Network error occurred');
             };
             xhr.send(formData);
