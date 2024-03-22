@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && isset($_P
 
         echo "Invalid action";
     }
-    exit(); 
+    exit();
 }
 
 
@@ -49,9 +49,10 @@ $headerText = "Pending Properties";
 function fetchAccommodationsByStatus($connection, $status)
 {
     $userId = $_SESSION['userId'];
-    $sql = "SELECT reservations.*, properties.title, properties.description, properties.bedCounts, properties.postedAt, properties.rent, properties.longitude, properties.latitude, properties.locationLink, properties.status AS propertyStatus, images.imageData 
+    $sql = "SELECT reservations.*, properties.title, properties.description, properties.bedCounts, properties.postedAt, properties.rent, properties.longitude, properties.latitude, properties.locationLink, properties.status AS propertyStatus, images.imageData, users.userId AS studentId 
             FROM reservations
             INNER JOIN properties ON reservations.propertyId = properties.propertyId
+            INNER JOIN users ON reservations.userId = users.userId
             LEFT JOIN (
                 SELECT propertyId, MIN(imageId) AS minImageId
                 FROM images
@@ -63,7 +64,29 @@ function fetchAccommodationsByStatus($connection, $status)
     $result = $connection->query($sql);
 
     if ($result && $result->num_rows > 0) {
+
         while ($row = $result->fetch_assoc()) {
+
+            $studentId = $row['studentId'];
+
+            $fetchStudentSql = "SELECT * FROM users WHERE userId = $studentId";
+
+            $studentResult = $connection->query($fetchStudentSql);
+
+            if ($studentResult) {
+                while ($student_row = $studentResult->fetch_assoc()) {
+                    $name = $student_row['name'];
+                    $email = $student_row['email'];
+                    $mobile = $student_row['mobile'];
+                    $gender = $student_row['gender'];
+                }
+            } else {
+                echo "Error: " . $connection->error;
+            }
+
+
+
+
             echo '<div class="card" id="card_' . $row['reservationId'] . '">';
 
             echo '<div class="card__content">';
@@ -78,10 +101,20 @@ function fetchAccommodationsByStatus($connection, $status)
             }
             echo '<h2 class="card__title">' . $row["title"] . '</h2>';
             echo '<p class="card__description">' . substr($row['description'], 0, 60) . '...</p>';
+            
             echo '<div class="card__details">';
-            echo '<p class="beds"><strong>' . $row["bedCounts"] . '</strong> Beds Available</p>';
+            echo '<p class="beds"><strong>Beds Available</strong>' . $row["bedCounts"] . '</p>';
             echo '<p class="beds"><strong>Posted at</strong> ' . date("Y-m-d", strtotime($row["postedAt"])) . '</p>';
             echo '</div>';
+            
+            echo '<div class="user-details">';
+            echo  '<p>Reserved By</p>';
+            echo  '<p>' . $name . '</p>';
+            echo  '<p>' . $email . '</p>';
+            echo  '<p>' . $mobile . '</p>';
+            echo  '<p>' . $gender . '</p>';
+            echo '</div>';
+
             echo '<div class="card_footer">';
             if ($row["bedCounts"] > 0) {
                 echo '<span class="available_status">Available</span>';
@@ -151,21 +184,21 @@ if (isset($_GET['status'])) {
             xhr.open('POST', 'reservationsRequests.php', true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                
+
                     console.log(xhr.responseText);
-                  
+
                     var card = document.getElementById('card_' + reservationId);
                     if (card) {
                         card.style.display = 'none';
                     }
-         
+
                 } else {
-             
+
                     console.error('Error performing action: ' + xhr.statusText);
                 }
             };
             xhr.onerror = function() {
-    
+
                 console.error('Network error occurred');
             };
             xhr.send(formData);
@@ -206,7 +239,7 @@ if (isset($_GET['status'])) {
 
     <section class="section__container webadmin_dashboard_section__container" id="wardenDashboard_section">
         <h2 class="section__header"><?php echo $headerText; ?></h2>
-        <div class="webadmin_dashboard_accommodation_container">
+        <div class="webadmin_dashboard_accommodation_container reservationsRequestsContainer">
 
 
             <?php
