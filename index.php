@@ -30,7 +30,7 @@ include("config.php");
         <div class="nav__logo">UniNest NSBM</div>
         <ul class="nav__links">
             <li class="link"><a href="#home_section">Home</a></li>
-            <li class="link"><a href="#popular_section">Accomodations</a></li>
+            <li class="link"><a href="#new_accommodations_section">Accomodations</a></li>
             <li class="link"><a href="#blog_section">Blog</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
             <li class="link"><a href="login.php">Login</a></li>
@@ -44,7 +44,7 @@ include("config.php");
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="webadminDashboard.php">Dashboard</a></li>
-                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#new_accommodations_section">Accomodations</a></li>
                 <li class="link"><a href="#blog_section">Blog</a></li>
                 <li class="link"><a href="#footer_section">Contact</a></li>
                 <li class="link"><a href="logout.php">Logout</a></li>
@@ -58,7 +58,7 @@ include("config.php");
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="studentDashboard.php">Dashboard</a></li>
-                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#new_accommodations_section">Accomodations</a></li>
                 <li class="link"><a href="#blog_section">Blog</a></li>
                 <li class="link"><a href="#footer_section">Contact</a></li>
                 <li class="link"><a href="logout.php">Logout</a></li>
@@ -73,7 +73,7 @@ include("config.php");
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="wardenDashboard.php">Dashboard</a></li>
-                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#new_accommodations_section">Accomodations</a></li>
                 <li class="link"><a href="#blog_section">Blog</a></li>
                 <li class="link"><a href="#footer_section">Contact</a></li>
                 <li class="link"><a href="logout.php">Logout</a></li>
@@ -87,7 +87,7 @@ include("config.php");
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="landlordDashboard.php">Dashboard</a></li>
-                <li class="link"><a href="#popular_section">Accomodations</a></li>
+                <li class="link"><a href="#new_accommodations_section">Accomodations</a></li>
                 <li class="link"><a href="#blog_section">Blog</a></li>
                 <li class="link"><a href="#footer_section">Contact</a></li>
                 <li class="link"><a href="logout.php">Logout</a></li>
@@ -109,33 +109,7 @@ include("config.php");
                 <h1>Discover Accommodation Options</h1>
                 <p>Specifically for NSBM Students!</p>
             </div>
-            <div class="booking__container">
-                <form>
-                    <div class="form__group">
-                        <div class="input__group">
-                            <input type="text" />
-                            <label>Location</label>
-                        </div>
-                        <p>Where are you looking to stay?</p>
-                    </div>
-                    <div class="form__group">
-                        <div class="input__group">
-                            <input type="text" />
-                            <label>Minimum Rent</label>
-                        </div>
-                        <p>What is your minimum budget?</p>
-                    </div>
-                    <div class="form__group">
-                        <div class="input__group">
-                            <input type="text" />
-                            <label>Maximum Rent</label>
-                        </div>
-                        <p>What is your maximum budget?</p>
-                    </div>
-
-                </form>
-                <button class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            
         </div>
     </header>
 
@@ -232,7 +206,7 @@ include("config.php");
             </div>
         </div>
 
-        <!-- Navigation buttons -->
+
         <div class="swiper-button-next">
             <i class="ri-arrow-right-s-line"></i>
         </div>
@@ -241,7 +215,6 @@ include("config.php");
             <i class="ri-arrow-left-s-line"></i>
         </div>
 
-        <!-- Pagination -->
         <div class="swiper-pagination"></div>
         </div>
 

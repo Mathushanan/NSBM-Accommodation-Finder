@@ -37,6 +37,7 @@
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
+   
 
 
 }
@@ -143,76 +144,27 @@ nav {
     background-color: rgba(255, 255, 255, 0.7);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
-}
-
-.booking__container form {
-    width: 100%;
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.booking__container .input__group {
-    width: 100%;
-    position: relative;
-}
-
-.booking__container label {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-dark);
-    pointer-events: none;
-    transition: 0.3s;
-}
-
-.booking__container input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 1rem;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid var(--primary-color);
-    color: var(--text-dark);
-}
-
-.booking__container input:focus~label {
-    font-size: 0.8rem;
-    top: 0;
-}
-
-.booking__container .form__group p {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--text-light);
-}
-
-.booking__container .btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: var(--primary-color);
-    border: none;
-    display: flex;
+    box-shadow: 5px 5px 30px rgba(180, 153, 153, 0.1);
+    text-align: center;
     justify-content: center;
-    align-items: center;
 }
 
-.btn i {
-    font-size: 20px;
-    color: var(--white);
+.home_buttons_container {
+    display: flex;
+    border:1px solid;
+    text-align: center;
+}
+.home_buttons_container .login-btn{
+
+}
+.home_buttons_container .register-btn{
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    
 }
 
-.booking__container .btn:hover {
-    background-color: var(--primary-color-dark);
-}
+
 
 
 
@@ -1679,17 +1631,14 @@ input[type="file"] {
     }
 
     .header__container {
-        padding-bottom: 25rem;
+        padding-bottom: 15rem;
     }
 
     .booking__container {
         flex-direction: column;
-        bottom: -25rem;
+        bottom: -10rem;
     }
 
-    .booking__container form {
-        grid-template-columns: repeat(1, 1fr);
-    }
 
     .popular__grid {
         grid-template-columns: repeat(1, 1fr);
@@ -1781,6 +1730,9 @@ input[type="file"] {
         line-height: 3rem;
         font-weight: 600;
     }
+    .home_buttons_container .big-button{
+        font-size: 14px;
+    }
 
 }
 
@@ -1840,4 +1792,13 @@ input[type="file"] {
     #searchBox {
         width: 90%;
     }
+}
+
+
+@media screen and (max-width: 800px) {
+
+    .home_buttons_container {
+        display: block;
+    }
+
 }
