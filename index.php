@@ -103,13 +103,21 @@ include("config.php");
 
 
 
-    <header class="section__container header__container" id="home_section">
-        <div class="header__image__container">
-            <div class="header__content">
-                <h1>Discover Accommodation Options</h1>
-                <p>Specifically for NSBM Students!</p>
-            </div>
-
+    <header class="section__container header__container">
+        <div class="header__content">
+            <span class="bg__blur"></span>
+            <span class="bg__blur header__blur"></span>
+            <h4>BEST ACCOMMODATION FOR NSBM STUDENTS</h4>
+            <h1><span>FIND</span> YOUR IDEAL PLACE</h1>
+            <p>
+            Discover the perfect accommodation options tailored for NSBM University students. 
+            Find a comfortable and convenient place to call home near your campus. 
+            Start your search now!
+            </p>
+            <a href="register.php"><button class="btn">SignUp</button></a>
+        </div>
+        <div class="header__image">
+            <img src="assets/header.png" alt="header" />
         </div>
     </header>
 
@@ -289,13 +297,7 @@ include("config.php");
 
     <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="<?php echo 'assets/js/main.js?v=' . filemtime('assets/js/main.js'); ?>"></script>
-    <script>
-        const images = ["assets/pic1.jpeg", "assets/pic2.jpg", "assets/pic3.jpg","assets/pic4.jpg", "assets/pic5.jpg"];
-        images.forEach((image) => {
-            const img = new Image();
-            img.src = image;
-        });
-    </script>
+
 
 
 

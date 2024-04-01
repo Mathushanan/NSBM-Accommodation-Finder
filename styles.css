@@ -9,6 +9,13 @@
     --white: #ffffff;
     --max-width: 1200px;
     --rent-button-color: #F5A623;
+
+    --primary-color-light: #1f2125;
+    --primary-color-extra-light: #35373b;
+
+
+    --white: #ffffff;
+    --max-width: 1200px;
 }
 
 * {
@@ -60,6 +67,7 @@ img {
 
 body {
     font-family: "Poppins", sans-serif;
+    
 }
 
 nav {
@@ -69,6 +77,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+   
 }
 
 .nav__logo {
@@ -104,63 +113,96 @@ nav {
 }
 
 .header__container {
-    padding: 1rem;
-}
-
-.header__image__container {
     position: relative;
-    min-height: 500px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 5px;
-    animation: changeBackground 16s infinite alternate;
-}
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2rem;
 
-.header__content {
-    max-width: 600px;
-    padding: 5rem 2rem;
-}
-
-.header__content h1 {
-    margin-bottom: 1rem;
-    font-size: 3.5rem;
-    line-height: 4rem;
-    font-weight: 600;
+    
+  }
+  
+  .header__container::before {
+    content: "FITNESS";
+    position: absolute;
+    bottom: 5rem;
+    right: 20rem;
+    font-size: 10rem;
+    font-weight: 700;
+    line-height: 7rem;
     color: var(--white);
-}
-
-.header__content p {
-    color: var(--extra-light);
-}
-
-@keyframes changeBackground {
-    0% {
-        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
-            url("assets/pic1.jpeg");
-    }
-    20% {
-        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
-            url("assets/pic2.jpg");
-    }
-    40% {
-        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
-            url("assets/pic3.jpg");
-    }
-    60% {
-        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
-            url("assets/pic4.jpg");
-    }
-    80% {
-        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
-            url("assets/pic5.jpg");
-    }
-    100% {
-        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
-            url("assets/pic1.jpeg");
-    }
-}
-
+    opacity: 0.05;
+    z-index: -1;
+  }
+  
+  .header__blur {
+    bottom: 5rem;
+    right: 0;
+  }
+  
+  .header__content h4 {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--rent-button-color);
+  }
+  
+  .header__content h1 {
+    margin-bottom: 1rem;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 6rem;
+    color: var(--primary-color);
+  }
+  
+  .header__content h1 span {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px var(--primary-color);
+  }
+  
+  .header__content p {
+    margin-bottom: 2rem;
+    color: var(--text-light);
+  }
+  
+  .header__image {
+    position: relative;
+  }
+  
+  .header__image::before {
+    content: "o";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40rem;
+    font-weight: 400;
+    line-height: 20rem;
+    color: var(--rent-button-color);
+    opacity: 0.5;
+    z-index: -1;
+  }
+  
+  .header__image img {
+    max-width: 350px;
+    margin: auto;
+  }
+  .header__container .btn {
+    padding: 1rem 2rem;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .header__container .btn:hover {
+    background-color: var(--rent-button-color);
+  }
 
 
 
@@ -1801,3 +1843,22 @@ input[type="file"] {
     }
 
 }
+
+
+
+@media (width < 900px) {
+    
+  
+    .header__container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    .header__image {
+      grid-area: 1/1/2/2;
+    }
+  
+   
+  }
+  
+
+   
