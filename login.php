@@ -92,7 +92,9 @@ session_start();
 
 
 
-                <header>Login</header>
+                <header><span>Login</span>  <i class="fas fa-sign-in-alt"></i></header>
+
+                
                 <form action="" method="post">
                     <div class="field input">
                         <label for="user_email">Email</label>

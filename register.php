@@ -89,7 +89,7 @@
             ?>
 
 
-                <header>Register</header>
+                <header><span>Register</span><i class="fas fa-user-plus"></i></header>
 
                 <form action="" method="post" id="register_form">
 

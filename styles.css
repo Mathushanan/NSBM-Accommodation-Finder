@@ -44,7 +44,7 @@
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
-   
+
 
 
 }
@@ -67,7 +67,7 @@ img {
 
 body {
     font-family: "Poppins", sans-serif;
-    
+
 }
 
 nav {
@@ -77,21 +77,23 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
+
 }
 
 .nav__logo {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-dark);
-    
+
 }
-#nest{
-    color:var(--primary-color);
- 
+
+#nest {
+    color: var(--primary-color);
+
 }
-#uni{
-    color:var(--rent-button-color);
+
+#uni {
+    color: var(--rent-button-color);
 }
 
 
@@ -120,10 +122,10 @@ nav {
     align-items: center;
     gap: 2rem;
 
-    
-  }
-  
-  .header__container::before {
+
+}
+
+.header__container::before {
     content: "FITNESS";
     position: absolute;
     bottom: 5rem;
@@ -134,43 +136,43 @@ nav {
     color: var(--white);
     opacity: 0.05;
     z-index: -1;
-  }
-  
-  .header__blur {
+}
+
+.header__blur {
     bottom: 5rem;
     right: 0;
-  }
-  
-  .header__content h4 {
+}
+
+.header__content h4 {
     margin-bottom: 1rem;
     font-size: 1rem;
     font-weight: 600;
     color: var(--rent-button-color);
-  }
-  
-  .header__content h1 {
+}
+
+.header__content h1 {
     margin-bottom: 1rem;
     font-size: 5rem;
     font-weight: 700;
     line-height: 6rem;
     color: var(--primary-color);
-  }
-  
-  .header__content h1 span {
+}
+
+.header__content h1 span {
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke: 1px var(--primary-color);
-  }
-  
-  .header__content p {
+}
+
+.header__content p {
     margin-bottom: 2rem;
     color: var(--text-light);
-  }
-  
-  .header__image {
+}
+
+.header__image {
     position: relative;
-  }
-  
-  .header__image::before {
+}
+
+.header__image::before {
     content: "o";
     position: absolute;
     top: 0;
@@ -182,13 +184,14 @@ nav {
     color: var(--rent-button-color);
     opacity: 0.5;
     z-index: -1;
-  }
-  
-  .header__image img {
+}
+
+.header__image img {
     max-width: 350px;
     margin: auto;
-  }
-  .header__container .btn {
+}
+
+.header__container .btn {
     padding: 1rem 2rem;
     outline: none;
     border: none;
@@ -198,11 +201,11 @@ nav {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-  }
-  
-  .header__container .btn:hover {
+}
+
+.header__container .btn:hover {
     background-color: var(--rent-button-color);
-  }
+}
 
 
 
@@ -457,8 +460,16 @@ nav {
     display: flex;
     flex-direction: column;
     padding: 50px 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.login-container header {
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .form-box {
@@ -536,7 +547,7 @@ nav {
 
 .login-container .btn {
     background-color: var(--primary-color);
-    height: 35px;
+    height: 40px;
     border: 0;
     border-radius: 5px;
     color: #fff;
@@ -549,14 +560,10 @@ nav {
 }
 
 .login-container .btn:hover {
-    opacity: 0.82;
+    background-color: var(--rent-button-color);
 }
 
 
-
-.send-btn {
-    background-color: #f44336;
-}
 
 .submit {
     width: 100%;
@@ -572,6 +579,17 @@ nav {
     text-decoration: underline;
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .errorMessageBox {
     text-align: center;
@@ -652,10 +670,8 @@ nav {
     margin-top: 10px;
 
 }
-.card__description{
-    
-    
-}
+
+.card__description {}
 
 .card__content p {
     margin-top: 5px;
@@ -665,7 +681,7 @@ nav {
 
 
 .card__content .card_footer {
-   
+
     margin-bottom: 0;
     margin-top: 20px;
 
@@ -1514,7 +1530,7 @@ input[type="file"] {
 .reservationsRequestsContainer .user-details {
     border-top: 1px solid #ccc;
     padding-top: 5px;
-   
+
 }
 
 .reservationsRequestsContainer .user-details p {
@@ -1650,6 +1666,14 @@ input[type="file"] {
     .footer__container {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .header__container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .header__image {
+        grid-area: 1/1/2/2;
+    }
 }
 
 
@@ -1771,7 +1795,8 @@ input[type="file"] {
         line-height: 3rem;
         font-weight: 600;
     }
-    .home_buttons_container .big-button{
+
+    .home_buttons_container .big-button {
         font-size: 14px;
     }
 
@@ -1843,22 +1868,3 @@ input[type="file"] {
     }
 
 }
-
-
-
-@media (width < 900px) {
-    
-  
-    .header__container {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  
-    .header__image {
-      grid-area: 1/1/2/2;
-    }
-  
-   
-  }
-  
-
-   
