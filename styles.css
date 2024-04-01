@@ -75,7 +75,16 @@ nav {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-dark);
+    
 }
+#nest{
+    color:var(--primary-color);
+ 
+}
+#uni{
+    color:var(--rent-button-color);
+}
+
 
 .nav__links {
     list-style: none;
@@ -95,27 +104,22 @@ nav {
 }
 
 .header__container {
-    padding: 1rem 1rem 5rem 1rem;
+    padding: 1rem;
 }
 
 .header__image__container {
     position: relative;
     min-height: 500px;
-    background-image: linear-gradient(to right,
-            rgba(44, 56, 85, 0.9),
-            rgba(100, 125, 187, 0.1)),
-        url("assets/header_pic.jpeg");
-    background-position: center center;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    border-radius: 2rem;
-
+    border-radius: 5px;
+    animation: changeBackground 16s infinite alternate;
 }
 
 .header__content {
     max-width: 600px;
     padding: 5rem 2rem;
-
 }
 
 .header__content h1 {
@@ -130,39 +134,34 @@ nav {
     color: var(--extra-light);
 }
 
-.booking__container {
-    position: absolute;
-    bottom: -5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 6rem);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 3rem 2rem;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.7);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 5px 5px 30px rgba(180, 153, 153, 0.1);
-    text-align: center;
-    justify-content: center;
+@keyframes changeBackground {
+    0% {
+        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
+            url("assets/pic1.jpeg");
+    }
+    20% {
+        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
+            url("assets/pic2.jpg");
+    }
+    40% {
+        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
+            url("assets/pic3.jpg");
+    }
+    60% {
+        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
+            url("assets/pic4.jpg");
+    }
+    80% {
+        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
+            url("assets/pic5.jpg");
+    }
+    100% {
+        background-image: linear-gradient(to right, rgba(44, 56, 85, 0.9), rgba(100, 125, 187, 0.1)),
+            url("assets/pic1.jpeg");
+    }
 }
 
-.home_buttons_container {
-    display: flex;
-    border:1px solid;
-    text-align: center;
-}
-.home_buttons_container .login-btn{
 
-}
-.home_buttons_container .register-btn{
-    background-color: white;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    
-}
 
 
 

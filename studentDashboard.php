@@ -93,7 +93,7 @@ function fetchAllAccommodations($connection)
 
 
     <nav>
-        <div class="nav__logo">UniNest NSBM</div>
+    <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>

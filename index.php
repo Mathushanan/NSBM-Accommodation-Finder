@@ -27,7 +27,7 @@ include("config.php");
     if (!isset($_SESSION['userEmail'])) {
         echo '
     <nav>
-        <div class="nav__logo">UniNest NSBM</div>
+    <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
         <ul class="nav__links">
             <li class="link"><a href="#home_section">Home</a></li>
             <li class="link"><a href="#new_accommodations_section">Accomodations</a></li>
@@ -40,7 +40,7 @@ include("config.php");
         if ($_SESSION['userType'] == "WebAdmin") {
             echo '
         <nav>
-            <div class="nav__logo">UniNest NSBM</div>
+        <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="webadminDashboard.php">Dashboard</a></li>
@@ -54,7 +54,7 @@ include("config.php");
         if ($_SESSION['userType'] == "Student") {
             echo '
         <nav>
-            <div class="nav__logo">UniNest NSBM</div>
+        <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="studentDashboard.php">Dashboard</a></li>
@@ -69,7 +69,7 @@ include("config.php");
 
             echo '
         <nav>
-            <div class="nav__logo">UniNest NSBM</div>
+        <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="wardenDashboard.php">Dashboard</a></li>
@@ -83,7 +83,7 @@ include("config.php");
         if ($_SESSION['userType'] == "Landlord") {
             echo '
         <nav>
-            <div class="nav__logo">UniNest NSBM</div>
+        <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
             <ul class="nav__links">
                 <li class="link"><a href="#home_section">Home</a></li>
                 <li class="link"><a href="landlordDashboard.php">Dashboard</a></li>
@@ -109,7 +109,7 @@ include("config.php");
                 <h1>Discover Accommodation Options</h1>
                 <p>Specifically for NSBM Students!</p>
             </div>
-            
+
         </div>
     </header>
 
@@ -289,7 +289,13 @@ include("config.php");
 
     <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="<?php echo 'assets/js/main.js?v=' . filemtime('assets/js/main.js'); ?>"></script>
-
+    <script>
+        const images = ["assets/pic1.jpeg", "assets/pic2.jpg", "assets/pic3.jpg","assets/pic4.jpg", "assets/pic5.jpg"];
+        images.forEach((image) => {
+            const img = new Image();
+            img.src = image;
+        });
+    </script>
 
 
 
