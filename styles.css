@@ -44,8 +44,7 @@
     max-width: var(--max-width);
     margin: auto;
     padding: 5rem 1rem;
-
-
+    
 
 }
 
@@ -54,6 +53,7 @@
     font-weight: 600;
     color: var(--primary-color);
     text-align: center;
+   
 }
 
 a {
@@ -67,21 +67,25 @@ img {
 
 body {
     font-family: "Poppins", sans-serif;
+   
+   
 
 }
 
 nav {
-    max-width: var(--max-width);
+    
     margin: auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 
 }
 
+
 .nav__logo {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: var(--text-dark);
 
@@ -104,10 +108,12 @@ nav {
     gap: 2rem;
 }
 
+
 .link a {
     font-weight: 500;
     color: var(--text-light);
     transition: 0.3s;
+   
 }
 
 .link a:hover {
@@ -115,12 +121,14 @@ nav {
 }
 
 .header__container {
+    margin-top: 4rem;
     position: relative;
     padding-top: 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2rem;
+ 
 
 
 }
@@ -358,13 +366,19 @@ nav {
 
 /**footer_section**/
 .footer {
+
+    margin-top:4rem;
     background-color: var(--extra-light);
+
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+   
 }
 
 .footer__container {
     display: grid;
     grid-template-columns: 2fr repeat(3, 1fr);
     gap: 5rem;
+  
 }
 
 .footer__col h3 {
@@ -402,6 +416,8 @@ nav {
     padding-top: 10px;
     margin-bottom: 20px;
 }
+
+
 
 
 
@@ -1249,6 +1265,7 @@ input[type="file"] {
     margin-bottom: 40px;
     transition: transform 0.3s ease;
     background-color: white;
+    
 
 }
 
@@ -1374,7 +1391,7 @@ input[type="file"] {
 
 
 #studentDashboard_section .card__image {
-    width: 40%;
+    width: 48%;
     height: 100%;
     background-color: #eee;
     background-size: contain;

@@ -93,7 +93,7 @@ function fetchAllAccommodations($connection)
 
 
     <nav>
-    <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
+        <div class="nav__logo"><span id="uni">Uni</span><span id="nest">Nest</span></span></div>
         <ul class="nav__links">
             <li class="link"><a href="index.php">Home</a></li>
             <li class="link"><a href="#footer_section">Contact</a></li>
@@ -146,47 +146,7 @@ function fetchAllAccommodations($connection)
 
 
 
-    <footer class="footer" id="footer_section">
-        <div class="section__container footer__container">
-            <div class="footer__col">
-                <h3>UniNest NSBM</h3>
-                <p>
-                    UniNest NSBM is Your one-stop platform for hassle-free student accommodation near NSBM Green University Town.
-                    With diverse housing options, finding your perfect place to stay has never been easier.
-
-                </p>
-                <p>
-                    Say goodbye to accommodation worries and hello to a stress-free booking experience with UniNest NSBM.
-                </p>
-            </div>
-            <div class="footer__col">
-                <h4>Company</h4>
-                <p>About Us</p>
-                <p>Our Team</p>
-                <p>Contact Us</p>
-            </div>
-            <div class="footer__col">
-                <h4>Legal</h4>
-                <p>FAQs</p>
-                <p>Terms & Conditions</p>
-                <p>Privacy Policy</p>
-            </div>
-            <div class="footer__col">
-                <h4>Resources</h4>
-                <ul class="social-icons">
-                    <li><a href="#" class="fab fa-facebook-f"></a></li>
-                    <li><a href="#" class="fab fa-twitter"></a></li>
-                    <li><a href="#" class="fab fa-instagram"></a></li>
-                    <li><a href="#" class="fab fa-linkedin-in"></a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer__bar">
-            Copyright © nsbm. All rights reserved.
-        </div>
-
-    </footer>
+    <?php include ("footer.php")?>
 
 
 
@@ -243,9 +203,8 @@ function fetchAllAccommodations($connection)
 
             mapContainer.style.height = mapHeight + 'px';
         });
-
-
         window.addEventListener('resize', function() {
+
             var mapContainer = document.getElementById('map-container');
             var propertyCardsContainer = document.querySelector('.property-cards-container');
             var windowHeight = window.innerHeight;
@@ -254,6 +213,12 @@ function fetchAllAccommodations($connection)
 
             mapContainer.style.height = mapHeight + 'px';
         });
+
+
+
+
+
+
 
 
 
@@ -317,6 +282,7 @@ function fetchAllAccommodations($connection)
                 "&rent=" + encodeURIComponent(rent); // Append rent to the URL
 
             window.location.href = reservationURL;
+
         });
 
         document.querySelectorAll('.card').forEach(card => {
@@ -329,7 +295,9 @@ function fetchAllAccommodations($connection)
                 const longitude = this.dataset.longitude;
                 const propertyId = this.dataset.propertyid;
                 const bedCounts = this.querySelector('.beds').innerText.match(/\d+/)[0]; // Extract bedCounts from the card
-                const postedAt = this.querySelector(' .postedAt').innerText.match(/\d{4}-\d{2}-\d{2}/)[0]; // Extract postedAt from the card
+                const postedAtElement = this.querySelector('.postedAt');
+                const postedAt = postedAtElement ? postedAtElement.innerText.match(/\d{4}-\d{2}-\d{2}/)[0] : '';
+
                 const rent = this.querySelector('.rent').innerText; // Extract rent from the card
 
                 openModal(title, description, details, imageSrc, latitude, longitude, propertyId, bedCounts, postedAt, rent);
