@@ -20,17 +20,6 @@
     </nav>
 
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="login-container">
         <div class="box form-box register-box">
 
